@@ -1,5 +1,5 @@
 # xyz
-SEII project
+SEII Project
 
 Testing
 -Keenal
