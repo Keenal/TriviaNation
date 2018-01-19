@@ -9,7 +9,7 @@ Keenal Shah
 
 Wenwen Xu
 
-Timothy McWatters
+Timothy A. McWatters
 
 Wesley Easton
 
