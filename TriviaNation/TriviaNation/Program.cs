@@ -10,6 +10,12 @@ namespace TriviaNation
     {
         static void Main(string[] args)
         {
+            DataBaseOperations DBOps = new DataBaseOperations();
+            DBOps.ConnectToDB();
+            //DBOps.CreateTable();
+
+            Console.WriteLine("Press any key to end the program");
+            Console.ReadKey();
         }
     }
 }
