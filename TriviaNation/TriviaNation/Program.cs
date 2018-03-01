@@ -12,7 +12,8 @@ namespace TriviaNation
         {
             DataBaseOperations DBOps = new DataBaseOperations();
             DBOps.ConnectToDB();
-            //DBOps.CreateTable();
+            DBOps.CreateTable();
+
 
             Console.WriteLine("Press any key to end the program");
             Console.ReadKey();

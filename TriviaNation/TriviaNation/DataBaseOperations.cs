@@ -3,26 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient; // referance - System.Data.dll
+using System.Data.SqlClient; // referance - System.Data
 
 namespace TriviaNation
 {
     class DataBaseOperations
     {
-        //SqlConnection connection = null;
+        private SqlConnection connection;
 
         public void ConnectToDB()
         {
             try
             {
-                var cb = new SqlConnectionStringBuilder();
-                cb.DataSource = "trivianation.database.windows.net";
-                cb.UserID = "trivianationadmin";
-                cb.Password = "SoftwareEngineering2";
-                cb.InitialCatalog = "TriviaNation";
-                SqlConnection connection = new SqlConnection(cb.ConnectionString);
-                connection.Open();
-                CreateTable(connection);
+                var cb = new SqlConnectionStringBuilder
+                {
+                    DataSource = "trivianation.database.windows.net",
+                    UserID = "trivianationadmin",
+                    Password = "SoftwareEngineering2",
+                    InitialCatalog = "TriviaNation"
+                };
+                this.connection = new SqlConnection(cb.ConnectionString);
+                this.connection.Open();
             }
             catch (SqlException e)
             {
@@ -30,7 +31,7 @@ namespace TriviaNation
             }
         }
 
-        public void CreateTable(SqlConnection connection)
+        public void CreateTable()
         {
             String TSQLSourceCode;
 
@@ -41,7 +42,7 @@ namespace TriviaNation
                 "Question    nchar(100)     not null    PRIMARY KEY," +
                 " Answer      nchar(100)      not null);";
 
-            SqlCommand command = new SqlCommand(TSQLSourceCode, connection);
+            SqlCommand command = new SqlCommand(TSQLSourceCode, this.connection);
             int rowsAffected = command.ExecuteNonQuery();
             Console.WriteLine(rowsAffected + " Rows Affected.");
         }
