@@ -9,9 +9,20 @@ namespace TriviaNation
 {
     class DataBaseOperations
     {
-        private SqlConnection connection;
+        private static SqlConnection s_connection;
 
-        public void ConnectToDB()
+        /// <summary>
+        /// Accessor and Mutator for s_connection
+        /// </summary>
+        public static SqlConnection Connection
+        {
+            get => s_connection; set => s_connection = value;
+        }
+
+        /// <summary>
+        /// Connects to database based on hard coded database information
+        /// </summary>
+        public static void ConnectToDB()
         {
             try
             {
@@ -22,8 +33,8 @@ namespace TriviaNation
                     Password = "SoftwareEngineering2",
                     InitialCatalog = "TriviaNation"
                 };
-                this.connection = new SqlConnection(cb.ConnectionString);
-                this.connection.Open();
+                s_connection = new SqlConnection(cb.ConnectionString);
+                s_connection.Open();
             }
             catch (SqlException e)
             {
@@ -31,20 +42,115 @@ namespace TriviaNation
             }
         }
 
-        public void CreateTable()
+        /// <summary>
+        /// Determine if a Table exists in a database
+        /// </summary>
+        /// <param name="tableName">The name of the Table to check if exists</param>
+        public static void SeeIfTableExists(String tableName)
+        {
+            String sqlString = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = '" + tableName + "'";
+            SqlCommand cmd = new SqlCommand(sqlString, s_connection);
+            SqlDataReader myReader = null;
+            int count = 0;
+
+            try
+            {
+                myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                    count++;
+                myReader.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            if (count == 0)
+            {
+                Console.WriteLine("Table " + tableName + " doesnt exist");
+            }
+            else
+            {
+                Console.WriteLine("Table " + tableName + " exists");
+            }
+        }
+
+        /// <summary>
+        /// DELETEs a table
+        /// </summary>
+        /// <param name="tableName">The name of the Table to DELETE</param>
+        public static void DeleteTable(String tableName)
         {
             String TSQLSourceCode;
+            TSQLSourceCode = ("DROP TABLE IF EXISTS " + tableName + ";");
 
+            SqlCommand deleteTableCommand = new SqlCommand(TSQLSourceCode, s_connection);
+            deleteTableCommand.ExecuteNonQuery();
+            Console.WriteLine("Deletion of " + tableName + " complete!");
+        }
+
+        /// <summary>
+        /// CREATEs a TABLE in the database
+        /// </summary>
+        /// <param name="tableName">The name of the Table to create</param>
+        public static void CreateTable(String tableName, String tableCreationString)
+        {
+            //DELETEs the table if it exists
+            DeleteTable(tableName);
+
+            //Builds the table creation String
+            String TSQLSourceCode;
             TSQLSourceCode = "" +
-            "DROP TABLE IF EXISTS tableName; " +
+            "CREATE TABLE " + tableName + tableCreationString;
 
-            "CREATE TABLE tableName(" +
-                "Question    nchar(100)     not null    PRIMARY KEY," +
-                " Answer      nchar(100)      not null);";
+            //CREATEs the table
+            SqlCommand command = new SqlCommand(TSQLSourceCode, s_connection);
+            command.ExecuteNonQuery();
+            Console.WriteLine("Creation of " + tableName + " complete!");
+        }
 
-            SqlCommand command = new SqlCommand(TSQLSourceCode, this.connection);
-            int rowsAffected = command.ExecuteNonQuery();
-            Console.WriteLine(rowsAffected + " Rows Affected.");
+        /// <summary>
+        /// INSERTs a row into a Table 
+        /// </summary>
+        /// <param name="insertString">The String argument to Insert a row into a Table</param>
+        public static void InsertIntoTable(String insertString)
+        {
+            String TSQLSourceCode = insertString;
+            SqlCommand command = new SqlCommand(TSQLSourceCode, s_connection);
+            command.ExecuteNonQuery();
+            Console.WriteLine("Insertion complete!");
+        }
+
+        /// <summary>
+        /// RETRIEVEs a row from a Table
+        /// </summary>
+        /// <param name="rowToRetrieve">The row number to RETRIEVE from the Table</param>
+        /// <returns name="retrievedRow">The row retrieved from the Table</returns>
+        public static String RetrieveRowFromTable(String rowToRetrieve)
+        {
+            String retrievedRow = "";
+            int i = 0;
+            String TSQLSourceCode = rowToRetrieve;
+
+            using (SqlCommand command = new SqlCommand(TSQLSourceCode, s_connection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        retrievedRow = reader.GetString(0) + "\n" + reader.GetString(1);
+                    }
+                }
+            }
+            return retrievedRow;
+        }
+
+        /// <summary>
+        /// DELETEs a row from a TABLE 
+        /// </summary>
+        /// <param name="rowToDelete">The number of the row to DELETE from a Table</param>
+        public static void DeleteRowFromTable(int rowToDelete)
+        {
+            //put code here
         }
     }
 }

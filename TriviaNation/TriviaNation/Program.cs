@@ -10,9 +10,15 @@ namespace TriviaNation
     {
         static void Main(string[] args)
         {
-            DataBaseOperations DBOps = new DataBaseOperations();
-            DBOps.ConnectToDB();
-            DBOps.CreateTable();
+            new DataBaseOperations();
+            DataBaseOperations.ConnectToDB();
+            QuestionTable QT = new QuestionTable();
+            QT.CreateTable();
+            DataBaseOperations.SeeIfTableExists(QT.TableName);
+            QT.InsertRowIntoTable("This is a question1", "This is the answer1");
+            QT.InsertRowIntoTable("This is a question2", "This is the answer2");
+            QT.InsertRowIntoTable("This is a question3", "This is the answer3");
+            QT.RetrieveTableRow(1);
 
 
             Console.WriteLine("Press any key to end the program");
