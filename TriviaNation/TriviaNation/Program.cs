@@ -14,11 +14,12 @@ namespace TriviaNation
             DataBaseOperations.ConnectToDB();
             QuestionTable QT = new QuestionTable();
             QT.CreateTable();
-            DataBaseOperations.SeeIfTableExists(QT.TableName);
+            Console.WriteLine(QT.TableExists());
             QT.InsertRowIntoTable("This is a question1", "This is the answer1");
             QT.InsertRowIntoTable("This is a question2", "This is the answer2");
             QT.InsertRowIntoTable("This is a question3", "This is the answer3");
-            QT.RetrieveTableRow(1);
+            Console.WriteLine(QT.RetrieveTableRow(3));
+            Console.WriteLine(QT.RetrieveNumberOfRowsInTable());
 
 
             Console.WriteLine("Press any key to end the program");

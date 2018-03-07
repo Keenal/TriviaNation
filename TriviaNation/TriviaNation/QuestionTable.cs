@@ -8,7 +8,7 @@ namespace TriviaNation
 {
     class QuestionTable : IDataBaseTable
     {
-        //name of the Table
+        //name of this specific DataBase Table
         private const String tableName = "QuestionTable";
         //String used to create this specific Table
         private const String tableCreationString = "(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null);";
@@ -26,10 +26,7 @@ namespace TriviaNation
         /// </summary>
         public String TableName
         {
-            get
-            {
-                return tableName;
-            }
+            get => tableName;
         }
 
         /// <summary>
@@ -37,17 +34,21 @@ namespace TriviaNation
         /// </summary>
         public String TableCreationString
         {
-            get
-            {
-                return tableCreationString;
-            }
+            get => tableCreationString;
         }
 
         /// <summary>
-        /// Creates a Table
+        /// Checks to see if this Table table exists currently in the DataBase
         /// </summary>
-        /// <param name="tableName">the name of the Table to create</param>
-        /// <param name="tableCreationString">The String used in Table creation to define Table Parameters</param>
+        /// <param name="tableExists">True if the Table does exist in the DataBase, False if it does not</param>
+        public Boolean TableExists()
+        {
+            return DataBaseOperations.TableExists(tableName);
+        }
+
+        /// <summary>
+        /// Creates this Table
+        /// </summary>
         public void CreateTable()
         {
             DataBaseOperations.CreateTable(tableName, tableCreationString);
@@ -65,17 +66,31 @@ namespace TriviaNation
         }
 
         /// <summary>
+        /// Retrieves the number of rows a table has
+        /// </summary>
+        /// <returns name="numberOfRowsInTheTable">The number of the rows in the Table</param>
+        public int RetrieveNumberOfRowsInTable()
+        {
+            return DataBaseOperations.RetrieveNumberOfRowsInTable(TableName);
+        }
+
+        /// <summary>
         /// Retrieves a row from the Table
         /// </summary>
         /// <param name="rowNumber">The number of the row to retrieve from the Table</param>
         /// <returns name="retrievedRow">The row that was retrieved</param>
         public String RetrieveTableRow(int rowNumber)
         {
-            String retrievedRow = "";
- //NEED to correct this code to retrieve only the selected row
-            retrievedRow = DataBaseOperations.RetrieveRowFromTable("SELECT * FROM " + TableName + ";");
-//DELETE this WriteLine after method fixed
-            Console.WriteLine(retrievedRow);
+            String retrievedRow = DataBaseOperations.RetrieveRowFromTable("" +
+                "SELECT * FROM" +
+               "(" +
+                "Select " +
+                "Row_Number() Over (Order By question) As RowNum" +
+                ", * " +
+               "From QuestionTable" +
+               ") t2 " +
+               "where RowNum = " + rowNumber + ";");
+
             return retrievedRow;
         }
 
@@ -83,9 +98,11 @@ namespace TriviaNation
         /// Deletes a row from the Table
         /// </summary>
         /// <param name="rowNumber">The number of the row to DELETE from the Table</param>
-        public void DeleteRowFromTable(int rowNumber)
+        public void DeleteRowFromTable()
         {
-            DataBaseOperations.DeleteRowFromTable(rowNumber);
+            //finish writing this method during next sprint
+            String rowToDelete = "";
+            DataBaseOperations.DeleteRowFromTable(rowToDelete);
         }
     }
 }

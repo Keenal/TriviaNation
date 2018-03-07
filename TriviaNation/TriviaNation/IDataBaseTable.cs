@@ -17,9 +17,11 @@ namespace TriviaNation
             get;
         }
 
+        Boolean TableExists();
         void CreateTable();
+        int RetrieveNumberOfRowsInTable();
         void InsertRowIntoTable(String columnOneValue, String columnTwoValue);
         String RetrieveTableRow(int rowNumber);
-        void DeleteRowFromTable(int rowNumber);
+        void DeleteRowFromTable(); // not yet implemented in DataBaseOperations until next sprint.
     }
 }
