@@ -12,15 +12,21 @@ namespace TriviaNation
         {
             new DataBaseOperations();
             DataBaseOperations.ConnectToDB();
-            QuestionTable QT = new QuestionTable();
+            IDataBaseTable QT = new QuestionTable();
             QT.CreateTable();
             Console.WriteLine(QT.TableExists());
-            QT.InsertRowIntoTable("This is a question1", "This is the answer1");
-            QT.InsertRowIntoTable("This is a question2", "This is the answer2");
-            QT.InsertRowIntoTable("This is a question3", "This is the answer3");
-            Console.WriteLine(QT.RetrieveTableRow(3));
-            Console.WriteLine(QT.RetrieveNumberOfRowsInTable());
-
+            /////////////////////////////////////////***********
+            IQuestion question = new Questions();
+            ITriviaAdministration admin = new TriviaAdministration(question, QT);
+            ITrivia trivia = new Trivia(QT, question);
+            admin.AddQuestion("Testing?", "Yes");
+            admin.AddQuestion("Second try?", "Affirmitive");
+            admin.AddQuestion("Working?", "Yup");
+            admin.ListQuestions();
+            Console.WriteLine(trivia.GetRandomQuestion());
+            string answer = Console.ReadLine();
+            Console.WriteLine("Your answer is: " + trivia.EvaluateAnswer(answer));
+            //////////////////////////////////////////////********
 
             Console.WriteLine("Press any key to end the program");
             Console.ReadKey();
