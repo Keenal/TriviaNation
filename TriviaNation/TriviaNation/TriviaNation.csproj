@@ -44,9 +44,15 @@
   <ItemGroup>
     <Compile Include="DataBaseOperations.cs" />
     <Compile Include="IDataBaseTable.cs" />
+    <Compile Include="IQuestion.cs" />
+    <Compile Include="ITrivia.cs" />
+    <Compile Include="ITriviaAdministration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TriviaAdministration.cs" />
+    <Compile Include="Questions.cs" />
     <Compile Include="QuestionTable.cs" />
+    <Compile Include="Trivia.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
