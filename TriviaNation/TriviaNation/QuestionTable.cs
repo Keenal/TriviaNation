@@ -1,8 +1,29 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+/**
+TriviaNation is a networked trivia game designed for use in 
+classrooms. Class members are each in control of a nation on 
+a map. The goal of the game is to increase the size of the nation 
+by winning trivia challenges and defeating other class members 
+in contested territories. The focus is on gamifying learning and 
+making it an enjoyable experience.
+
+@author Timothy McWatters
+@author Keenal Shah
+@author Randy Quimby
+@author Wesley Easton
+@author Wenwen Xu
+
+@version 1.0
+
+CEN3032    "TriviaNation" SEII- Group 1's class project
+File Name: QuestionTable.cs 
+*/
 
 namespace TriviaNation
 {
@@ -55,12 +76,17 @@ namespace TriviaNation
         }
 
         /// <summary>
-        /// Inserts a question and answer into the Table
+        /// Inserts a row (containing question and answer) into the Table
         /// </summary>
-        /// <param name="question">First column of the Table, the question to add</param>
-        /// <param name="answer">Second column of the Table, the answer to add</param>
-        public void InsertRowIntoTable(String question, String answer)
+        /// <param name="dataEntry">Instance of IDataEntry Interface containing qustion, answer</param>
+        public void InsertRowIntoTable(IDataEntry dataEntry)
         {
+            List<String> list = new List<string>();
+            list = (List<String>) dataEntry.GetValues();
+
+            String question = list[0];
+            String answer = list[1];
+
             String insertString = "INSERT INTO " + TableName + "(question, answer) VALUES ('" + question + "', '" + answer + "');";
             DataBaseOperations.InsertIntoTable(insertString);
         }
@@ -98,10 +124,11 @@ namespace TriviaNation
         /// Deletes a row from the Table
         /// </summary>
         /// <param name="rowNumber">The number of the row to DELETE from the Table</param>
-        public void DeleteRowFromTable()
+        public void DeleteRowFromTable(String question)
         {
-            //finish writing this method during next sprint
-            String rowToDelete = "";
+            String rowToDelete = DataBaseOperations.RetrieveRowFromTable("DELETE FROM " + TableName + " WHERE question = \"" + 
+                question + "\";");
+
             DataBaseOperations.DeleteRowFromTable(rowToDelete);
         }
     }

@@ -21,26 +21,13 @@ making it an enjoyable experience.
 @version 1.0
 
 CEN3032    "TriviaNation" SEII- Group 1's class project
-File Name: IDataBaseTable.cs 
+File Name: IDataEntry.cs 
 */
 
 namespace TriviaNation
 {
-    public interface IDataBaseTable
+    public interface IDataEntry
     {
-        String TableName
-        {
-            get;
-        }
-        String TableCreationString
-        {
-            get;
-        }
-        Boolean TableExists();
-        void CreateTable();
-        int RetrieveNumberOfRowsInTable();
-        void InsertRowIntoTable(IDataEntry dataEntry);
-        String RetrieveTableRow(int rowNumber);
-        void DeleteRowFromTable(String question); // not yet implemented in DataBaseOperations until next sprint.
+        IEnumerable<string> GetValues();
     }
 }
