@@ -9,7 +9,7 @@ namespace TriviaNation
     /// <summary>
     /// A class to handle administrative tasks for questions and answers
     /// </summary>
-    class TriviaAdministration : ITriviaAdministration
+    class TriviaAdministration : DataEntry
     {
         /// <summary>
         /// IQuestion object for modeling question data
@@ -19,6 +19,11 @@ namespace TriviaNation
         /// IDataBaseTable object for storing and retrieving question data
         /// </summary>
         private IDataBaseTable database;
+
+        public TriviaAdministration()
+        {
+
+        }
 
         /// <summary>
         /// Constructs a TriviaAdministration object with database and question types as instance fields through use of interfaces 
@@ -36,14 +41,14 @@ namespace TriviaNation
         /// </summary>
         /// <param name="query">The question</param>
         /// <param name="answer">The answer</param>
-        public void AddQuestion(string query, string answer)
+        public override void AddQuestion(string query, string answer)
         {
             question.Question = query;
             question.Answer = answer;
-            database.InsertRowIntoTable(question.Question, question.Answer);
+            database.InsertRowIntoTable(this);
         }
 
-        public void DeleteQuestion()
+        public override void DeleteQuestion()
         {
             // Next sprint
         }
@@ -51,12 +56,22 @@ namespace TriviaNation
         /// <summary>
         /// Lists all questions and answers in the database
         /// </summary>
-        public void ListQuestions()
+        public override void ListQuestions()
         {
             for (int i = 1; i <= database.RetrieveNumberOfRowsInTable(); i++)
             {
                 Console.WriteLine(database.RetrieveTableRow(i));
             }    
+        }
+
+        public override IEnumerable<string> GetValues()
+        {
+            List<string> questionValues = new List<string>
+            {
+                question.Question,
+                question.Answer
+            };
+            return questionValues;
         }
        
     }
