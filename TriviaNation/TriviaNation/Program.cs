@@ -13,6 +13,8 @@ by winning trivia challenges and defeating other class members
 in contested territories. The focus is on gamifying learning and 
 making it an enjoyable experience.
 
+This is the driver class. 
+
 @author Timothy McWatters
 @author Keenal Shah
 @author Randy Quimby

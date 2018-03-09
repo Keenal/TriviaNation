@@ -13,6 +13,9 @@ by winning trivia challenges and defeating other class members
 in contested territories. The focus is on gamifying learning and 
 making it an enjoyable experience.
 
+This class connects to the db, determines if a table exist in a database, creates and deletes a table in the database, 
+    inserts and deletes a row in the table, and retrieves the row and the number of row
+
 @author Timothy McWatters
 @author Keenal Shah
 @author Randy Quimby
