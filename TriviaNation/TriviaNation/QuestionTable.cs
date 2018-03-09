@@ -123,11 +123,10 @@ namespace TriviaNation
         /// <summary>
         /// Deletes a row from the Table
         /// </summary>
-        /// <param name="rowNumber">The number of the row to DELETE from the Table</param>
+        /// <param name="question">The question nomenclature of the row to DELETE from the Table</param>
         public void DeleteRowFromTable(String question)
         {
-            String rowToDelete = DataBaseOperations.RetrieveRowFromTable("DELETE FROM " + TableName + " WHERE question = \"" + 
-                question + "\";");
+            String rowToDelete = ("DELETE FROM " + tableName + " WHERE question='" + question + "';");
 
             DataBaseOperations.DeleteRowFromTable(rowToDelete);
         }

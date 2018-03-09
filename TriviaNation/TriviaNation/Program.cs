@@ -36,9 +36,9 @@ namespace TriviaNation
             QuestionTable QT = new QuestionTable();
             QT.CreateTable();
             Console.WriteLine("The table exists: {0}", QT.TableExists());
-            IDataEntry question1 = new Question("This is qustion1", "This is answer1");
-            IDataEntry question2 = new Question("This is qustion2", "This is answer2");
-            IDataEntry question3 = new Question("This is qustion3", "This is answer3");
+            IDataEntry question1 = new Question("This is question1", "This is answer1");
+            IDataEntry question2 = new Question("This is question2", "This is answer2");
+            IDataEntry question3 = new Question("This is question3", "This is answer3");
             QT.InsertRowIntoTable(question1);
             QT.InsertRowIntoTable(question2);
             QT.InsertRowIntoTable(question3);
@@ -46,8 +46,11 @@ namespace TriviaNation
             Console.WriteLine(QT.RetrieveTableRow(1));
             Console.WriteLine(QT.RetrieveTableRow(2));
             Console.WriteLine(QT.RetrieveTableRow(3));
-
-
+            QT.DeleteRowFromTable("This is question1");
+            Console.WriteLine("The number of rows in this table are now: {0}", QT.RetrieveNumberOfRowsInTable());
+            Console.WriteLine(QT.RetrieveTableRow(1));
+            Console.WriteLine(QT.RetrieveTableRow(2));
+            Console.WriteLine(QT.RetrieveTableRow(3));
 
             Console.WriteLine("Press any key to end the program");
             Console.ReadKey();

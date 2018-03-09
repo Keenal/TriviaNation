@@ -41,6 +41,6 @@ namespace TriviaNation
         int RetrieveNumberOfRowsInTable();
         void InsertRowIntoTable(IDataEntry dataEntry);
         String RetrieveTableRow(int rowNumber);
-        void DeleteRowFromTable(String question); // not yet implemented in DataBaseOperations until next sprint.
+        void DeleteRowFromTable(String question);
     }
 }
