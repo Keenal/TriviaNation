@@ -9,7 +9,7 @@ namespace TriviaNation
     /// <summary>
     /// Interface for the TriviaAdministration class
     /// </summary>
-    public interface ITriviaAdministration
+    public interface ITriviaAdministration : IDataEntry
     {
         void AddQuestion(string question, string answer);
         void DeleteQuestion();

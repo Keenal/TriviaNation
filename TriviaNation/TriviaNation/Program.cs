@@ -18,7 +18,7 @@ namespace TriviaNation
             IQuestion question = new Questions();
             
             // abstract class that implements both interfaces
-            DataEntry admin = new TriviaAdministration(question, QT);
+            ITriviaAdministration admin = new TriviaAdministration(question, QT);
 
             admin.AddQuestion("Test", "Yup");
             admin.AddQuestion("Working?", "Affirmitive");

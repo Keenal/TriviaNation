@@ -9,7 +9,7 @@ namespace TriviaNation
     /// <summary>
     /// A class to handle administrative tasks for questions and answers
     /// </summary>
-    class TriviaAdministration : DataEntry
+    class TriviaAdministration : ITriviaAdministration
     {
         /// <summary>
         /// IQuestion object for modeling question data
@@ -42,14 +42,14 @@ namespace TriviaNation
         /// </summary>
         /// <param name="query">The question</param>
         /// <param name="answer">The answer</param>
-        public override void AddQuestion(string query, string answer)
+        public void AddQuestion(string query, string answer)
         {
             question.Question = query;
             question.Answer = answer;
             database.InsertRowIntoTable(this);
         }
 
-        public override void DeleteQuestion()
+        public void DeleteQuestion()
         {
             ListQuestions();
             Console.WriteLine("Enter question number to delete");
@@ -63,7 +63,7 @@ namespace TriviaNation
         /// <summary>
         /// Lists all questions and answers in the database
         /// </summary>
-        public override void ListQuestions()
+        public void ListQuestions()
         {
             for (int i = 1; i <= database.RetrieveNumberOfRowsInTable(); i++)
             {
@@ -71,13 +71,9 @@ namespace TriviaNation
             }    
         }
 
-        public override IEnumerable<string> GetValues()
+        public IEnumerable<string> GetValues()
         {
-            List<string> questionValues = new List<string>
-            {
-                question.Question,
-                question.Answer
-            };
+            List<string> questionValues = new List<string> { question.Question, question.Answer };
             return questionValues;
         }
        
