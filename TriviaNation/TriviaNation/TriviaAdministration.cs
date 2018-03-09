@@ -22,7 +22,8 @@ namespace TriviaNation
 
         public TriviaAdministration()
         {
-
+            this.question = null;
+            this.database = null;
         }
 
         /// <summary>
@@ -50,7 +51,13 @@ namespace TriviaNation
 
         public override void DeleteQuestion()
         {
-            // Next sprint
+            ListQuestions();
+            Console.WriteLine("Enter question number to delete");
+            int questionNumber = Convert.ToInt32(Console.ReadLine());
+            String tableRow = database.RetrieveTableRow(questionNumber);
+            String[] split = tableRow.Split(separator: '\n');
+            question.Question = split[0];
+            database.DeleteRowFromTable(question.Question);
         }
 
         /// <summary>
@@ -60,7 +67,7 @@ namespace TriviaNation
         {
             for (int i = 1; i <= database.RetrieveNumberOfRowsInTable(); i++)
             {
-                Console.WriteLine(database.RetrieveTableRow(i));
+                Console.WriteLine(i + ". " + database.RetrieveTableRow(i));
             }    
         }
 

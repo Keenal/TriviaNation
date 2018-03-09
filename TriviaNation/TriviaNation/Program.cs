@@ -15,19 +15,25 @@ namespace TriviaNation
             IDataBaseTable QT = new QuestionTable();
             QT.CreateTable();
             Console.WriteLine(QT.TableExists());
-            IQuestion question1 = new Questions();
+            IQuestion question = new Questions();
             
             // abstract class that implements both interfaces
-            DataEntry admin = new TriviaAdministration(question1, QT);
+            DataEntry admin = new TriviaAdministration(question, QT);
+
             admin.AddQuestion("Test", "Yup");
+            admin.AddQuestion("Working?", "Affirmitive");
+            admin.AddQuestion("No more objects necessary?", "Fer Shizzle");
+            admin.DeleteQuestion();
             admin.ListQuestions();
 
-
             ///////// NOT part of IDataEntry ////////////
-            IQuestion question2 = new Questions();
-            ITrivia trivia = new Trivia(QT, question2);
+            ITrivia trivia = new Trivia(QT, question);
+
             Console.WriteLine(trivia.GetRandomQuestion());
             string answer = Console.ReadLine();
+            Console.WriteLine("Your answer is: " + trivia.EvaluateAnswer(answer));
+            Console.WriteLine(trivia.GetRandomQuestion());
+            answer = Console.ReadLine();
             Console.WriteLine("Your answer is: " + trivia.EvaluateAnswer(answer));
             ////////////////////////////////////////////
 
