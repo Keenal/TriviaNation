@@ -22,6 +22,8 @@ making it an enjoyable experience.
 
 CEN3032    "TriviaNation" SEII- Group 1's class project
 File Name: Question.cs 
+
+    This class creates a template for the questions created in the Question branch 
 */
 
 namespace TriviaNation

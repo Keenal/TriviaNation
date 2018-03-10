@@ -23,6 +23,8 @@ making it an enjoyable experience.
 
 CEN3032    "TriviaNation" SEII- Group 1's class project
 File Name: QuestionTable.cs 
+
+    This class creates the QuestionTable and has methods that can let you insert row into a table, insert coloumn into a table, delete a row and column and retrive those information. 
 */
 
 namespace TriviaNation

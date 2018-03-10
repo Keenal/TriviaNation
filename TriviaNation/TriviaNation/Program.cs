@@ -13,7 +13,6 @@ by winning trivia challenges and defeating other class members
 in contested territories. The focus is on gamifying learning and 
 making it an enjoyable experience.
 
-This is the driver class. 
 
 @author Timothy McWatters
 @author Keenal Shah
@@ -25,6 +24,8 @@ This is the driver class.
 
 CEN3032    "TriviaNation" SEII- Group 1's class project
 File Name: Program.cs 
+
+    This is the main class and the classes, interfaces are tested from here. 
 */
 
 namespace TriviaNation

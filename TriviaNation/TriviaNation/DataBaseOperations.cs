@@ -13,9 +13,6 @@ by winning trivia challenges and defeating other class members
 in contested territories. The focus is on gamifying learning and 
 making it an enjoyable experience.
 
-This class connects to the db, determines if a table exist in a database, creates and deletes a table in the database, 
-    inserts and deletes a row in the table, and retrieves the row and the number of row
-
 @author Timothy McWatters
 @author Keenal Shah
 @author Randy Quimby
@@ -26,6 +23,9 @@ This class connects to the db, determines if a table exist in a database, create
 
 CEN3032    "TriviaNation" SEII- Group 1's class project
 File Name: DataBaseOperations.cs 
+
+    This class connects to the db, determines if a table exist in a database, creates and deletes a table in the database, 
+    inserts and deletes a row in the table, and retrieves the row and the number of row.
 */
 
 namespace TriviaNation
@@ -141,6 +141,8 @@ namespace TriviaNation
             int numberOfRowsInTable = 0;
             String TSQLSourceCode = "SELECT COUNT(*) FROM " + tableName + ";";
 
+            
+
             using (SqlCommand command = new SqlCommand(TSQLSourceCode, s_connection))
             {
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -153,6 +155,42 @@ namespace TriviaNation
             }
             return numberOfRowsInTable;
         }
+
+
+        /// <summary>
+        /// Retrieves the number of cols a specific Table has
+        /// </summary>
+        /// <param name="tableName">The name of the Table to place number of col inquiry</param>
+        /// <returns name="numberOfRowsInTable">The number of cols in this particular Table</param>
+        public static int RetrieveNumberOfColsInTable(String tableName)
+        {
+            int numberOfColsInTable = 0;
+
+            // format is like this:
+            //SELECT COUNT(*)
+            //FROM INFORMATION_SCHEMA.COLUMNS
+            //WHERE table_catalog = 'tableName';
+
+            //following the code above gives us the number of cols, so we can directly use TSQLSourceCode var?
+            String TSQLSourceCode = "SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + tableName + "'";
+
+            using (SqlCommand command = new SqlCommand(TSQLSourceCode, s_connection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < RetrieveNumberOfRowsInTable; i++)
+                        {
+                            numberOfColsInTable = TSQLSourceCode;
+                        }
+                    }
+                }
+            }
+            return numberOfRowsInTable;
+        }
+
+
 
         /// <summary>
         /// INSERTs a row into a Table 
