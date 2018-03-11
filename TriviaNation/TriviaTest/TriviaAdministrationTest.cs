@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -12,24 +11,24 @@ namespace TriviaNation
         private IQuestion question;
         private IDataBaseTable QT;
         private ITriviaAdministration admin;
+        private ITriviaAdministration sut;
 
         [TestInitialize]
         public void Initialize()
         {
-            var mockDatabase = new Mock<IDataBaseTable>();
             question = new Questions();
             QT = new QuestionTable();
             admin = new TriviaAdministration(question, QT);
+            sut = null;
         }
 
         [TestMethod]
         public void AddingQuestionsToAListThroughUseOfObjectAccessorsShouldReturnStringValueOfQuestion()
         {
-
             // Arrange
-            var mockQuestion = new Mock<IQuestion>();
+            Mock<IQuestion> mockQuestion = new Mock<IQuestion>();
             mockQuestion.Setup(r => r.Question).Returns("This is a test?");
-            var sut = new TriviaAdministration(mockQuestion.Object, QT);
+            sut = new TriviaAdministration(mockQuestion.Object, QT);
 
             // Act
             List<string> test = (List<String>)sut.GetValues();
@@ -42,9 +41,9 @@ namespace TriviaNation
         public void AddingAnswersToAListThroughUseOfObjectAccessorsShouldReturnStringValueOfAnswer()
         {
             // Arrange
-            var mockAnswer = new Mock<IQuestion>();
+            Mock<IQuestion> mockAnswer = new Mock<IQuestion>();
             mockAnswer.Setup(r => r.Answer).Returns("This is the answer.");
-            var sut = new TriviaAdministration(mockAnswer.Object, QT);
+            sut = new TriviaAdministration(mockAnswer.Object, QT);
 
             // Act
             List<string> test = (List<string>)sut.GetValues();
@@ -57,9 +56,9 @@ namespace TriviaNation
         public void IfTheDatabaseHasANumberOfQuestionsInTheTableThenListingTheQuestionsShouldOutputTheCorrectNumberOfQuestionsToString()
         {
             // Arrange
-            var mockDatabase = new Mock<IDataBaseTable>();
+            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
             mockDatabase.Setup(r => r.RetrieveNumberOfRowsInTable()).Returns(9);
-            var sut = new TriviaAdministration(question, mockDatabase.Object);
+            sut = new TriviaAdministration(question, mockDatabase.Object);
 
             // Act
             string test = sut.ListQuestions();
@@ -72,13 +71,13 @@ namespace TriviaNation
         public void ListingTheQuestionsInTheDatabaseShouldListThemAllAndShouldListTheirProperStringValuesInOrder()
         {
             // Arrange
-            var mockDatabase = new Mock<IDataBaseTable>();
+            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
             mockDatabase.Setup(r => r.RetrieveNumberOfRowsInTable()).Returns(4);
             mockDatabase.Setup(r => r.RetrieveTableRow(1)).Returns("Testing row One ");
             mockDatabase.Setup(r => r.RetrieveTableRow(2)).Returns("Testing row Two ");
             mockDatabase.Setup(r => r.RetrieveTableRow(3)).Returns("Testing row Three ");
             mockDatabase.Setup(r => r.RetrieveTableRow(4)).Returns("Testing row Four");
-            var sut = new TriviaAdministration(question, mockDatabase.Object);
+            sut = new TriviaAdministration(question, mockDatabase.Object);
 
             // Act
             string test = sut.ListQuestions();
@@ -92,13 +91,13 @@ namespace TriviaNation
         {
             // Arrange
             string query = null;
-            var mockDatabase = new Mock<IDataBaseTable>();
+            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
             mockDatabase.Setup(r => r.RetrieveTableRow(1)).Returns("This is the question? \n This is the answer.");
             mockDatabase.Setup(r => r.DeleteRowFromTable(It.IsAny<string>())).Callback<string>((s1) => 
             {
                 query = s1;
             });
-            var sut = new TriviaAdministration(question, mockDatabase.Object);
+            sut = new TriviaAdministration(question, mockDatabase.Object);
 
             // Act
             sut.DeleteQuestion(1);
@@ -112,12 +111,12 @@ namespace TriviaNation
         {
             // Arrange
             IDataEntry test = null;
-            var mockDatabase = new Mock<IDataBaseTable>();
+            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
             mockDatabase.Setup(r => r.InsertRowIntoTable(It.IsAny<IDataEntry>())).Callback<IDataEntry>((s1) =>
             {
                 test = s1;
             });
-            var sut = new TriviaAdministration(question, mockDatabase.Object);
+            sut = new TriviaAdministration(question, mockDatabase.Object);
 
             // Act
             sut.AddQuestion("Question", "Answer");
