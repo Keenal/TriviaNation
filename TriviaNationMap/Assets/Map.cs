@@ -20,7 +20,7 @@ namespace TGS
 
 			// Iterate cells and picks the corresponding color in the texture
 			int cellCount = tgs.cells.Count;
-			for (int k=0;k<cellCount;k++) {
+			for (int k=0; k< cellCount; k++) {
 				Vector2 cellCenter = tgs.cells[k].center;
 
                 // Convert the center to texture coordinates
@@ -37,6 +37,9 @@ namespace TGS
 				// And assign it to the cell
 				tgs.CellToggleRegionSurface(k, true, color);
 			}
+            tgs.TerritorySetVisible(1, false);
+            //tgs.TerritorySetNeutral(1, true);
+            tgs.TerritoryToggleRegionSurface(1, false, Color.clear);
 		}
 
 	}

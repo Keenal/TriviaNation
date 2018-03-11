@@ -29,7 +29,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 500, y: 250, z: 1}
   m_Children:
-  - {fileID: 4048879958160484}
+  - {fileID: 4474041414831178}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -84,7 +84,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
@@ -118,7 +118,7 @@ MonoBehaviour:
   _highlightFadeSpeed: 1
   _highlightMinimumTerrainDistance: 35
   _highlightEffect: 0
-  _overlayMode: 1
+  _overlayMode: 0
   _gridCenter: {x: 0, y: 0}
   _gridCenterWorldPosition: {x: 0, y: 0, z: 0}
   _gridScale: {x: 1, y: 1}
@@ -170,7 +170,7 @@ MonoBehaviour:
   _nearClipFadeFallOff: 50
   _enableGridEditor: 1
   _numCells: 8192
-  _showCells: 1
+  _showCells: 0
   _cellBorderColor: {r: 0.48659173, g: 0.49043074, b: 0.5294118, a: 1}
   _cellBorderThickness: 1
   _cellHighlightColor: {r: 0, g: 0, b: 1, a: 0.7}
@@ -182,17 +182,16 @@ MonoBehaviour:
   _pathFindingMaxSteps: 2000
   _pathFindingUseDiagonals: 1
   _pathFindingHeavyDiagonals: 0
-  territoriesTexture: {fileID: 2800000, guid: 3319a954f12928c49b165b874d7bb126, type: 3}
-  territoriesTextureNeutralColor: {r: 0.08088237, g: 0.011299744, b: 0.011299744,
-    a: 0}
-  _numTerritories: 183
+  territoriesTexture: {fileID: 2800000, guid: 2e8d6641559286640979b9c08fd99798, type: 3}
+  territoriesTextureNeutralColor: {r: 0.9705882, g: 0.9705882, b: 0.9705882, a: 0}
+  _numTerritories: 136
   _showTerritories: 1
   _colorizeTerritories: 1
   _colorizedTerritoriesAlpha: 0.71
   _territoryHighlightColor: {r: 1, g: 0, b: 0, a: 0.7}
   _territoryFrontierColor: {r: 0, g: 0, b: 0, a: 1}
   _territoryDisputedFrontierColor: {r: 0, g: 0, b: 0, a: 1}
-  _showTerritoriesOuterBorder: 1
+  _showTerritoriesOuterBorder: 0
   _allowTerritoriesInsideTerritories: 0
 --- !u!1001 &100100000
 Prefab:
@@ -217,14 +216,14 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 184244}
   m_IsPrefabParent: 1
---- !u!1 &1031664188301726
+--- !u!1 &1474804779844846
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4048879958160484}
+  - component: {fileID: 4474041414831178}
   m_Layer: 5
   m_Name: Surfaces
   m_TagString: Untagged
@@ -232,12 +231,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4048879958160484
+--- !u!4 &4474041414831178
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1031664188301726}
+  m_GameObject: {fileID: 1474804779844846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}

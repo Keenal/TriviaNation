@@ -50,16 +50,16 @@ namespace TGS {
 								/// Terrain reference. Assign a terrain to this property to fit the grid to terrain height and dimensions
 								/// </summary>
 								public Terrain terrain {
-												get {
-																return _terrain;
-												}
-												set {
-																if (_terrain != value) {
-																				_terrain = value;
-																				isDirty = true;
-																				Redraw ();
-																}
-												}
+									get {
+										return _terrain;
+									}
+									set {
+										    if (_terrain != value) {
+														    _terrain = value;
+														    isDirty = true;
+														    Redraw ();
+										    }
+									}
 								}
 
 								/// <summary>

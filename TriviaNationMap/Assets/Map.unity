@@ -113,189 +113,34 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &422115632
+--- !u!1 &1110358100
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 184244, guid: 173577d6e48eb4eafbdb6deda795acd9, type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 1581929533}
-  - component: {fileID: 422115636}
-  - component: {fileID: 422115635}
-  - component: {fileID: 422115634}
-  - component: {fileID: 422115633}
+  - component: {fileID: 1110358101}
   m_Layer: 5
-  m_Name: TerrainGridSystem
+  m_Name: Surfaces
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &422115633
-MeshCollider:
+--- !u!4 &1110358101
+Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 6494686, guid: 173577d6e48eb4eafbdb6deda795acd9,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 422115632}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &422115634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11484406, guid: 173577d6e48eb4eafbdb6deda795acd9,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 422115632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81a01c2198d58422e8c1c252ad33df90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxCellsSqrt: 100
-  isDirty: 0
-  mouseIsOver: 0
-  _terrain: {fileID: 0}
-  canvasTexture: {fileID: 0}
-  _gridMask: {fileID: 0}
-  _gridTopology: 3
-  _seed: 1
-  _evenLayout: 0
-  _gridRelaxation: 1
-  _gridCurvature: 0
-  _highlightMode: 1
-  _highlightFadeMin: 0
-  _highlightFadeAmount: 0.5
-  _highlightScaleMin: 0.75
-  _highlightScaleMax: 1.1
-  _highlightFadeSpeed: 1
-  _highlightMinimumTerrainDistance: 35
-  _highlightEffect: 0
-  _overlayMode: 0
-  _gridCenter: {x: 0, y: 0}
-  _gridCenterWorldPosition: {x: 0, y: 0, z: 0}
-  _gridScale: {x: 1, y: 1}
-  _gridElevation: 0
-  _gridElevationBase: 0
-  _gridCameraOffset: 0
-  _gridNormalOffset: 0
-  _gridMeshDepthOffset: -1
-  _gridSurfaceDepthOffset: -1
-  _gridRoughness: 0.01
-  _cellRowCount: 64
-  _cellColumnCount: 128
-  textures:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _respectOtherUI: 1
-  _nearClipFadeEnabled: 1
-  _nearClipFade: 25
-  _nearClipFadeFallOff: 50
-  _enableGridEditor: 1
-  _numCells: 8192
-  _showCells: 0
-  _cellBorderColor: {r: 0.48659173, g: 0.49043074, b: 0.5294118, a: 1}
-  _cellBorderThickness: 1
-  _cellHighlightColor: {r: 0, g: 0, b: 1, a: 0.7}
-  _cellHighlightNonVisible: 0
-  _cellsMaxSlope: 1
-  _cellsMinimumAltitude: 0
-  _pathFindingHeuristicFormula: 5
-  _pathFindingMaxCost: 2000
-  _pathFindingMaxSteps: 2000
-  _pathFindingUseDiagonals: 1
-  _pathFindingHeavyDiagonals: 0
-  territoriesTexture: {fileID: 2800000, guid: 2e8d6641559286640979b9c08fd99798, type: 3}
-  territoriesTextureNeutralColor: {r: 0.09277681, g: 0.11346492, b: 0.32352942, a: 0}
-  _numTerritories: 136
-  _showTerritories: 1
-  _colorizeTerritories: 1
-  _colorizedTerritoriesAlpha: 0.71
-  _territoryHighlightColor: {r: 1, g: 0, b: 0, a: 0.7}
-  _territoryFrontierColor: {r: 0, g: 0, b: 0, a: 1}
-  _territoryDisputedFrontierColor: {r: 0, g: 0, b: 0, a: 1}
-  _showTerritoriesOuterBorder: 0
-  _allowTerritoriesInsideTerritories: 0
---- !u!23 &422115635
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2363212, guid: 173577d6e48eb4eafbdb6deda795acd9,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 422115632}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 384cd0540ba4f480ba0d48aaf58c2eff, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &422115636
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 3317836, guid: 173577d6e48eb4eafbdb6deda795acd9,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 422115632}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  m_GameObject: {fileID: 1110358100}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1889773310}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1271976513
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,20 +287,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!4 &1581929533
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 435982, guid: 173577d6e48eb4eafbdb6deda795acd9, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 422115632}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 500, y: 250, z: 1}
-  m_Children:
-  - {fileID: 1906958420}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1663543153
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,31 +328,200 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1906958419
+--- !u!1 &1889773305
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 184244, guid: 173577d6e48eb4eafbdb6deda795acd9, type: 2}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 1906958420}
+  - component: {fileID: 1889773310}
+  - component: {fileID: 1889773309}
+  - component: {fileID: 1889773308}
+  - component: {fileID: 1889773307}
+  - component: {fileID: 1889773306}
   m_Layer: 5
-  m_Name: Surfaces
+  m_Name: TerrainGridSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1906958420
+--- !u!64 &1889773306
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6494686, guid: 173577d6e48eb4eafbdb6deda795acd9,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1889773305}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1889773307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11484406, guid: 173577d6e48eb4eafbdb6deda795acd9,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1889773305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81a01c2198d58422e8c1c252ad33df90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxCellsSqrt: 100
+  isDirty: 0
+  mouseIsOver: 0
+  _terrain: {fileID: 0}
+  canvasTexture: {fileID: 0}
+  _gridMask: {fileID: 0}
+  _gridTopology: 3
+  _seed: 1
+  _evenLayout: 0
+  _gridRelaxation: 1
+  _gridCurvature: 0
+  _highlightMode: 1
+  _highlightFadeMin: 0
+  _highlightFadeAmount: 0.5
+  _highlightScaleMin: 0.75
+  _highlightScaleMax: 1.1
+  _highlightFadeSpeed: 1
+  _highlightMinimumTerrainDistance: 35
+  _highlightEffect: 0
+  _overlayMode: 0
+  _gridCenter: {x: 0, y: 0}
+  _gridCenterWorldPosition: {x: 0, y: 0, z: 0}
+  _gridScale: {x: 1, y: 1}
+  _gridElevation: 0
+  _gridElevationBase: 0
+  _gridCameraOffset: 0
+  _gridNormalOffset: 0
+  _gridMeshDepthOffset: -1
+  _gridSurfaceDepthOffset: -1
+  _gridRoughness: 0.01
+  _cellRowCount: 64
+  _cellColumnCount: 128
+  textures:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _respectOtherUI: 1
+  _nearClipFadeEnabled: 1
+  _nearClipFade: 25
+  _nearClipFadeFallOff: 50
+  _enableGridEditor: 1
+  _numCells: 8192
+  _showCells: 0
+  _cellBorderColor: {r: 0.48659173, g: 0.49043074, b: 0.5294118, a: 1}
+  _cellBorderThickness: 1
+  _cellHighlightColor: {r: 0, g: 0, b: 1, a: 0.7}
+  _cellHighlightNonVisible: 0
+  _cellsMaxSlope: 1
+  _cellsMinimumAltitude: 0
+  _pathFindingHeuristicFormula: 5
+  _pathFindingMaxCost: 2000
+  _pathFindingMaxSteps: 2000
+  _pathFindingUseDiagonals: 1
+  _pathFindingHeavyDiagonals: 0
+  territoriesTexture: {fileID: 2800000, guid: 2e8d6641559286640979b9c08fd99798, type: 3}
+  territoriesTextureNeutralColor: {r: 0.9705882, g: 0.9705882, b: 0.9705882, a: 0}
+  _numTerritories: 136
+  _showTerritories: 1
+  _colorizeTerritories: 1
+  _colorizedTerritoriesAlpha: 0.71
+  _territoryHighlightColor: {r: 1, g: 0, b: 0, a: 0.7}
+  _territoryFrontierColor: {r: 0, g: 0, b: 0, a: 1}
+  _territoryDisputedFrontierColor: {r: 0, g: 0, b: 0, a: 1}
+  _showTerritoriesOuterBorder: 0
+  _allowTerritoriesInsideTerritories: 0
+--- !u!23 &1889773308
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2363212, guid: 173577d6e48eb4eafbdb6deda795acd9,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1889773305}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 384cd0540ba4f480ba0d48aaf58c2eff, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1889773309
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3317836, guid: 173577d6e48eb4eafbdb6deda795acd9,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1889773305}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1889773310
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 435982, guid: 173577d6e48eb4eafbdb6deda795acd9, type: 2}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1906958419}
+  m_GameObject: {fileID: 1889773305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1581929533}
-  m_RootOrder: 1
+  m_LocalScale: {x: 500, y: 250, z: 1}
+  m_Children:
+  - {fileID: 1110358101}
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
