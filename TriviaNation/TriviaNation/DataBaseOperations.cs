@@ -156,12 +156,15 @@ namespace TriviaNation
             return numberOfRowsInTable;
         }
 
-
+        /*
         /// <summary>
         /// Retrieves the number of cols a specific Table has
         /// </summary>
         /// <param name="tableName">The name of the Table to place number of col inquiry</param>
         /// <returns name="numberOfRowsInTable">The number of cols in this particular Table</param>
+
+            
+
         public static int RetrieveNumberOfColsInTable(String tableName)
         {
             int numberOfColsInTable = 0;
@@ -190,7 +193,7 @@ namespace TriviaNation
             return numberOfRowsInTable;
         }
 
-
+    */
 
         /// <summary>
         /// INSERTs a row into a Table 

@@ -41,7 +41,7 @@ namespace TriviaNation
         Boolean TableExists();
         void CreateTable();
         int RetrieveNumberOfRowsInTable();
-        int RetriveNumberOfColsInTable();
+     //   int RetriveNumberOfColsInTable();
         void InsertRowIntoTable(IDataEntry dataEntry);
         String RetrieveTableRow(int rowNumber);
         void DeleteRowFromTable(String question);
