@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TriviaNation
+﻿namespace TriviaNation
 {
     /// <summary>
     /// Class to model questions, answers and their point values.
     /// </summary>
-    class Questions : IQuestion
+    public class Questions : IQuestion
     {
         /// <summary>
         /// A question in a trivia

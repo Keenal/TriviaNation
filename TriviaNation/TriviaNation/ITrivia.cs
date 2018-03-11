@@ -9,7 +9,7 @@ namespace TriviaNation
     /// <summary>
     /// Interface for the trivia class
     /// </summary>
-    interface ITrivia
+    public interface ITrivia
     {
         string GetRandomQuestion();
         Boolean EvaluateAnswer(string answer);

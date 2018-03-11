@@ -23,8 +23,12 @@ namespace TriviaNation
             admin.AddQuestion("Test", "Yup");
             admin.AddQuestion("Working?", "Affirmitive");
             admin.AddQuestion("No more objects necessary?", "Fer Shizzle");
-            admin.DeleteQuestion();
-            admin.ListQuestions();
+            
+            string test = admin.ListQuestions();
+            Console.WriteLine(test);
+            admin.DeleteQuestion(1);
+            test = admin.ListQuestions();
+            Console.WriteLine(test);
 
             ///////// NOT part of IDataEntry ////////////
             ITrivia trivia = new Trivia(QT, question);

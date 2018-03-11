@@ -9,7 +9,7 @@ namespace TriviaNation
     /// <summary>
     /// A class to handle administrative tasks for questions and answers
     /// </summary>
-    class TriviaAdministration : ITriviaAdministration
+    public class TriviaAdministration : ITriviaAdministration
     {
         /// <summary>
         /// IQuestion object for modeling question data
@@ -49,11 +49,14 @@ namespace TriviaNation
             database.InsertRowIntoTable(this);
         }
 
-        public void DeleteQuestion()
+        public void DeleteQuestion(int questionNumber)
         {
-            ListQuestions();
-            Console.WriteLine("Enter question number to delete");
-            int questionNumber = Convert.ToInt32(Console.ReadLine());
+            /* The code below will be in the handler.  Will be a graphical
+             * list rather than from console
+             * ListQuestions();
+             * Console.WriteLine("Enter question number to delete");
+             * int questionNumber = Convert.ToInt32(Console.ReadLine());
+             */
             String tableRow = database.RetrieveTableRow(questionNumber);
             String[] split = tableRow.Split(separator: '\n');
             question.Question = split[0];
@@ -61,19 +64,31 @@ namespace TriviaNation
         }
 
         /// <summary>
-        /// Lists all questions and answers in the database
+        /// Returns all questions and answers in the database in the form of a string
         /// </summary>
-        public void ListQuestions()
+        /// /// <returns>The list of questions</returns>
+        public string ListQuestions()
         {
+            string listOfQuestions = "";
             for (int i = 1; i <= database.RetrieveNumberOfRowsInTable(); i++)
             {
-                Console.WriteLine(i + ". " + database.RetrieveTableRow(i));
-            }    
+                listOfQuestions = listOfQuestions + i + ". " + database.RetrieveTableRow(i);
+            }
+            
+            return listOfQuestions;
         }
 
+        /// <summary>
+        /// Returns a list of question properties/values
+        /// </summary>
+        /// <returns>The list of properties/values</returns>
         public IEnumerable<string> GetValues()
         {
-            List<string> questionValues = new List<string> { question.Question, question.Answer };
+            List<string> questionValues = new List<string>
+            {
+                question.Question, question.Answer
+            };
+
             return questionValues;
         }
        

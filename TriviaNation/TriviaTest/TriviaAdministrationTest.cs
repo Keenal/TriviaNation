@@ -1,0 +1,169 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+
+namespace TriviaNation
+{
+    [TestClass]
+    public class TriviaAdministrationTest
+    {
+        private IQuestion question;
+        private IDataBaseTable QT;
+        private ITriviaAdministration admin;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            var mockDatabase = new Mock<IDataBaseTable>();
+            question = new Questions();
+            QT = new QuestionTable();
+            admin = new TriviaAdministration(question, QT);
+        }
+
+        [TestMethod]
+        public void AddingQuestionsToAListThroughUseOfObjectAccessorsShouldReturnStringValueOfQuestion()
+        {
+
+            // Arrange
+            var mockQuestion = new Mock<IQuestion>();
+            mockQuestion.Setup(r => r.Question).Returns("This is a test?");
+            var sut = new TriviaAdministration(mockQuestion.Object, QT);
+
+            // Act
+            List<string> test = (List<String>)sut.GetValues();
+      
+            // Assert
+            Assert.AreEqual("This is a test?", test[0]);
+        }
+
+        [TestMethod]
+        public void AddingAnswersToAListThroughUseOfObjectAccessorsShouldReturnStringValueOfAnswer()
+        {
+            // Arrange
+            var mockAnswer = new Mock<IQuestion>();
+            mockAnswer.Setup(r => r.Answer).Returns("This is the answer.");
+            var sut = new TriviaAdministration(mockAnswer.Object, QT);
+
+            // Act
+            List<string> test = (List<string>)sut.GetValues();
+
+            // Assert
+            Assert.AreEqual("This is the answer.", test[1]);
+        }
+
+        [TestMethod]
+        public void IfTheDatabaseHasANumberOfQuestionsInTheTableThenListingTheQuestionsShouldOutputTheCorrectNumberOfQuestionsToString()
+        {
+            // Arrange
+            var mockDatabase = new Mock<IDataBaseTable>();
+            mockDatabase.Setup(r => r.RetrieveNumberOfRowsInTable()).Returns(9);
+            var sut = new TriviaAdministration(question, mockDatabase.Object);
+
+            // Act
+            string test = sut.ListQuestions();
+
+            // Assert
+            Assert.AreEqual("1. 2. 3. 4. 5. 6. 7. 8. 9. ", test);
+        }
+
+        [TestMethod]
+        public void ListingTheQuestionsInTheDatabaseShouldListThemAllAndShouldListTheirProperStringValuesInOrder()
+        {
+            // Arrange
+            var mockDatabase = new Mock<IDataBaseTable>();
+            mockDatabase.Setup(r => r.RetrieveNumberOfRowsInTable()).Returns(4);
+            mockDatabase.Setup(r => r.RetrieveTableRow(1)).Returns("Testing row One ");
+            mockDatabase.Setup(r => r.RetrieveTableRow(2)).Returns("Testing row Two ");
+            mockDatabase.Setup(r => r.RetrieveTableRow(3)).Returns("Testing row Three ");
+            mockDatabase.Setup(r => r.RetrieveTableRow(4)).Returns("Testing row Four");
+            var sut = new TriviaAdministration(question, mockDatabase.Object);
+
+            // Act
+            string test = sut.ListQuestions();
+
+            // Assert
+            Assert.AreEqual("1. Testing row One 2. Testing row Two 3. Testing row Three 4. Testing row Four", test);
+        }
+
+        [TestMethod]
+        public void MethodForDeletingAQuestionShouldFirstRetrieveARowFromDatabaseThenAccessOnlyTheQuestionColumnStringInOrderToEnterItAsTheArgumentForMethodDeleteRowFromTable()
+        {
+            // Arrange
+            string query = null;
+            var mockDatabase = new Mock<IDataBaseTable>();
+            mockDatabase.Setup(r => r.RetrieveTableRow(1)).Returns("This is the question? \n This is the answer.");
+            mockDatabase.Setup(r => r.DeleteRowFromTable(It.IsAny<string>())).Callback<string>((s1) => 
+            {
+                query = s1;
+            });
+            var sut = new TriviaAdministration(question, mockDatabase.Object);
+
+            // Act
+            sut.DeleteQuestion(1);
+
+            //Assert
+            Assert.AreEqual("This is the question? ", query);
+        }
+
+        [TestMethod]
+        public void MethodAddQuestionShouldModifyTheFieldsOfTheClassItIsInAndThenPassItsOwnClassObjectAsAnArgumentToMethodInsertARowIntoTable()
+        {
+            // Arrange
+            IDataEntry test = null;
+            var mockDatabase = new Mock<IDataBaseTable>();
+            mockDatabase.Setup(r => r.InsertRowIntoTable(It.IsAny<IDataEntry>())).Callback<IDataEntry>((s1) =>
+            {
+                test = s1;
+            });
+            var sut = new TriviaAdministration(question, mockDatabase.Object);
+
+            // Act
+            sut.AddQuestion("Question", "Answer");
+
+            // Assert
+            Assert.AreSame(sut, test);
+            Assert.AreEqual(sut, test);
+        }
+
+        [Ignore]
+        [TestMethod]
+        // This is an integration test
+        public void AddingAQuestionToDatabaseTableShouldReturnThatQuestionFromTableInIntegrationTesting()
+        {
+            // Arrange
+            new DataBaseOperations();
+            DataBaseOperations.ConnectToDB();
+            QT.CreateTable();
+            Console.WriteLine(QT.TableExists());
+
+            // Act
+            admin.AddQuestion("This is a question", "This is an answer");
+
+            // Assert
+            Assert.AreEqual("This is a question\nThis is an answer\n", QT.RetrieveTableRow(1));
+        }
+
+        [Ignore]
+        [TestMethod]
+        // This is an integration test
+        public void DeletingAQuestionFromDatabaseTableShouldRemoveThatQuestionFromTableInIntegrationTesting()
+        {
+            // Arrange
+            new DataBaseOperations();
+            DataBaseOperations.ConnectToDB();
+            QT.CreateTable();
+            Console.WriteLine(QT.TableExists());
+            admin.AddQuestion("This is a question", "This is an answer");
+            string test = admin.ListQuestions();
+
+            // Act
+            admin.DeleteQuestion(1);
+
+            // Assert
+            Assert.AreNotSame(admin.ListQuestions(), test);
+            Assert.AreNotEqual(admin.ListQuestions(), test);
+        }
+    }
+}

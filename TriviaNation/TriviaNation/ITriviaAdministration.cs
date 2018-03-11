@@ -12,7 +12,7 @@ namespace TriviaNation
     public interface ITriviaAdministration : IDataEntry
     {
         void AddQuestion(string question, string answer);
-        void DeleteQuestion();
-        void ListQuestions();
+        void DeleteQuestion(int questionNumber);
+        string ListQuestions();
     }
 }

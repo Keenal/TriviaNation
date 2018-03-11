@@ -9,7 +9,7 @@ namespace TriviaNation
     /// <summary>
     /// Interface for the Question class
     /// </summary>
-    interface IQuestion
+    public interface IQuestion
     {
         string Question
         {

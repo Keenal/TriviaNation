@@ -27,7 +27,7 @@ File Name: QuestionTable.cs
 
 namespace TriviaNation
 {
-    class QuestionTable : IDataBaseTable
+    public class QuestionTable : IDataBaseTable
     {
         //name of this specific DataBase Table
         private const String tableName = "QuestionTable";
