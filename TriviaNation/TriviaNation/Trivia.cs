@@ -1,15 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+/**
+TriviaNation is a networked trivia game designed for use in
+classrooms. Class members are each in control of a nation on
+a map. The goal of the game is to increase the size of the nation 
+by winning trivia challenges and defeating other class members 
+in contested territories. The focus is on gamifying learning and
+making it an enjoyable experience.
+
+@author Timothy McWatters
+@author Keenal Shah
+@author Randy Quimby
+@author Wesley Easton
+@author Wenwen Xu
+@version 1.0
+CEN3032    "TriviaNation" SEII- Group 1's class project
+File Name: Trivia.cs 
+*/
 
 namespace TriviaNation
 {
     /// <summary>
     /// Class to handle the logic of a trivia game
     /// </summary>
-    class Trivia : ITrivia
+    public class Trivia : ITrivia
     {
         /// <summary>
         /// IDataBaseTable object for storing and retrieving question data
@@ -25,7 +39,7 @@ namespace TriviaNation
         private Random random;
         
         /// <summary>
-        /// Constructs a Trivia object with database and question types as instance fields through use of interfaces 
+        /// Constructs a Trivia object with database, random generation and question objects as instance fields through use of IDataBaseTable and IQuestion interfaces 
         /// </summary>
         /// <param name="database">The database object related to questions</param>
         /// <param name="questions">The question object</param>
@@ -49,7 +63,7 @@ namespace TriviaNation
         /// <summary>
         /// Returns a random question from the database
         /// </summary>
-        /// <returns name="randomNum">The question</returns>
+        /// <returns name="randomNum">The question from the database</returns>
         public string GetRandomQuestion()
         {
             int n = RandomGenerator();

@@ -16,8 +16,6 @@ namespace TriviaNation
             QT.CreateTable();
             Console.WriteLine(QT.TableExists());
             IQuestion question = new Questions();
-            
-            // abstract class that implements both interfaces
             ITriviaAdministration admin = new TriviaAdministration(question, QT);
 
             admin.AddQuestion("Test", "Yup");

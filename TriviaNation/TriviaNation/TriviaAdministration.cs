@@ -1,8 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+/**
+TriviaNation is a networked trivia game designed for use in
+classrooms. Class members are each in control of a nation on
+a map. The goal of the game is to increase the size of the nation 
+by winning trivia challenges and defeating other class members 
+in contested territories. The focus is on gamifying learning and
+making it an enjoyable experience.
+
+@author Timothy McWatters
+@author Keenal Shah
+@author Randy Quimby
+@author Wesley Easton
+@author Wenwen Xu
+@version 1.0
+CEN3032    "TriviaNation" SEII- Group 1's class project
+File Name: TriviaAdministration.cs 
+*/
 
 namespace TriviaNation
 {
@@ -49,13 +64,19 @@ namespace TriviaNation
             database.InsertRowIntoTable(this);
         }
 
+        /// <summary>
+        /// Deletes a question from the database
+        /// </summary>
+        /// <param name="questionNumber">The user input question number that matches the row position of a question</param>
         public void DeleteQuestion(int questionNumber)
         {
-            /* The code below will be in the handler.  Will be a graphical
-             * list rather than from console
+            /* The commented code below will be in the handler.  Will be a graphical
+             * list rather than from console.
+             * 
              * ListQuestions();
              * Console.WriteLine("Enter question number to delete");
              * int questionNumber = Convert.ToInt32(Console.ReadLine());
+             * DeleteQuestion(questionNumber);
              */
             String tableRow = database.RetrieveTableRow(questionNumber);
             String[] split = tableRow.Split(separator: '\n');
