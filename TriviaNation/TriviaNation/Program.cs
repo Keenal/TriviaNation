@@ -49,6 +49,7 @@ namespace TriviaNation
             Console.WriteLine(QT.RetrieveTableRow(1));
             Console.WriteLine(QT.RetrieveTableRow(2));
             Console.WriteLine(QT.RetrieveTableRow(3));
+            Console.WriteLine("The number of cols in this table are: {0}", QT.RetrieveNumberOfColsInTable());
             QT.DeleteRowFromTable("This is question1");
             Console.WriteLine("The number of rows in this table are now: {0}", QT.RetrieveNumberOfRowsInTable());
             Console.WriteLine(QT.RetrieveTableRow(1));

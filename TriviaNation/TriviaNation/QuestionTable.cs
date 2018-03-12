@@ -123,6 +123,15 @@ namespace TriviaNation
         }
 
         /// <summary>
+        /// Retrieves the number of columns a table contains
+        /// </summary>
+        /// <returns name ="numberOfColsInTable">The number of columns in a table</returns>
+        public int RetrieveNumberOfColsInTable() {
+
+            return DataBaseOperations.RetrieveNumberOfColsInTable(TableName);
+        }
+
+        /// <summary>
         /// Deletes a row from the Table
         /// </summary>
         /// <param name="question">The question nomenclature of the row to DELETE from the Table</param>
