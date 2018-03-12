@@ -111,7 +111,6 @@ namespace TriviaNation
 
             //Builds the table creation String
             String TSQLSourceCode = "CREATE TABLE " + tableName + tableCreationString;
-
             //CREATEs the table
             SqlCommand command = new SqlCommand(TSQLSourceCode, s_connection);
             command.ExecuteNonQuery();
