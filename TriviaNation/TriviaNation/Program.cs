@@ -54,6 +54,8 @@ namespace TriviaNation
             Console.WriteLine(QT.RetrieveTableRow(1));
             Console.WriteLine(QT.RetrieveTableRow(2));
             Console.WriteLine(QT.RetrieveTableRow(3));
+            Console.WriteLine("Data Source = trivianation.database.windows.net; Initial Catalog = TriviaNation; User ID = trivianationadmin; Password = SoftwareEngineering2");
+            Console.WriteLine(DataBaseOperations.Cb.ConnectionString);
 
             Console.WriteLine("Press any key to end the program");
             Console.ReadKey();

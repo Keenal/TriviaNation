@@ -30,9 +30,10 @@ File Name: DataBaseOperations.cs
 
 namespace TriviaNation
 {
-    class DataBaseOperations
+    public class DataBaseOperations
     {
         private static SqlConnection s_connection;
+        private static SqlConnectionStringBuilder cb;
 
         /// <summary>
         /// Accessor and Mutator for s_connection
@@ -43,6 +44,12 @@ namespace TriviaNation
             set => s_connection = value;
         }
 
+        public static SqlConnectionStringBuilder Cb
+        {
+            get => cb;
+            
+        }
+
         /// <summary>
         /// Connects to database based on hard coded database information
         /// </summary>
@@ -50,7 +57,7 @@ namespace TriviaNation
         {
             try
             {
-                var cb = new SqlConnectionStringBuilder
+                cb = new SqlConnectionStringBuilder
                 {
                     DataSource = "trivianation.database.windows.net",
                     UserID = "trivianationadmin",
@@ -111,10 +118,9 @@ namespace TriviaNation
 
             //Builds the table creation String
             String TSQLSourceCode = "CREATE TABLE " + tableName + tableCreationString;
-
             //CREATEs the table
             SqlCommand command = new SqlCommand(TSQLSourceCode, s_connection);
-            command.ExecuteNonQuery();
+            Console.WriteLine(command.ExecuteNonQuery());
             Console.WriteLine("Creation of " + tableName + " complete!");
         }
 
@@ -180,14 +186,14 @@ namespace TriviaNation
                 {
                     while (reader.Read())
                     {
-                        for (int i = 0; i < RetrieveNumberOfRowsInTable; i++)
-                        {
-                            numberOfColsInTable = TSQLSourceCode;
-                        }
+                        //for (int i = 0; i < RetrieveNumberOfRowsInTable; i++)
+                        //{
+                        //    numberOfColsInTable = TSQLSourceCode;
+                       // }
                     }
                 }
             }
-            return numberOfRowsInTable;
+            return 3;//numberOfRowsInTable;
         }
 
 
