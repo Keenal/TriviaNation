@@ -141,8 +141,6 @@ namespace TriviaNation
             int numberOfRowsInTable = 0;
             String TSQLSourceCode = "SELECT COUNT(*) FROM " + tableName + ";";
 
-            
-
             using (SqlCommand command = new SqlCommand(TSQLSourceCode, s_connection))
             {
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -156,26 +154,14 @@ namespace TriviaNation
             return numberOfRowsInTable;
         }
 
-        /*
         /// <summary>
         /// Retrieves the number of cols a specific Table has
         /// </summary>
-        /// <param name="tableName">The name of the Table to place number of col inquiry</param>
-        /// <returns name="numberOfRowsInTable">The number of cols in this particular Table</param>
-
-            
-
-        public static int RetrieveNumberOfColsInTable(String tableName)
-        {
+        /// <param name="tableName">The name of the Table to place number of row inquiry</param>
+        /// <returns name="numberOfColsInTable">The number of cols in this particular Table</param>
+        public static int RetrieveNumberOfColsInTable(String tableName) {
             int numberOfColsInTable = 0;
-
-            // format is like this:
-            //SELECT COUNT(*)
-            //FROM INFORMATION_SCHEMA.COLUMNS
-            //WHERE table_catalog = 'tableName';
-
-            //following the code above gives us the number of cols, so we can directly use TSQLSourceCode var?
-            String TSQLSourceCode = "SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + tableName + "'";
+            String TSQLSourceCode = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + tableName + "';";
 
             using (SqlCommand command = new SqlCommand(TSQLSourceCode, s_connection))
             {
@@ -183,17 +169,12 @@ namespace TriviaNation
                 {
                     while (reader.Read())
                     {
-                        for (int i = 0; i < RetrieveNumberOfRowsInTable; i++)
-                        {
-                            numberOfColsInTable = TSQLSourceCode;
-                        }
+                        numberOfColsInTable = reader.GetInt32(0);
                     }
                 }
             }
-            return numberOfRowsInTable;
+            return numberOfColsInTable;
         }
-
-    */
 
         /// <summary>
         /// INSERTs a row into a Table 
