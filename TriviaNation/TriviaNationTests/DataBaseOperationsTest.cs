@@ -32,16 +32,23 @@ namespace TriviaNationTests
             new DataBaseOperations();
             DataBaseOperations.ConnectToDB();
             SqlConnection s_connection = DataBaseOperations.Connection;
-            String TSQLSourceCode = "CREATE TABLE TestTable(columnone varchar(4000) not null PRIMARY KEY, columntwo varchar(4000) not null);"
-            Mock<SqlCommand> mockCommand = new Mock<SqlCommand>(TSQLSourceCode, s_connection);
-            mockCommand.Setup(c => c.ExecuteNonQuery()).Returns(-1);
-            
+            String DropTableSQLCode = ("DROP TABLE IF EXISTS TestTable;");
+            SqlCommand deleteTableCommand = new SqlCommand(DropTableSQLCode, s_connection);
+            deleteTableCommand.ExecuteNonQuery();
+            String TSQLSourceCode = "CREATE TABLE TestTable(columnone varchar(4000) not null PRIMARY KEY, columntwo varchar(4000) not null);";
+            SqlCommand command = new SqlCommand(TSQLSourceCode, s_connection);
+            command.ExecuteNonQuery();
 
             //Act
             bool tableExist = DataBaseOperations.TableExists("TestTable");
 
             //Assert
             Assert.AreEqual(true, tableExist);
+
+            //Clean UP
+            String DropTableSQLCodeAfter = ("DROP TABLE IF EXISTS TestTable;");
+            SqlCommand deleteTableCommandAfter = new SqlCommand(DropTableSQLCodeAfter, s_connection);
+            deleteTableCommandAfter.ExecuteNonQuery();
         }
 
         /*

@@ -30,7 +30,7 @@ File Name: DataBaseOperations.cs
 
 namespace TriviaNation
 {
-    class DataBaseOperations
+    public class DataBaseOperations
     {
         private static SqlConnection s_connection;
 

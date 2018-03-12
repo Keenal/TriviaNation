@@ -29,7 +29,7 @@ File Name: QuestionTable.cs
 
 namespace TriviaNation
 {
-    class QuestionTable : IDataBaseTable
+    public class QuestionTable : IDataBaseTable
     {
         //name of this specific DataBase Table
         private const String tableName = "QuestionTable";
@@ -126,7 +126,7 @@ namespace TriviaNation
         /// Retrieves the number of columns a table contains
         /// </summary>
         /// <returns name ="numberOfColsInTable">The number of columns in a table</returns>
-        public int RetrieveNumberOfColsInTable() {
+        public int RetriveNumberOfColsInTable() {
 
             return DataBaseOperations.RetrieveNumberOfColsInTable(TableName);
         }
