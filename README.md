@@ -15,8 +15,5 @@ Wesley Easton
 
 Randy Quimby
 
-<<<<<<< HEAD
-Testing a merge
-=======
 Testing a merge with Questions branch
->>>>>>> Questions
+
