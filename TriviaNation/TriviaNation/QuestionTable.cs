@@ -23,11 +23,13 @@ making it an enjoyable experience.
 
 CEN3032    "TriviaNation" SEII- Group 1's class project
 File Name: QuestionTable.cs 
+
+    This class creates the QuestionTable and has methods that can let you insert row into a table, insert coloumn into a table, delete a row and column and retrive those information. 
 */
 
 namespace TriviaNation
 {
-    class QuestionTable : IDataBaseTable
+    public class QuestionTable : IDataBaseTable
     {
         //name of this specific DataBase Table
         private const String tableName = "QuestionTable";
@@ -118,6 +120,15 @@ namespace TriviaNation
                "where RowNum = " + rowNumber + ";");
 
             return retrievedRow;
+        }
+
+        /// <summary>
+        /// Retrieves the number of columns a table contains
+        /// </summary>
+        /// <returns name ="numberOfColsInTable">The number of columns in a table</returns>
+        public int RetriveNumberOfColsInTable() {
+
+            return DataBaseOperations.RetrieveNumberOfColsInTable(TableName);
         }
 
         /// <summary>

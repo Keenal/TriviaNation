@@ -22,6 +22,8 @@ making it an enjoyable experience.
 
 CEN3032    "TriviaNation" SEII- Group 1's class project
 File Name: IDataEntry.cs 
+
+    This class creates the Enum to get all the values.
 */
 
 namespace TriviaNation

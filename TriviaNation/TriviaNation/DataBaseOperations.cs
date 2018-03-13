@@ -23,11 +23,14 @@ making it an enjoyable experience.
 
 CEN3032    "TriviaNation" SEII- Group 1's class project
 File Name: DataBaseOperations.cs 
+
+    This class connects to the db, determines if a table exist in a database, creates and deletes a table in the database, 
+    inserts and deletes a row in the table, and retrieves the row and the number of row.
 */
 
 namespace TriviaNation
 {
-    class DataBaseOperations
+    public class DataBaseOperations
     {
         private static SqlConnection s_connection;
 
@@ -108,7 +111,6 @@ namespace TriviaNation
 
             //Builds the table creation String
             String TSQLSourceCode = "CREATE TABLE " + tableName + tableCreationString;
-
             //CREATEs the table
             SqlCommand command = new SqlCommand(TSQLSourceCode, s_connection);
             command.ExecuteNonQuery();
@@ -149,6 +151,28 @@ namespace TriviaNation
                 }
             }
             return numberOfRowsInTable;
+        }
+
+        /// <summary>
+        /// Retrieves the number of cols a specific Table has
+        /// </summary>
+        /// <param name="tableName">The name of the Table to place number of row inquiry</param>
+        /// <returns name="numberOfColsInTable">The number of cols in this particular Table</param>
+        public static int RetrieveNumberOfColsInTable(String tableName) {
+            int numberOfColsInTable = 0;
+            String TSQLSourceCode = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + tableName + "';";
+
+            using (SqlCommand command = new SqlCommand(TSQLSourceCode, s_connection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        numberOfColsInTable = reader.GetInt32(0);
+                    }
+                }
+            }
+            return numberOfColsInTable;
         }
 
         /// <summary>

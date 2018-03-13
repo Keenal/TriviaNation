@@ -13,6 +13,7 @@ by winning trivia challenges and defeating other class members
 in contested territories. The focus is on gamifying learning and 
 making it an enjoyable experience.
 
+
 @author Timothy McWatters
 @author Keenal Shah
 @author Randy Quimby
@@ -23,6 +24,8 @@ making it an enjoyable experience.
 
 CEN3032    "TriviaNation" SEII- Group 1's class project
 File Name: Program.cs 
+
+    This is the main class and the classes, interfaces are tested from here. 
 */
 
 namespace TriviaNation
@@ -46,6 +49,7 @@ namespace TriviaNation
             Console.WriteLine(QT.RetrieveTableRow(1));
             Console.WriteLine(QT.RetrieveTableRow(2));
             Console.WriteLine(QT.RetrieveTableRow(3));
+            Console.WriteLine("The number of cols in this table are: {0}", QT.RetriveNumberOfColsInTable());
             QT.DeleteRowFromTable("This is question1");
             Console.WriteLine("The number of rows in this table are now: {0}", QT.RetrieveNumberOfRowsInTable());
             Console.WriteLine(QT.RetrieveTableRow(1));

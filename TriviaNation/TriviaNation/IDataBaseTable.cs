@@ -22,6 +22,8 @@ making it an enjoyable experience.
 
 CEN3032    "TriviaNation" SEII- Group 1's class project
 File Name: IDataBaseTable.cs 
+
+    This class tests all the methods written in DataBaseOperations class. 
 */
 
 namespace TriviaNation
@@ -39,6 +41,7 @@ namespace TriviaNation
         Boolean TableExists();
         void CreateTable();
         int RetrieveNumberOfRowsInTable();
+        int RetriveNumberOfColsInTable();
         void InsertRowIntoTable(IDataEntry dataEntry);
         String RetrieveTableRow(int rowNumber);
         void DeleteRowFromTable(String question);
