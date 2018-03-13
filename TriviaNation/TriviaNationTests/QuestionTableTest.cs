@@ -8,38 +8,28 @@ namespace TriviaNationTests
     [TestClass]
     public class QuestionTableTest
     {
-
-        private String tableName;
-        private String tableCreationString;
-        private QuestionTable sut;
+        private IDataBaseTable sut;
+        private string tableName;
 
         [TestInitialize]
         public void Initialize() {
-            tableName = "QuestionTable";
-            tableCreationString = "(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null);";
             sut = null;
+            tableName = "QuestionTable";
         }
+
         [TestMethod]
-        public void TestToSeeIfTableExists()
-        {
-            
+        public void TestToSeeIfATableIsCreated() {
+
             // Arrange
-            Mock<DataBaseOperations> mockDataBaseOperations = new Mock<DataBaseOperations>();
-            mockDataBaseOperations.Setup(r => r.TableExists).Returns(true);
-            sut = new QuestionTable();
+            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
+            mockDatabase.Setup(r => r.TableExists()).Returns(true);
 
             // Act
             bool expected = true;
-            bool actual = sut.TableExists(); 
+            bool actual = DataBaseOperations.TableExists(tableName);
 
-
-            // Assert
+            //Assert
             Assert.AreEqual(expected, actual);
-
-        }
-        [TestMethod]
-        public void TestToSeeIfTableIsCreated() {
-            
 
         }
     }

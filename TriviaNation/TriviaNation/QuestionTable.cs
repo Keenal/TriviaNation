@@ -12,18 +12,14 @@ a map. The goal of the game is to increase the size of the nation
 by winning trivia challenges and defeating other class members 
 in contested territories. The focus is on gamifying learning and 
 making it an enjoyable experience.
-
 @author Timothy McWatters
 @author Keenal Shah
 @author Randy Quimby
 @author Wesley Easton
 @author Wenwen Xu
-
 @version 1.0
-
 CEN3032    "TriviaNation" SEII- Group 1's class project
 File Name: QuestionTable.cs 
-
     This class creates the QuestionTable and has methods that can let you insert row into a table, insert coloumn into a table, delete a row and column and retrive those information. 
 */
 
@@ -84,7 +80,7 @@ namespace TriviaNation
         public void InsertRowIntoTable(IDataEntry dataEntry)
         {
             List<String> list = new List<string>();
-            list = (List<String>) dataEntry.GetValues();
+            list = (List<String>)dataEntry.GetValues();
 
             String question = list[0];
             String answer = list[1];
@@ -126,7 +122,8 @@ namespace TriviaNation
         /// Retrieves the number of columns a table contains
         /// </summary>
         /// <returns name ="numberOfColsInTable">The number of columns in a table</returns>
-        public int RetriveNumberOfColsInTable() {
+        public int RetriveNumberOfColsInTable()
+        {
 
             return DataBaseOperations.RetrieveNumberOfColsInTable(TableName);
         }
