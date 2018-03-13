@@ -38,8 +38,8 @@ namespace TriviaNation
         {
             get;
         }
-        Boolean TableExists();
-        void CreateTable();
+        Boolean TableExists(String tableName);
+        void CreateTable(String tableName, String tableCreationString);
         int RetrieveNumberOfRowsInTable();
         int RetriveNumberOfColsInTable();
         void InsertRowIntoTable(IDataEntry dataEntry);

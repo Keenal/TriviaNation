@@ -60,7 +60,7 @@ namespace TriviaNation
         /// Checks to see if this Table table exists currently in the DataBase
         /// </summary>
         /// <param name="tableExists">True if the Table does exist in the DataBase, False if it does not</param>
-        public Boolean TableExists()
+        public Boolean TableExists(String tableName)
         {
             return DataBaseOperations.TableExists(tableName);
         }
@@ -68,7 +68,7 @@ namespace TriviaNation
         /// <summary>
         /// Creates this Table
         /// </summary>
-        public void CreateTable()
+        public void CreateTable(String tableName, String tableCreationString)
         {
             DataBaseOperations.CreateTable(tableName, tableCreationString);
         }

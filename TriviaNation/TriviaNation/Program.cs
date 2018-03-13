@@ -37,8 +37,8 @@ namespace TriviaNation
             new DataBaseOperations();
             DataBaseOperations.ConnectToDB();
             QuestionTable QT = new QuestionTable();
-            QT.CreateTable();
-            Console.WriteLine("The table exists: {0}", QT.TableExists());
+            QT.CreateTable(QT.TableName, QT.TableCreationString);
+            Console.WriteLine("The table exists: {0}", QT.TableExists(QT.TableName));
             IDataEntry question1 = new Question("This is question1", "This is answer1");
             IDataEntry question2 = new Question("This is question2", "This is answer2");
             IDataEntry question3 = new Question("This is question3", "This is answer3");
