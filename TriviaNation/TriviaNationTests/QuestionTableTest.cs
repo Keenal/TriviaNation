@@ -27,9 +27,11 @@ namespace TriviaNationTests
 
             // Act
             bool tableExists = sut.TableExists(sut.TableName);
+            bool expected = true;
+            bool actual = tableExists;
 
             //Assert
-            Assert.AreEqual(true, tableExists);
+            Assert.AreEqual(expected, actual);
         }        
 
         [TestMethod]
@@ -93,9 +95,44 @@ namespace TriviaNationTests
         [TestMethod]
         public void TestToSeeIfRowIsRetrieved()
         {
+            // Arrange
+            new DataBaseOperations();
+            DataBaseOperations.ConnectToDB();
+            SqlConnection s_connection = DataBaseOperations.Connection;
+            String sqlString = ("SELECT * " +
+                "FROM(SELECT Row_Number()" +
+                "OVER(ORDER BY question)" +
+                "AS RowNum, *" +
+                "FROM QuestionTable) t2" +
+                "WHERE RowNum = 1;");
+            int rowNumber = 1;
+          
+
+            // Act
+            String retrievedRow = QT.RetrieveTableRow(rowNumber);
+            
+            using (SqlCommand command = new SqlCommand(sqlString, s_connection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        retrievedRow += reader.GetString(1) + "\n" + reader.GetString(2) + "\n";
+                    }
+                }
+            }
+            
+
+            // Assert
+            Assert.AreEqual(("This is question2" + "\n" + "This is answer2"), retrievedRow);
+
+
 
         }
         */
+        
+       
+        
 
         [TestMethod]
         public void TestRetrieveNumberOfColsInTableMethodShouldReturnIntNotNUll()
@@ -130,6 +167,21 @@ namespace TriviaNationTests
             String DropTableSQLCode1 = ("DROP TABLE IF EXISTS TestTable1;");
             SqlCommand deleteTableCommand1 = new SqlCommand(DropTableSQLCode1, s_connection);
             deleteTableCommand1.ExecuteNonQuery();
+        }
+
+        [TestMethod]
+        public void TestRetrieveRow() {
+            new DataBaseOperations();
+            DataBaseOperations.ConnectToDB();
+            SqlConnection s_connection = DataBaseOperations.Connection;
+            var sut = new QuestionTable();
+            int rowNumber = 1;
+
+            // Act
+            String rowRetrieved = sut.RetrieveTableRow(rowNumber);
+
+            // Assert
+            Assert.AreEqual("This is question2" + "\n" + "This is answer2" + "\n", rowRetrieved);
         }
     }
 }

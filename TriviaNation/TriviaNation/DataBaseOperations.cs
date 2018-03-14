@@ -42,7 +42,8 @@ namespace TriviaNation
         /// <summary>
         /// Default constructor for the DataBaseOperations class
         /// </summary>
-        public DataBaseOperations() {
+        public DataBaseOperations()
+        {
 
         }
         /// <summary>

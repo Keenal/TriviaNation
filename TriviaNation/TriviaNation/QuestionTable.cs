@@ -98,6 +98,8 @@ namespace TriviaNation
             return DataBaseOperations.RetrieveNumberOfRowsInTable(TableName);
         }
 
+
+
         /// <summary>
         /// Retrieves a row from the Table
         /// </summary>
