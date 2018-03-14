@@ -70,9 +70,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TriviaNation\TriviaNation.csproj">
+    <ProjectReference Include="..\TriviaNation\TriviaLogic.csproj">
       <Project>{c41e0523-e3e1-40d7-adbb-539d90b240ea}</Project>
-      <Name>TriviaNation</Name>
+      <Name>TriviaLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

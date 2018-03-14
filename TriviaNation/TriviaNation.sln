@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriviaNation", "TriviaNation\TriviaNation.csproj", "{C41E0523-E3E1-40D7-ADBB-539D90B240EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriviaLogic", "TriviaNation\TriviaLogic.csproj", "{C41E0523-E3E1-40D7-ADBB-539D90B240EA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriviaNationTest", "TriviaTest\TriviaNationTest.csproj", "{4243F1D5-59C7-4CC2-950C-EC2487F106AE}"
 EndProject
