@@ -259,6 +259,9 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="TriviaNation">
+      <HintPath>Assets/Assets/TriviaNation.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>C:/Users/Wes&apos;s PC/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
@@ -282,27 +285,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Common\GUIResizer.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo01_TerrainBalls\BallController.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo01_TerrainBalls\Demo1.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo02_2DGrids\Demo2.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo03_CellsVisibility\Demo3.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo04a_CellTexture\Demo4a.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo04b_TerritoryTexture\Demo4b.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo05_CellsColoring\Demo5.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo06_CellsPositions\Demo6.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo06b_CellsPositions2\Demo6b.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo07_CellsByRowCol\Demo7.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo08_Orthographic\DemoOrtho.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo10_TerrainPositioning\Demo10.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo10b_CharacterGrid\Demo10b.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo11_TerritoryConquer\Demo11.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo12_PathFinding\Demo12.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo14_TerrainPathFinding\Obstacles.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo14_TerrainPathFinding\SphereController.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo15_RuntimeGridCreation\Demo15.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo16_MatchingGame\Demo16.cs" />
-    <Compile Include="Assets\Assets\TerrainGridSystem\Demos\Demo17_CellsColorByTexture\Demo17.cs" />
     <Compile Include="Assets\Assets\TerrainGridSystem\Scripts\Core\Cell.cs" />
     <Compile Include="Assets\Assets\TerrainGridSystem\Scripts\Core\IAdmin.cs" />
     <Compile Include="Assets\Assets\TerrainGridSystem\Scripts\Core\Misc.cs" />
@@ -378,26 +360,6 @@
     <Compile Include="Assets\Map.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Common\Resources\FruitIcons\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo01_TerrainBalls\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo02_2DGrids\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo03_CellsVisibility\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo04a_CellTexture\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo04b_TerritoryTexture\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo05_CellsColoring\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo06_CellsPositions\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo06b_CellsPositions2\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo07_CellsByRowCol\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo08_Orthographic\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo09_Mask\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo10_TerrainPositioning\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo10b_CharacterGrid\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo11_TerritoryConquer\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo12_PathFinding\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo13_TerritoryByTexture\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo14_TerrainPathFinding\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo16_MatchingGame\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo17_CellsColorByTexture\README.txt" />
     <None Include="Assets\Assets\TerrainGridSystem\README.txt" />
     <None Include="Assets\Assets\TerrainGridSystem\Resources\Shaders\UnlitHighlightGroundTexture.shader" />
     <None Include="Assets\Assets\TerrainGridSystem\Resources\Shaders\UnlitHighlightOverlayTexture.shader" />

@@ -280,6 +280,9 @@
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/Wes&apos;s PC/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
+    <Reference Include="TriviaNation">
+      <HintPath>Assets/Assets/TriviaNation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="TriviaNationMap.csproj">
@@ -291,26 +294,6 @@
     <Compile Include="Assets\Assets\TerrainGridSystem\Editor\TGSInspector.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Common\Resources\FruitIcons\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo01_TerrainBalls\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo02_2DGrids\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo03_CellsVisibility\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo04a_CellTexture\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo04b_TerritoryTexture\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo05_CellsColoring\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo06_CellsPositions\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo06b_CellsPositions2\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo07_CellsByRowCol\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo08_Orthographic\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo09_Mask\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo10_TerrainPositioning\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo10b_CharacterGrid\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo11_TerritoryConquer\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo12_PathFinding\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo13_TerritoryByTexture\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo14_TerrainPathFinding\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo16_MatchingGame\README.txt" />
-    <None Include="Assets\Assets\TerrainGridSystem\Demos\Demo17_CellsColorByTexture\README.txt" />
     <None Include="Assets\Assets\TerrainGridSystem\README.txt" />
     <None Include="Assets\Assets\TerrainGridSystem\Resources\Shaders\UnlitHighlightGroundTexture.shader" />
     <None Include="Assets\Assets\TerrainGridSystem\Resources\Shaders\UnlitHighlightOverlayTexture.shader" />
