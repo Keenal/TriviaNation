@@ -91,48 +91,24 @@ namespace TriviaNationTests
             Assert.IsNotNull(numberReturned);
         }
 
-        /*
         [TestMethod]
-        public void TestToSeeIfRowIsRetrieved()
+        public void TestRetrieveRowInTableMethodShouldReturnTheRowFromSpecificRowNumber()
         {
             // Arrange
             new DataBaseOperations();
             DataBaseOperations.ConnectToDB();
             SqlConnection s_connection = DataBaseOperations.Connection;
-            String sqlString = ("SELECT * " +
-                "FROM(SELECT Row_Number()" +
-                "OVER(ORDER BY question)" +
-                "AS RowNum, *" +
-                "FROM QuestionTable) t2" +
-                "WHERE RowNum = 1;");
+            var sut = new QuestionTable();
             int rowNumber = 1;
-          
 
             // Act
-            String retrievedRow = QT.RetrieveTableRow(rowNumber);
-            
-            using (SqlCommand command = new SqlCommand(sqlString, s_connection))
-            {
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        retrievedRow += reader.GetString(1) + "\n" + reader.GetString(2) + "\n";
-                    }
-                }
-            }
-            
+            String rowRetrieved = sut.RetrieveTableRow(rowNumber);
 
             // Assert
-            Assert.AreEqual(("This is question2" + "\n" + "This is answer2"), retrievedRow);
-
-
-
+            Assert.AreEqual("This is question2" + "\n" + "This is answer2" + "\n", rowRetrieved);
         }
-        */
-        
-       
-        
+
+
 
         [TestMethod]
         public void TestRetrieveNumberOfColsInTableMethodShouldReturnIntNotNUll()
@@ -150,13 +126,35 @@ namespace TriviaNationTests
             Assert.IsNotNull(numberReturned);
         }
 
-        /*
+        
         [TestMethod]
         public void TestToSeeIfRowIsDeleted()
         {
+            // Arrange
+            new DataBaseOperations();
+            DataBaseOperations.ConnectToDB();
+            SqlConnection s_connection = DataBaseOperations.Connection;
+            int count = 1;
+
+            var sut = new QuestionTable();
+            String questionString = "This is question1";
+            String sqlString = "DELETE FROM QuestionTable WHERE question='" + questionString + "';";
+
+            // Act
+            QT.DeleteRowFromTable(questionString);
+            SqlCommand command = new SqlCommand(sqlString, s_connection);
+            SqlDataReader myReader = command.ExecuteReader();
+            while (myReader.Read())
+            {
+                count++;
+            }
+
+            // Assert
+            Assert.AreEqual(1, count);
+
 
         }
-        */
+        
 
         public void CleanUpAfterTests()
         {
@@ -169,19 +167,6 @@ namespace TriviaNationTests
             deleteTableCommand1.ExecuteNonQuery();
         }
 
-        [TestMethod]
-        public void TestRetrieveRow() {
-            new DataBaseOperations();
-            DataBaseOperations.ConnectToDB();
-            SqlConnection s_connection = DataBaseOperations.Connection;
-            var sut = new QuestionTable();
-            int rowNumber = 1;
-
-            // Act
-            String rowRetrieved = sut.RetrieveTableRow(rowNumber);
-
-            // Assert
-            Assert.AreEqual("This is question2" + "\n" + "This is answer2" + "\n", rowRetrieved);
-        }
+        
     }
 }

@@ -140,5 +140,7 @@ namespace TriviaNation
 
             DataBaseOperations.DeleteRowFromTable(rowToDelete);
         }
+
+       
     }
 }
