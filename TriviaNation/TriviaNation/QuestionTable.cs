@@ -31,7 +31,7 @@ namespace TriviaNation
         private const String tableName = "QuestionTable";
         //String used to create this specific Table
         private const String tableCreationString = "(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null);";
-
+        
         /// <summary>
         /// Default Constructor for the QuestionTable class
         /// </summary>

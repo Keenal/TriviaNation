@@ -10,10 +10,12 @@ namespace TriviaNationTests
     public class QuestionTableTest
     {
         private QuestionTable QT;
+        private IDataEntry sut;
 
         [TestInitialize]
         public void Initialize() {
             QT = new QuestionTable();
+            sut = null;
         }
         
         [TestMethod]
@@ -60,20 +62,24 @@ namespace TriviaNationTests
         }
 
         /*
+        
         [TestMethod]
         public void TestInsertRowIntoTableMethodToSeeIfRowGetsInserted() {
             // Arrange
-            Mock<DataBaseOperations> dbo = new Mock<DataBaseOperations>();
-            dbo.Setup(r => r.InsertIntoTable(insertString)).Returns("Insertion complete!");
+            Mock<IDataEntry> mockData = new Mock<IDataEntry>();
+            mockData.Setup(r => r.GetValues).Returns("This is a test?");
+            sut = new QuestionTable();
 
             // Act
-            DataBaseOperations obj = new DataBaseOperations();
+         //   QT.InsertRowIntoTable(mockData);
+            List<string> test = (List<String>)sut.GetValues();
 
             // Assert
-            Assert.AreEqual(obj.InsertIntoTable(dbo.Object), "Insertion complete!");
-            
+            Assert.AreEqual("This is question1" + "\n" + "This is answer1" + "\n", list[0]);
+
         }
-        */
+        
+    */
 
         [TestMethod]
         public void TestRetrieveNumberOfRowsInTableMethodShouldReturnIntNotNUll()
