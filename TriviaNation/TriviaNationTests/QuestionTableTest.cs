@@ -10,45 +10,31 @@ namespace TriviaNationTests
     public class QuestionTableTest
     {
         private QuestionTable QT;
-        private string tableName;
-        private String tableCreationString;
-        private String insertString;
 
         [TestInitialize]
         public void Initialize() {
             QT = new QuestionTable();
-            tableName = "QuestionTable";
-            tableCreationString = "exTableCreationString";
-            insertString = "exInsertString";
         }
-        /*
+        
         [TestMethod]
-        public void TestToSeeIfATableExists() {
-            /* does not work with DBO
-             * 
+        public void TestTableExistsMethodToSeeIfAKnownTableExists()
+        {
             // Arrange
-            Mock<DataBaseOperations> mockDatabase = new Mock<DataBaseOperations>();
-            mockDatabase.Setup(r => r.TableExists(tableName)).Returns(true);
-            
-
-            // Arrange
-            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
-            mockDatabase.Setup(r => r.TableExists()).Returns(true);
+            new DataBaseOperations();
+            DataBaseOperations.ConnectToDB();
+            SqlConnection s_connection = DataBaseOperations.Connection;
+            var sut = new QuestionTable();
 
             // Act
-            bool expected = true;
-            bool actual = DataBaseOperations.TableExists(tableName);
+            bool tableExists = sut.TableExists(sut.TableName);
 
             //Assert
-            Assert.AreEqual(expected, actual);
-
-        }
-    */
-
-
+            Assert.AreEqual(true, tableExists);
+        }        
 
         [TestMethod]
-        public void TestToSeeIfATableIsCreated() {
+        public void TestCreateTableMethodTableShouldGetCreated()
+        {
             // Arrange
             new DataBaseOperations();
             DataBaseOperations.ConnectToDB();
@@ -70,9 +56,10 @@ namespace TriviaNationTests
             //Assert
             Assert.AreEqual(1, count);
         }
+
         /*
         [TestMethod]
-        public void TestToSeeIfRowIsInserted() {
+        public void TestInsertRowIntoTableMethodToSeeIfRowGetsInserted() {
             // Arrange
             Mock<DataBaseOperations> dbo = new Mock<DataBaseOperations>();
             dbo.Setup(r => r.InsertIntoTable(insertString)).Returns("Insertion complete!");
@@ -85,20 +72,21 @@ namespace TriviaNationTests
             
         }
         */
+
         [TestMethod]
-        public void TestRetrieveNumberOfRowsInTableMethodToSeeIfCorrectNumOfRowsIsRetrieved()
+        public void TestRetrieveNumberOfRowsInTableMethodShouldReturnIntNotNUll()
         {
-            // Arrange
-            //Mock<IDataBaseOperations> dbo = new Mock<IDataBaseOperations>();
-            //dbo.Setup(s => s.RetrieveNumberOfRowsInTable("TestTable")).Returns(3);
+            //Arrange
+            new DataBaseOperations();
+            DataBaseOperations.ConnectToDB();
+            SqlConnection s_connection = DataBaseOperations.Connection;
+            var sut = new QuestionTable();
 
+            //Act
+            int numberReturned = sut.RetrieveNumberOfRowsInTable();
 
-            // Act
-           // DataBaseOperations obj = new DataBaseOperations();
-
-            // Assert
-           // Assert.AreEqual(obj.RetrieveNumberOfRowsInTable(tableName), 3);
-
+            //Assert
+            Assert.IsNotNull(numberReturned);
         }
 
         /*
@@ -107,41 +95,41 @@ namespace TriviaNationTests
         {
 
         }
+        */
 
         [TestMethod]
-        public void TestToSeeIfNumOfColsIsRetrieved()
+        public void TestRetrieveNumberOfColsInTableMethodShouldReturnIntNotNUll()
         {
-            // Arrange
-            Mock<DataBaseOperations> dbo = new Mock<DataBaseOperations>();
-            dbo.Setup(r => r.RetrieveNumberOfColsInTable(tableName).Returns(2);
+            //Arrange
+            new DataBaseOperations();
+            DataBaseOperations.ConnectToDB();
+            SqlConnection s_connection = DataBaseOperations.Connection;
+            var sut = new QuestionTable();
 
-            // Act
-            DataBaseOperations obj = new DataBaseOperations();
+            //Act
+            int numberReturned = sut.RetriveNumberOfColsInTable();
 
-            // Assert
-            Assert.AreEqual(obj.RetrieveNumberOfColsInTable(tableName), 2);
+            //Assert
+            Assert.IsNotNull(numberReturned);
         }
 
+        /*
         [TestMethod]
         public void TestToSeeIfRowIsDeleted()
         {
 
         }
         */
+
+        public void CleanUpAfterTests()
+        {
+            new DataBaseOperations();
+            DataBaseOperations.ConnectToDB();
+            SqlConnection s_connection = DataBaseOperations.Connection;
+
+            String DropTableSQLCode1 = ("DROP TABLE IF EXISTS TestTable1;");
+            SqlCommand deleteTableCommand1 = new SqlCommand(DropTableSQLCode1, s_connection);
+            deleteTableCommand1.ExecuteNonQuery();
+        }
     }
 }
-/*
- *[TestMethod]
-        public void TestToSeeIfATableIsCreated() {
-            // Arrange
-            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
-            mockDatabase.Setup(r => r.CreateTable());
-
-            // Act
-            void expected = "Creation of " + tableName + "complete!";
-            void actual = DataBaseOperations.CreateTable(tableName, tableCreationString);
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-*/
