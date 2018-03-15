@@ -1,8 +1,32 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+/**
+TriviaNation is a networked trivia game designed for use in 
+classrooms. Class members are each in control of a nation on 
+a map. The goal of the game is to increase the size of the nation 
+by winning trivia challenges and defeating other class members 
+in contested territories. The focus is on gamifying learning and 
+making it an enjoyable experience.
+
+
+@author Timothy McWatters
+@author Keenal Shah
+@author Randy Quimby
+@author Wesley Easton
+@author Wenwen Xu
+
+@version 1.0
+
+CEN3032    "TriviaNation" SEII- Group 1's class project
+File Name: Program.cs 
+
+    This is the main class and the classes, interfaces are tested from here. 
+*/
 
 namespace TriviaNation
 {
@@ -12,32 +36,25 @@ namespace TriviaNation
         {
             new DataBaseOperations();
             DataBaseOperations.ConnectToDB();
-            IDataBaseTable QT = new QuestionTable();
-            QT.CreateTable();
-            Console.WriteLine(QT.TableExists());
-            IQuestion question = new Questions();
-            ITriviaAdministration admin = new TriviaAdministration(question, QT);
-
-            admin.AddQuestion("Test", "Yup");
-            admin.AddQuestion("Working?", "Affirmitive");
-            admin.AddQuestion("No more objects necessary?", "Fer Shizzle");
-            
-            string test = admin.ListQuestions();
-            Console.WriteLine(test);
-            admin.DeleteQuestion(1);
-            test = admin.ListQuestions();
-            Console.WriteLine(test);
-
-            ///////// NOT part of IDataEntry ////////////
-            ITrivia trivia = new Trivia(QT, question);
-
-            Console.WriteLine(trivia.GetRandomQuestion());
-            string answer = Console.ReadLine();
-            Console.WriteLine("Your answer is: " + trivia.EvaluateAnswer(answer));
-            Console.WriteLine(trivia.GetRandomQuestion());
-            answer = Console.ReadLine();
-            Console.WriteLine("Your answer is: " + trivia.EvaluateAnswer(answer));
-            ////////////////////////////////////////////
+            QuestionTable QT = new QuestionTable();
+            QT.CreateTable(QT.TableName, QT.TableCreationString);
+            Console.WriteLine("The table exists: {0}", QT.TableExists(QT.TableName));
+            IDataEntry question1 = new Question("This is question1", "This is answer1", "TypeTest1");
+            IDataEntry question2 = new Question("This is question2", "This is answer2", "TypeTest2");
+            IDataEntry question3 = new Question("This is question3", "This is answer3", "TypeTest3");
+            QT.InsertRowIntoTable(QT.TableName, question1);
+            QT.InsertRowIntoTable(QT.TableName, question2);
+            QT.InsertRowIntoTable(QT.TableName, question3);
+            Console.WriteLine("The number of rows in this table are: {0}", QT.RetrieveNumberOfRowsInTable());
+            Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 1));
+            Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 2));
+            Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 3));
+            Console.WriteLine("The number of cols in this table are: {0}", QT.RetriveNumberOfColsInTable());
+            QT.DeleteRowFromTable("This is question1");
+            Console.WriteLine("The number of rows in this table are now: {0}", QT.RetrieveNumberOfRowsInTable());
+            Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 1));
+            Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 2));
+            Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 3));
 
             Console.WriteLine("Press any key to end the program");
             Console.ReadKey();
