@@ -65,46 +65,37 @@ namespace TriviaNationTests
             String tableDropCode = ("DROP TABLE IF EXISTS QTTestTable2;");
             SqlCommand deleteTableCommand = new SqlCommand(tableDropCode, s_connection);
             deleteTableCommand.ExecuteNonQuery();
-            String tableCreationString = "CREATE TABLE QTTestTable2(columnone varchar(4000) not null PRIMARY KEY, columntwo varchar(4000) not null, columnthree varchar(4000) not null);";
+            String tableCreationString = "CREATE TABLE QTTestTable2(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null, questionType varchar(4000) not null);";
             SqlCommand command = new SqlCommand(tableCreationString, s_connection);
             command.ExecuteNonQuery();
-
-            //String retrievedRow = "";
-            //String TSQLSourceCode = ("SELECT * FROM(Select Row_Number() Over (Order By columnone) As RowNum, * From QTTestTable2) t2 where RowNum = 0;");
-
-
-            //////////////////////////////////////////////////////////
+            String retrievedRow = "";
+            String TSQLSourceCode = ("SELECT * FROM(Select Row_Number() Over (Order By question) As RowNum, * From QTTestTable2) t2 where RowNum = 1;");
 
             List<string> questionAndAnswer = new List<string>();
             questionAndAnswer.Add("QuestionTest");
-            questionAndAnswer.Add("AnwerTest");
+            questionAndAnswer.Add("AnswerTest");
             questionAndAnswer.Add("QuestionTypeTest");
             Mock<IDataEntry> mockDataEntry = new Mock<IDataEntry>();
             mockDataEntry.Setup(r => r.GetValues()).Returns(questionAndAnswer);
 
             // Act
             QT.InsertRowIntoTable("QTTestTable2", mockDataEntry.Object);
-
-
-
-
-            //using (SqlCommand cmd = new SqlCommand(TSQLSourceCode, s_connection))
-            //{
-           //     using (SqlDataReader reader = cmd.ExecuteReader())
-           //     {
-           //         while (reader.Read())
-            //        {
-            //            for (int i = 1; i < reader.FieldCount; i++)
-             //           {
-            //                retrievedRow += (reader.GetString(i) + "\n");
-            //            }
-            //        }
-             //   }
-            //}
-
+            using (SqlCommand cmd = new SqlCommand(TSQLSourceCode, s_connection))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        for (int i = 1; i < reader.FieldCount; i++)
+                        {
+                            retrievedRow += (reader.GetString(i) + "\n");
+                        }
+                    }
+                }
+            }
+            
             // Assert
-            Assert.AreEqual(1, 1);
-            //Assert.AreEqual(("QuestionTest" + "\n" + "AnswerTest" + "\n" + "QuestionTypeTest" + "\n"), retrievedRow);
+            Assert.AreEqual(("QuestionTest" + "\n" + "AnswerTest" + "\n" + "QuestionTypeTest" + "\n"), retrievedRow);
         }
 
         [TestMethod]
@@ -134,8 +125,6 @@ namespace TriviaNationTests
             Assert.AreEqual("This is question2" + "\n" + "This is answer2" + "\n" + "TypeTest2" + "\n", rowRetrieved);
         }
 
-
-
         [TestMethod]
         public void TestRetrieveNumberOfColsInTableMethodShouldReturnIntNotNUll()
         {
@@ -149,13 +138,11 @@ namespace TriviaNationTests
             Assert.IsNotNull(numberReturned);
         }
 
-        
         [TestMethod]
         public void TestToSeeIfRowIsDeleted()
         {
             // Arrange
             int count = 1;
-
             var sut = new QuestionTable();
             String questionString = "This is question1";
             String sqlString = "DELETE FROM QuestionTable WHERE question='" + questionString + "';";
@@ -177,6 +164,9 @@ namespace TriviaNationTests
         {
             String DropTableSQLCode1 = ("DROP TABLE IF EXISTS TestTable1;");
             SqlCommand deleteTableCommand1 = new SqlCommand(DropTableSQLCode1, s_connection);
+            deleteTableCommand1.ExecuteNonQuery();
+            String DropTableSQLCode2 = ("DROP TABLE IF EXISTS TestTable2;");
+            SqlCommand deleteTableCommand2 = new SqlCommand(DropTableSQLCode2, s_connection);
             deleteTableCommand1.ExecuteNonQuery();
         }
     }

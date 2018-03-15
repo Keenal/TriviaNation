@@ -9,6 +9,15 @@ namespace TriviaNationTests
     [TestClass]
     public class DataBaseOperationsTest
     {
+        SqlConnection s_connection;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            new DataBaseOperations();
+            DataBaseOperations.ConnectToDB();
+            s_connection = DataBaseOperations.Connection;
+        }
 
         [TestMethod]
         public void TestToMakeSureConnectToDBMethodOpensConnectionToTheDataBase()
@@ -28,9 +37,6 @@ namespace TriviaNationTests
         public void TableExistsMethodTest()
         {
             //Arrange
-            new DataBaseOperations();
-            DataBaseOperations.ConnectToDB();
-            SqlConnection s_connection = DataBaseOperations.Connection;
             String DropTableSQLCode = ("DROP TABLE IF EXISTS TestTable1;");
             SqlCommand deleteTableCommand = new SqlCommand(DropTableSQLCode, s_connection);
             deleteTableCommand.ExecuteNonQuery();
@@ -49,9 +55,6 @@ namespace TriviaNationTests
         public void TestCreateTableMethodToMakeSureItActuallyCreatesATableInTheDataBase()
         {
             //Arrange
-            new DataBaseOperations();
-            DataBaseOperations.ConnectToDB();
-            SqlConnection s_connection = DataBaseOperations.Connection;
             SqlDataReader myReader = null;
             int count = 0;
             String tableName = "TestTable2";
@@ -75,9 +78,6 @@ namespace TriviaNationTests
         public void TestDeleteTableMethodToMakeSureItActuallyDeletesTheTableFromTheDataBase()
         {
             //Arrange
-            new DataBaseOperations();
-            DataBaseOperations.ConnectToDB();
-            SqlConnection s_connection = DataBaseOperations.Connection;
             String DropTableSQLCode3 = ("DROP TABLE IF EXISTS TestTable3;");
             SqlCommand deleteTableCommand3 = new SqlCommand(DropTableSQLCode3, s_connection);
             deleteTableCommand3.ExecuteNonQuery();
@@ -105,9 +105,6 @@ namespace TriviaNationTests
         public void TestRetrieveNumberOfRowsInTableMethodToMakeSureItRetrievesTheCorrectNumberOfRows()
         {
             //Arrange
-            new DataBaseOperations();
-            DataBaseOperations.ConnectToDB();
-            SqlConnection s_connection = DataBaseOperations.Connection;
             String DropTableSQLCode4 = ("DROP TABLE IF EXISTS TestTable4;");
             SqlCommand deleteTableCommand4 = new SqlCommand(DropTableSQLCode4, s_connection);
             deleteTableCommand4.ExecuteNonQuery();
@@ -129,9 +126,6 @@ namespace TriviaNationTests
         public void TestRetrieveNumberOfColsInTableMethodToMakeSureItRetrievesTheCorrectNumberOfRows()
         {
             //Arrange
-            new DataBaseOperations();
-            DataBaseOperations.ConnectToDB();
-            SqlConnection s_connection = DataBaseOperations.Connection;
             String DropTableSQLCode5 = ("DROP TABLE IF EXISTS TestTable5;");
             SqlCommand deleteTableCommand5 = new SqlCommand(DropTableSQLCode5, s_connection);
             deleteTableCommand5.ExecuteNonQuery();
@@ -150,9 +144,6 @@ namespace TriviaNationTests
         public void TestInsertIntoTableMethodToMakeSureTheRowGetsInsertedProperly()
         {
             //Arrange
-            new DataBaseOperations();
-            DataBaseOperations.ConnectToDB();
-            SqlConnection s_connection = DataBaseOperations.Connection;
             String DropTableSQLCode6 = ("DROP TABLE IF EXISTS TestTable6;");
             SqlCommand deleteTableCommand6 = new SqlCommand(DropTableSQLCode6, s_connection);
             deleteTableCommand6.ExecuteNonQuery();
@@ -184,9 +175,6 @@ namespace TriviaNationTests
         public void TestRetrieveRowFromTableMethodToMakeSureTheRowGetsRetrievedProperly()
         {
             //Arrange
-            new DataBaseOperations();
-            DataBaseOperations.ConnectToDB();
-            SqlConnection s_connection = DataBaseOperations.Connection;
             String DropTableSQLCode7 = ("DROP TABLE IF EXISTS TestTable7;");
             SqlCommand deleteTableCommand7 = new SqlCommand(DropTableSQLCode7, s_connection);
             deleteTableCommand7.ExecuteNonQuery();
@@ -209,9 +197,6 @@ namespace TriviaNationTests
         public void TestDeleteRowFromTableMethodToMakeSureItDeletesARowFromTheDataBase()
         {
             //Arrange
-            new DataBaseOperations();
-            DataBaseOperations.ConnectToDB();
-            SqlConnection s_connection = DataBaseOperations.Connection;
             String DropTableSQLCode8 = ("DROP TABLE IF EXISTS TestTable8;");
             SqlCommand deleteTableCommand8 = new SqlCommand(DropTableSQLCode8, s_connection);
             deleteTableCommand8.ExecuteNonQuery();
@@ -247,7 +232,7 @@ namespace TriviaNationTests
         {
             new DataBaseOperations();
             DataBaseOperations.ConnectToDB();
-            SqlConnection s_connection = DataBaseOperations.Connection;
+            s_connection = DataBaseOperations.Connection;
             String DropTableSQLCode1 = ("DROP TABLE IF EXISTS TestTable1;");
             SqlCommand deleteTableCommand1 = new SqlCommand(DropTableSQLCode1, s_connection);
             deleteTableCommand1.ExecuteNonQuery();
