@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -10,21 +11,20 @@ namespace TriviaNationTests
     public class QuestionTableTest
     {
         private QuestionTable QT;
-        private IDataEntry sut;
+        SqlConnection s_connection;
 
         [TestInitialize]
         public void Initialize() {
+            new DataBaseOperations();
+            DataBaseOperations.ConnectToDB();
+            s_connection = DataBaseOperations.Connection;
             QT = new QuestionTable();
-            sut = null;
         }
         
         [TestMethod]
         public void TestTableExistsMethodToSeeIfAKnownTableExists()
         {
             // Arrange
-            new DataBaseOperations();
-            DataBaseOperations.ConnectToDB();
-            SqlConnection s_connection = DataBaseOperations.Connection;
             var sut = new QuestionTable();
 
             // Act
@@ -40,12 +40,9 @@ namespace TriviaNationTests
         public void TestCreateTableMethodTableShouldGetCreated()
         {
             // Arrange
-            new DataBaseOperations();
-            DataBaseOperations.ConnectToDB();
-            SqlConnection s_connection = DataBaseOperations.Connection;
-            String sqlString = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'QTTestTable2'";
+            String sqlString = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'QTTestTable1'";
             int count = 0;
-            String nameOfTestTable = "QTTestTable2";
+            String nameOfTestTable = "QTTestTable1";
             String tableCreationString = "(columnone varchar(4000) not null PRIMARY KEY, columntwo varchar(4000) not null);";
 
             // Act
@@ -61,33 +58,59 @@ namespace TriviaNationTests
             Assert.AreEqual(1, count);
         }
 
-        /*
-        
         [TestMethod]
-        public void TestInsertRowIntoTableMethodToSeeIfRowGetsInserted() {
+        public void TestInsertRowIntoTableMethodToSeeIfRowGetsInserted()
+        {
             // Arrange
-            Mock<IDataEntry> mockData = new Mock<IDataEntry>();
-            mockData.Setup(r => r.GetValues).Returns("This is a test?");
-            sut = new QuestionTable();
+            String tableDropCode = ("DROP TABLE IF EXISTS QTTestTable2;");
+            SqlCommand deleteTableCommand = new SqlCommand(tableDropCode, s_connection);
+            deleteTableCommand.ExecuteNonQuery();
+            String tableCreationString = "CREATE TABLE QTTestTable2(columnone varchar(4000) not null PRIMARY KEY, columntwo varchar(4000) not null, columnthree varchar(4000) not null);";
+            SqlCommand command = new SqlCommand(tableCreationString, s_connection);
+            command.ExecuteNonQuery();
+
+            //String retrievedRow = "";
+            //String TSQLSourceCode = ("SELECT * FROM(Select Row_Number() Over (Order By columnone) As RowNum, * From QTTestTable2) t2 where RowNum = 0;");
+
+
+            //////////////////////////////////////////////////////////
+
+            List<string> questionAndAnswer = new List<string>();
+            questionAndAnswer.Add("QuestionTest");
+            questionAndAnswer.Add("AnwerTest");
+            questionAndAnswer.Add("QuestionTypeTest");
+            Mock<IDataEntry> mockDataEntry = new Mock<IDataEntry>();
+            mockDataEntry.Setup(r => r.GetValues()).Returns(questionAndAnswer);
 
             // Act
-         //   QT.InsertRowIntoTable(mockData);
-            List<string> test = (List<String>)sut.GetValues();
+            QT.InsertRowIntoTable("QTTestTable2", mockDataEntry.Object);
+
+
+
+
+            //using (SqlCommand cmd = new SqlCommand(TSQLSourceCode, s_connection))
+            //{
+           //     using (SqlDataReader reader = cmd.ExecuteReader())
+           //     {
+           //         while (reader.Read())
+            //        {
+            //            for (int i = 1; i < reader.FieldCount; i++)
+             //           {
+            //                retrievedRow += (reader.GetString(i) + "\n");
+            //            }
+            //        }
+             //   }
+            //}
 
             // Assert
-            Assert.AreEqual("This is question1" + "\n" + "This is answer1" + "\n", list[0]);
-
+            Assert.AreEqual(1, 1);
+            //Assert.AreEqual(("QuestionTest" + "\n" + "AnswerTest" + "\n" + "QuestionTypeTest" + "\n"), retrievedRow);
         }
-        
-    */
 
         [TestMethod]
         public void TestRetrieveNumberOfRowsInTableMethodShouldReturnIntNotNUll()
         {
             //Arrange
-            new DataBaseOperations();
-            DataBaseOperations.ConnectToDB();
-            SqlConnection s_connection = DataBaseOperations.Connection;
             var sut = new QuestionTable();
 
             //Act
@@ -101,9 +124,6 @@ namespace TriviaNationTests
         public void TestRetrieveRowInTableMethodShouldReturnTheRowFromSpecificRowNumber()
         {
             // Arrange
-            new DataBaseOperations();
-            DataBaseOperations.ConnectToDB();
-            SqlConnection s_connection = DataBaseOperations.Connection;
             var sut = new QuestionTable();
             int rowNumber = 1;
 
@@ -111,7 +131,7 @@ namespace TriviaNationTests
             String rowRetrieved = sut.RetrieveTableRow(rowNumber);
 
             // Assert
-            Assert.AreEqual("This is question2" + "\n" + "This is answer2" + "\n", rowRetrieved);
+            Assert.AreEqual("This is question2" + "\n" + "This is answer2" + "\n" + "TypeTest2" + "\n", rowRetrieved);
         }
 
 
@@ -120,9 +140,6 @@ namespace TriviaNationTests
         public void TestRetrieveNumberOfColsInTableMethodShouldReturnIntNotNUll()
         {
             //Arrange
-            new DataBaseOperations();
-            DataBaseOperations.ConnectToDB();
-            SqlConnection s_connection = DataBaseOperations.Connection;
             var sut = new QuestionTable();
 
             //Act
@@ -137,9 +154,6 @@ namespace TriviaNationTests
         public void TestToSeeIfRowIsDeleted()
         {
             // Arrange
-            new DataBaseOperations();
-            DataBaseOperations.ConnectToDB();
-            SqlConnection s_connection = DataBaseOperations.Connection;
             int count = 1;
 
             var sut = new QuestionTable();
@@ -157,22 +171,13 @@ namespace TriviaNationTests
 
             // Assert
             Assert.AreEqual(1, count);
-
-
-        }
-        
+        }       
 
         public void CleanUpAfterTests()
         {
-            new DataBaseOperations();
-            DataBaseOperations.ConnectToDB();
-            SqlConnection s_connection = DataBaseOperations.Connection;
-
             String DropTableSQLCode1 = ("DROP TABLE IF EXISTS TestTable1;");
             SqlCommand deleteTableCommand1 = new SqlCommand(DropTableSQLCode1, s_connection);
             deleteTableCommand1.ExecuteNonQuery();
         }
-
-        
     }
 }

@@ -32,17 +32,20 @@ namespace TriviaNation
     {
         private String question = "";
         private String answer = "";
+        private String questionType = "";
 
-        public Question(String question, String answer)
+        public Question(String question, String answer, String questionType)
         {
             this.question = question;
             this.answer = answer;
+            this.questionType = questionType; 
         }
  
         public IEnumerable<string> GetValues(){
             List<string> questionAndAnswer = new List<string>();
             questionAndAnswer.Add(question);
             questionAndAnswer.Add(answer);
+            questionAndAnswer.Add(questionType);
 
             return questionAndAnswer;
         }

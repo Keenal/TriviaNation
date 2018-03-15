@@ -207,7 +207,10 @@ namespace TriviaNation
                 {
                     while (reader.Read())
                     {
-                        retrievedRow += reader.GetString(1) + "\n" + reader.GetString(2) + "\n";
+                        for (int i = 1; i < reader.FieldCount; i++)
+                        {
+                            retrievedRow += (reader.GetString(i) + "\n");
+                        }
                     }
                 }
             }

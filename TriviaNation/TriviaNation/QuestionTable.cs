@@ -30,7 +30,7 @@ namespace TriviaNation
         //name of this specific DataBase Table
         private const String tableName = "QuestionTable";
         //String used to create this specific Table
-        private const String tableCreationString = "(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null);";
+        private const String tableCreationString = "(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null, questionType varchar(4000) not null);";
         
         /// <summary>
         /// Default Constructor for the QuestionTable class
@@ -77,15 +77,16 @@ namespace TriviaNation
         /// Inserts a row (containing question and answer) into the Table
         /// </summary>
         /// <param name="dataEntry">Instance of IDataEntry Interface containing qustion, answer</param>
-        public void InsertRowIntoTable(IDataEntry dataEntry)
+        public void InsertRowIntoTable(String tableName, IDataEntry dataEntry)
         {
             List<String> list = new List<string>();
             list = (List<String>)dataEntry.GetValues();
 
             String question = list[0];
             String answer = list[1];
+            String questionType = list[2];
 
-            String insertString = "INSERT INTO " + TableName + "(question, answer) VALUES ('" + question + "', '" + answer + "');";
+            String insertString = "INSERT INTO " + tableName + "(question, answer, questionType) VALUES ('" + question + "', '" + answer + "', '" + questionType + "');";
             DataBaseOperations.InsertIntoTable(insertString);
         }
 

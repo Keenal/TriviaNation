@@ -42,7 +42,7 @@ namespace TriviaNation
         void CreateTable(String tableName, String tableCreationString);
         int RetrieveNumberOfRowsInTable();
         int RetriveNumberOfColsInTable();
-        void InsertRowIntoTable(IDataEntry dataEntry);
+        void InsertRowIntoTable(String tableName, IDataEntry dataEntry);
         String RetrieveTableRow(int rowNumber);
         void DeleteRowFromTable(String question);
     }
