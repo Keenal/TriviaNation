@@ -31,8 +31,11 @@ namespace TriviaNation
         /// The answer to a question
         /// </summary>
         private string answer;
+
         // For future sprint.
         private int pointValue;
+
+        private string questionType;
 
         /// <summary>
         /// Constructs a Question object with default values as instance fields
@@ -88,6 +91,19 @@ namespace TriviaNation
             set
             {
                 pointValue = value;
+            }
+        }
+
+        public string QuestionType
+        {
+            get
+            {
+                return questionType;
+            }
+
+            set
+            {
+                questionType = value;
             }
         }
     }

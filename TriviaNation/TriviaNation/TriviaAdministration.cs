@@ -61,6 +61,7 @@ namespace TriviaNation
         {
             question.Question = query;
             question.Answer = answer;
+           // question.QuestionType = questionType;
             database.InsertRowIntoTable(this);
         }
 
@@ -111,6 +112,16 @@ namespace TriviaNation
             };
 
             return questionValues;
+        }
+
+        // Next Sprint
+        public void EditQuestion(int questionNumber)
+        {
+            String tableRow = database.RetrieveTableRow(questionNumber);
+            String[] split = tableRow.Split(separator: '\n');
+            question.Question = split[0];
+            question.Answer = split[1];
+          //  question.QuestionType = split[2];
         }
        
     }
