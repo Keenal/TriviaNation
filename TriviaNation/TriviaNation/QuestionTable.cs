@@ -12,18 +12,14 @@ a map. The goal of the game is to increase the size of the nation
 by winning trivia challenges and defeating other class members 
 in contested territories. The focus is on gamifying learning and 
 making it an enjoyable experience.
-
 @author Timothy McWatters
 @author Keenal Shah
 @author Randy Quimby
 @author Wesley Easton
 @author Wenwen Xu
-
 @version 1.0
-
 CEN3032    "TriviaNation" SEII- Group 1's class project
 File Name: QuestionTable.cs 
-
     This class creates the QuestionTable and has methods that can let you insert row into a table, insert coloumn into a table, delete a row and column and retrive those information. 
 */
 
@@ -34,8 +30,8 @@ namespace TriviaNation
         //name of this specific DataBase Table
         private const String tableName = "QuestionTable";
         //String used to create this specific Table
-        private const String tableCreationString = "(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null);";
-
+        private const String tableCreationString = "(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null, questionType varchar(4000) not null);";
+        
         /// <summary>
         /// Default Constructor for the QuestionTable class
         /// </summary>
@@ -64,7 +60,7 @@ namespace TriviaNation
         /// Checks to see if this Table table exists currently in the DataBase
         /// </summary>
         /// <param name="tableExists">True if the Table does exist in the DataBase, False if it does not</param>
-        public Boolean TableExists()
+        public Boolean TableExists(String tableName)
         {
             return DataBaseOperations.TableExists(tableName);
         }
@@ -72,7 +68,7 @@ namespace TriviaNation
         /// <summary>
         /// Creates this Table
         /// </summary>
-        public void CreateTable()
+        public void CreateTable(String tableName, String tableCreationString)
         {
             DataBaseOperations.CreateTable(tableName, tableCreationString);
         }
@@ -81,15 +77,16 @@ namespace TriviaNation
         /// Inserts a row (containing question and answer) into the Table
         /// </summary>
         /// <param name="dataEntry">Instance of IDataEntry Interface containing qustion, answer</param>
-        public void InsertRowIntoTable(IDataEntry dataEntry)
+        public void InsertRowIntoTable(String tableName, IDataEntry dataEntry)
         {
             List<String> list = new List<string>();
-            list = (List<String>) dataEntry.GetValues();
+            list = (List<String>)dataEntry.GetValues();
 
             String question = list[0];
             String answer = list[1];
+            String questionType = list[2];
 
-            String insertString = "INSERT INTO " + TableName + "(question, answer) VALUES ('" + question + "', '" + answer + "');";
+            String insertString = "INSERT INTO " + tableName + "(question, answer, questionType) VALUES ('" + question + "', '" + answer + "', '" + questionType + "');";
             DataBaseOperations.InsertIntoTable(insertString);
         }
 
@@ -107,7 +104,7 @@ namespace TriviaNation
         /// </summary>
         /// <param name="rowNumber">The number of the row to retrieve from the Table</param>
         /// <returns name="retrievedRow">The row that was retrieved</param>
-        public String RetrieveTableRow(int rowNumber)
+        public String RetrieveTableRow(String tableName, int rowNumber)
         {
             String retrievedRow = DataBaseOperations.RetrieveRowFromTable("" +
                 "SELECT * FROM" +
@@ -115,7 +112,7 @@ namespace TriviaNation
                 "Select " +
                 "Row_Number() Over (Order By question) As RowNum" +
                 ", * " +
-               "From QuestionTable" +
+               "From " + tableName + 
                ") t2 " +
                "where RowNum = " + rowNumber + ";");
 
@@ -126,7 +123,8 @@ namespace TriviaNation
         /// Retrieves the number of columns a table contains
         /// </summary>
         /// <returns name ="numberOfColsInTable">The number of columns in a table</returns>
-        public int RetriveNumberOfColsInTable() {
+        public int RetriveNumberOfColsInTable()
+        {
 
             return DataBaseOperations.RetrieveNumberOfColsInTable(TableName);
         }

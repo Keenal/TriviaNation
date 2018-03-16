@@ -1,5 +1,9 @@
 ﻿using System;
-
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 /**
 TriviaNation is a networked trivia game designed for use in 
@@ -33,29 +37,27 @@ namespace TriviaNation
             new DataBaseOperations();
             DataBaseOperations.ConnectToDB();
             QuestionTable QT = new QuestionTable();
-            QT.CreateTable();
-            Console.WriteLine("The table exists: {0}", QT.TableExists());
-            IDataEntry question1 = new Question("This is question1", "This is answer1");
-            IDataEntry question2 = new Question("This is question2", "This is answer2");
-            IDataEntry question3 = new Question("This is question3", "This is answer3");
-            QT.InsertRowIntoTable(question1);
-            QT.InsertRowIntoTable(question2);
-            QT.InsertRowIntoTable(question3);
+            QT.CreateTable(QT.TableName, QT.TableCreationString);
+            Console.WriteLine("The table exists: {0}", QT.TableExists(QT.TableName));
+            IDataEntry question1 = new Question("This is question1", "This is answer1", "TypeTest1");
+            IDataEntry question2 = new Question("This is question2", "This is answer2", "TypeTest2");
+            IDataEntry question3 = new Question("This is question3", "This is answer3", "TypeTest3");
+            QT.InsertRowIntoTable(QT.TableName, question1);
+            QT.InsertRowIntoTable(QT.TableName, question2);
+            QT.InsertRowIntoTable(QT.TableName, question3);
             Console.WriteLine("The number of rows in this table are: {0}", QT.RetrieveNumberOfRowsInTable());
-            Console.WriteLine(QT.RetrieveTableRow(1));
-            Console.WriteLine(QT.RetrieveTableRow(2));
-            Console.WriteLine(QT.RetrieveTableRow(3));
+            Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 1));
+            Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 2));
+            Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 3));
             Console.WriteLine("The number of cols in this table are: {0}", QT.RetriveNumberOfColsInTable());
             QT.DeleteRowFromTable("This is question1");
             Console.WriteLine("The number of rows in this table are now: {0}", QT.RetrieveNumberOfRowsInTable());
-            Console.WriteLine(QT.RetrieveTableRow(1));
-            Console.WriteLine(QT.RetrieveTableRow(2));
-            Console.WriteLine(QT.RetrieveTableRow(3));
+            Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 1));
+            Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 2));
+            Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 3));
 
             Console.WriteLine("Press any key to end the program");
             Console.ReadKey();
         }
     }
 }
-
-
