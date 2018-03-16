@@ -39,9 +39,9 @@ namespace TriviaNation
             QuestionTable QT = new QuestionTable();
             QT.CreateTable(QT.TableName, QT.TableCreationString);
             Console.WriteLine("The table exists: {0}", QT.TableExists(QT.TableName));
-            IDataEntry question1 = new Question("This is question1", "This is answer1", "TypeTest1");
-            IDataEntry question2 = new Question("This is question2", "This is answer2", "TypeTest2");
-            IDataEntry question3 = new Question("This is question3", "This is answer3", "TypeTest3");
+            IDataEntry question1 = new Questions("This is question1", "This is answer1", "TypeTest1");
+            IDataEntry question2 = new Questions("This is question2", "This is answer2", "TypeTest2");
+            IDataEntry question3 = new Questions("This is question3", "This is answer3", "TypeTest3");
             QT.InsertRowIntoTable(QT.TableName, question1);
             QT.InsertRowIntoTable(QT.TableName, question2);
             QT.InsertRowIntoTable(QT.TableName, question3);
