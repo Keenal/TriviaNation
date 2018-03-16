@@ -73,17 +73,18 @@ namespace TriviaNation
             // Arrange
             Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
             mockDatabase.Setup(r => r.RetrieveNumberOfRowsInTable()).Returns(4);
-            mockDatabase.Setup(r => r.RetrieveTableRow(1)).Returns("Testing row One ");
-            mockDatabase.Setup(r => r.RetrieveTableRow(2)).Returns("Testing row Two ");
-            mockDatabase.Setup(r => r.RetrieveTableRow(3)).Returns("Testing row Three ");
-            mockDatabase.Setup(r => r.RetrieveTableRow(4)).Returns("Testing row Four");
+            mockDatabase.Setup(r => r.TableName).Returns("Table Name");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("Testing row One ");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 2)).Returns("Testing row Two ");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 3)).Returns("Testing row Three ");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 4)).Returns("Testing row Four");
             sut = new TriviaAdministration(question, mockDatabase.Object);
 
             // Act
-            string test = sut.ListQuestions();
+            string testy = sut.ListQuestions();
 
             // Assert
-            Assert.AreEqual("1. Testing row One 2. Testing row Two 3. Testing row Three 4. Testing row Four", test);
+            Assert.AreEqual("1. Testing row One 2. Testing row Two 3. Testing row Three 4. Testing row Four", testy);
         }
 
         [TestMethod]
@@ -92,7 +93,8 @@ namespace TriviaNation
             // Arrange
             string query = null;
             Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
-            mockDatabase.Setup(r => r.RetrieveTableRow(1)).Returns("This is the question? \n This is the answer.");
+            mockDatabase.Setup(r => r.TableName).Returns("Table Name");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("This is the question? \n This is the answer.");
             mockDatabase.Setup(r => r.DeleteRowFromTable(It.IsAny<string>())).Callback<string>((s1) => 
             {
                 query = s1;
@@ -112,14 +114,15 @@ namespace TriviaNation
             // Arrange
             IDataEntry test = null;
             Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
-            mockDatabase.Setup(r => r.InsertRowIntoTable(It.IsAny<IDataEntry>())).Callback<IDataEntry>((s1) =>
+            mockDatabase.Setup(r => r.TableName).Returns("Table Name");
+            mockDatabase.Setup(r => r.InsertRowIntoTable("Table Name", It.IsAny<IDataEntry>())).Callback<string, IDataEntry>((s1, s2) =>
             {
-                test = s1;
+                test = s2;
             });
             sut = new TriviaAdministration(question, mockDatabase.Object);
 
             // Act
-            sut.AddQuestion("Question", "Answer");
+            sut.AddQuestion("Question", "Answer", "Question Type");
 
             // Assert
             Assert.AreSame(sut, test);
@@ -134,14 +137,14 @@ namespace TriviaNation
             // Arrange
             new DataBaseOperations();
             DataBaseOperations.ConnectToDB();
-            QT.CreateTable();
-            Console.WriteLine(QT.TableExists());
+            QT.CreateTable(QT.TableName, QT.TableCreationString);
+            Console.WriteLine(QT.TableExists(QT.TableName));
 
             // Act
-            admin.AddQuestion("This is a question", "This is an answer");
+            admin.AddQuestion("This is a question", "This is an answer", "Question Type");
 
             // Assert
-            Assert.AreEqual("This is a question\nThis is an answer\n", QT.RetrieveTableRow(1));
+            Assert.AreEqual("This is a question\nThis is an answer\nQuestion Type\n", QT.RetrieveTableRow(QT.TableName, 1));
         }
 
         [Ignore]
@@ -152,9 +155,9 @@ namespace TriviaNation
             // Arrange
             new DataBaseOperations();
             DataBaseOperations.ConnectToDB();
-            QT.CreateTable();
-            Console.WriteLine(QT.TableExists());
-            admin.AddQuestion("This is a question", "This is an answer");
+            QT.CreateTable(QT.TableName, QT.TableCreationString);
+            Console.WriteLine(QT.TableExists(QT.TableName));
+            admin.AddQuestion("This is a question", "This is an answer", "Question Type");
             string test = admin.ListQuestions();
 
             // Act

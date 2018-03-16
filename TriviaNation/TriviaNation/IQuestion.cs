@@ -37,5 +37,10 @@ namespace TriviaNation
         {
             get; set;
         }
+
+        string QuestionType
+        {
+            get; set;
+        }
     }
 }

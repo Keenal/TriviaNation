@@ -24,3 +24,29 @@ C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\obj\D
 C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\obj\Debug\TriviaNationTests.csproj.CopyComplete
 C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\obj\Debug\TriviaNationTests.dll
 C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\obj\Debug\TriviaNationTests.pdb
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\obj\Debug\TriviaNationTests.csprojResolveAssemblyReference.cache
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\obj\Debug\TriviaNationTests.csproj.CoreCompileInputs.cache
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\obj\Debug\TriviaNationTests.dll
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\obj\Debug\TriviaNationTests.pdb
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNationTests.dll
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNationTests.pdb
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Castle.Core.dll
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Moq.dll
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\System.ValueTuple.dll
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.exe
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.pdb
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.exe.config
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Castle.Core.xml
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Moq.pdb
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Moq.xml
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\System.ValueTuple.xml
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\obj\Debug\TriviaNationTests.csproj.CopyComplete

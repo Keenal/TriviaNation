@@ -57,10 +57,11 @@ namespace TriviaNation
         /// </summary>
         /// <param name="query">The question</param>
         /// <param name="answer">The answer</param>
-        public void AddQuestion(string query, string answer)
+        public void AddQuestion(string query, string answer, string questionType)
         {
             question.Question = query;
             question.Answer = answer;
+            question.QuestionType = questionType;
             database.InsertRowIntoTable(database.TableName, this);
         }
 
@@ -107,11 +108,11 @@ namespace TriviaNation
         {
             List<string> questionValues = new List<string>
             {
-                question.Question, question.Answer
+                question.Question, question.Answer, question.QuestionType
             };
 
             return questionValues;
         }
-       
+     
     }
 }

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-/**
-TriviaNation is a networked trivia game designed for use in 
-classrooms. Class members are each in control of a nation on 
+﻿/**
+TriviaNation is a networked trivia game designed for use in
+classrooms. Class members are each in control of a nation on
 a map. The goal of the game is to increase the size of the nation 
 by winning trivia challenges and defeating other class members 
-in contested territories. The focus is on gamifying learning and 
+in contested territories. The focus is on gamifying learning and
 making it an enjoyable experience.
+
 @author Timothy McWatters
 @author Keenal Shah
 @author Randy Quimby
@@ -18,33 +13,98 @@ making it an enjoyable experience.
 @author Wenwen Xu
 @version 1.0
 CEN3032    "TriviaNation" SEII- Group 1's class project
-File Name: Question.cs 
-    This class creates a template for the questions created in the Question branch 
+File Name: Questions.cs 
 */
 
 namespace TriviaNation
 {
-    public class Questions : IDataEntry
+    /// <summary>
+    /// Class to model questions, answers and their point values.
+    /// </summary>
+    public class Questions : IQuestion
     {
-        private String question = "";
-        private String answer = "";
-        private String questionType = "";
+        /// <summary>
+        /// A question in a trivia
+        /// </summary>
+        private string question;
+        /// <summary>
+        /// The answer to a question
+        /// </summary>
+        private string answer;
 
-        public Questions(String question, String answer, String questionType)
+        // For future sprint.
+        private int pointValue;
+
+        private string questionType;
+
+        /// <summary>
+        /// Constructs a Question object with default values as instance fields
+        /// </summary>
+        public Questions()
         {
-            this.question = question;
-            this.answer = answer;
-            this.questionType = questionType;
+            this.question = "";
+            this.answer = "";
+            this.pointValue = 0;
         }
 
-        public IEnumerable<string> GetValues()
+        /// <summary>
+        /// Accessor and mutator Property for the question in a trivia
+        /// </summary>
+        public string Question
         {
-            List<string> questionAndAnswer = new List<string>();
-            questionAndAnswer.Add(question);
-            questionAndAnswer.Add(answer);
-            questionAndAnswer.Add(questionType);
+            get
+            {
+                return question;
+            }
 
-            return questionAndAnswer;
+            set
+            {
+                question = value;
+            }
+        }
+        /// <summary>
+        /// Accessor and mutator Property for the answer to a question
+        /// </summary>
+        public string Answer
+        {
+            get
+            {
+                return answer;
+            }
+
+            set
+            {
+                answer = value;
+            }
+        }
+
+        /// <summary>
+        /// Accessor and mutator Property for the answer value of a question
+        /// </summary>
+        public int PointValue
+        {
+            get
+            {
+                return pointValue;
+            }
+
+            set
+            {
+                pointValue = value;
+            }
+        }
+
+        public string QuestionType
+        {
+            get
+            {
+                return questionType;
+            }
+
+            set
+            {
+                questionType = value;
+            }
         }
     }
 }

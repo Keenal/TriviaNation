@@ -34,27 +34,57 @@ namespace TriviaNation
     {
         static void Main(string[] args)
         {
+            /* This all LOOKS like a lot more code for program.cs, 
+             * but actually it is much less.  Its very efficient, 
+             * especially for future implementation. I'll take down
+             * the comments and white space when everyone can see the 
+             * changes. Trivia testing was also added.
+             */
             new DataBaseOperations();
             DataBaseOperations.ConnectToDB();
-            QuestionTable QT = new QuestionTable();
+            // Corrected for interface use (also required for my classes ~Randy)
+            IDataBaseTable QT = new QuestionTable();
             QT.CreateTable(QT.TableName, QT.TableCreationString);
             Console.WriteLine("The table exists: {0}", QT.TableExists(QT.TableName));
-            IDataEntry question1 = new Questions("This is question1", "This is answer1", "TypeTest1");
-            IDataEntry question2 = new Questions("This is question2", "This is answer2", "TypeTest2");
-            IDataEntry question3 = new Questions("This is question3", "This is answer3", "TypeTest3");
-            QT.InsertRowIntoTable(QT.TableName, question1);
-            QT.InsertRowIntoTable(QT.TableName, question2);
-            QT.InsertRowIntoTable(QT.TableName, question3);
+            IQuestion question = new Questions();
+            /* This (ITriviaAdministration) IS an IDataEntry interface.  
+             * Interface inherits the IDataEntry inteferface. For future 
+             * implementation. Will make interfaces granular, versatile, 
+             * and easy to change. 
+             */
+            ITriviaAdministration admin = new TriviaAdministration(question, QT);
+
+            // Same as InsertRowIntoTable method call had here before.
+            admin.AddQuestion("Test", "Yup", "Question Type: MC (Test)");
+            admin.AddQuestion("Working?", "Affirmitive", "Question Type: T/F (Test)");
+            admin.AddQuestion("No more objects necessary?", "Fer Shizzle", "Question Type: Matching (Test)");
+           
             Console.WriteLine("The number of rows in this table are: {0}", QT.RetrieveNumberOfRowsInTable());
-            Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 1));
-            Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 2));
-            Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 3));
+
+            // Takes the place of all the RetriveTableRow method calls for output
+            string test = admin.ListQuestions();
+            Console.WriteLine(test);
+
             Console.WriteLine("The number of cols in this table are: {0}", QT.RetriveNumberOfColsInTable());
-            QT.DeleteRowFromTable("This is question1");
+
+            // Replaces the "QT.DeleteRowFromTable("This is question1");"
+            admin.DeleteQuestion(1);
+
             Console.WriteLine("The number of rows in this table are now: {0}", QT.RetrieveNumberOfRowsInTable());
-            Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 1));
-            Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 2));
-            Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 3));
+
+            // Takes the place of all the RetrieveTableRow method calls for output
+            test = admin.ListQuestions();
+            Console.WriteLine(test);
+
+            // Lastly, added testing for Trivia
+            ITrivia trivia = new Trivia(QT, question);
+            Console.WriteLine(trivia.GetRandomQuestion());
+            string answer = Console.ReadLine();
+            Console.WriteLine("Your answer is: " + trivia.EvaluateAnswer(answer));
+            Console.WriteLine(trivia.GetRandomQuestion());
+            answer = Console.ReadLine();
+            Console.WriteLine("Your answer is: " + trivia.EvaluateAnswer(answer));
+            // End Trivia Testing
 
             Console.WriteLine("Press any key to end the program");
             Console.ReadKey();
