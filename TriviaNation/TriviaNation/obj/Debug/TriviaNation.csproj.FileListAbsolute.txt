@@ -12,3 +12,10 @@ C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\ob
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.exe.config
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.exe
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.pdb
+C:\Users\Keenal\Desktop\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.exe.config
+C:\Users\Keenal\Desktop\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.exe
+C:\Users\Keenal\Desktop\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.pdb
+C:\Users\Keenal\Desktop\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csprojResolveAssemblyReference.cache
+C:\Users\Keenal\Desktop\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csproj.CoreCompileInputs.cache
+C:\Users\Keenal\Desktop\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.exe
+C:\Users\Keenal\Desktop\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.pdb
