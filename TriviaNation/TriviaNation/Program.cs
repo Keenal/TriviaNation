@@ -56,6 +56,24 @@ namespace TriviaNation
             Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 2));
             Console.WriteLine(QT.RetrieveTableRow(QT.TableName, 3));
 
+            //creates a TimerTestTable for use with the Timer Demo
+            TimerTestTable TTT = new TimerTestTable();
+
+            //Use this next block of code to add another row to the TimerTestTable to demonstrate that 
+            //you can add a row, and have it populate on another client running this program
+            //WHILE it is running this program at the same time
+            /* 
+            List<String> list = new List<String>();
+            list.Add("Q4");
+            list.Add("A4");
+            list.Add("QType4");
+            TTT.InsertRowIntoTable(TTT.TableName, list);
+            */
+            
+            //creates and runs the timed method for the Timer Demo portion
+            Timer timer = new Timer();
+            timer.TimedMethod(TTT);
+
             Console.WriteLine("Press any key to end the program");
             Console.ReadKey();
         }
