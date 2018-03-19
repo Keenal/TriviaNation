@@ -130,8 +130,7 @@ namespace TriviaNationTests
             String rowRetrieved = QT.RetrieveTableRow("QTTestTable3", 1);
 
             // Assert
-            Assert.AreEqual(1, 1);
-            //Assert.AreEqual("This is question1" + "\n" + "This is answer1" + "\n" + "TypeTest1" + "\n", rowRetrieved);
+            Assert.AreEqual("This is question1" + "\n" + "This is answer1" + "\n" + "TypeTest1" + "\n", rowRetrieved);
         }
 
         [TestMethod]
