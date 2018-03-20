@@ -30,7 +30,7 @@ namespace TriviaNation
         //name of this specific DataBase Table
         private const String tableName = "UserTable";
         //String used to create this specific Table
-        private const String tableCreationString = "(username varchar(4000) not null PRIMARY KEY, email varchar(4000) not null, password varchar(4000) not null, confirmpassword varchar(4000) not null, score varchar(4000) not null);";
+        private const String tableCreationString = "(username varchar(4000) not null PRIMARY KEY, email varchar(4000) not null, password varchar(4000) not null, score varchar(4000) not null);";
 
         /// <summary>
         /// Default Constructor for the QuestionTable class

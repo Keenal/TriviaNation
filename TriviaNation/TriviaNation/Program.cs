@@ -88,7 +88,7 @@ namespace TriviaNation
 
             UserTable userTable = new UserTable();
             Console.WriteLine("UserTable exists = " + userTable.TableExists(userTable.TableName));
-
+            Console.WriteLine("Number of columns in UserTable = " + userTable.RetriveNumberOfColsInTable());
 
             Console.WriteLine("Press any key to end the program");
             Console.ReadKey();
