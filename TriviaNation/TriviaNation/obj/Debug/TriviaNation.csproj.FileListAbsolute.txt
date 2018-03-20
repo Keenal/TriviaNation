@@ -19,3 +19,10 @@ C:\Users\Keenal\Desktop\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaN
 C:\Users\Keenal\Desktop\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csproj.CoreCompileInputs.cache
 C:\Users\Keenal\Desktop\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.exe
 C:\Users\Keenal\Desktop\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.pdb
+C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.exe.config
+C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.exe
+C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.pdb
+C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csprojResolveAssemblyReference.cache
+C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csproj.CoreCompileInputs.cache
+C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.exe
+C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.pdb

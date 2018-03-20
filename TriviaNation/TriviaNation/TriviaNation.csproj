@@ -54,6 +54,7 @@
     <Compile Include="TriviaAdministration.cs" />
     <Compile Include="Questions.cs" />
     <Compile Include="Trivia.cs" />
+    <Compile Include="UserTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

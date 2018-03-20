@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CrystalJobScheduler</name>
+    </assembly>
+    <members>
+        <member name="T:CrystalJobScheduler.JobScheduler">
+            <summary>
+            Invoke Method periodically using Tasks built-in.
+            </summary>
+        </member>
+        <member name="M:CrystalJobScheduler.JobScheduler.#ctor(System.TimeSpan,System.Action)">
+            <summary>
+            Initializing instance of TimerHelper class
+            </summary>
+            <param name="InvokeForEach">Specify the time interval (TimeSpan.From****(**))</param>
+            <param name="_CurrentAction">The action that you want to run periodically</param>
+        </member>
+        <member name="M:CrystalJobScheduler.JobScheduler.Start">
+            <summary>
+            Start up the job scheduler.
+            </summary>
+        </member>
+        <member name="M:CrystalJobScheduler.JobScheduler.Stop">
+            <summary>
+            Stop the job scheduler
+            </summary>
+        </member>
+    </members>
+</doc>

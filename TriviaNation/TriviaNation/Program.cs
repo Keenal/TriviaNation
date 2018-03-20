@@ -86,6 +86,10 @@ namespace TriviaNation
             Console.WriteLine("Your answer is: " + trivia.EvaluateAnswer(answer));
             // End Trivia Testing
 
+            UserTable userTable = new UserTable();
+            Console.WriteLine("UserTable exists = " + userTable.TableExists(userTable.TableName));
+
+
             Console.WriteLine("Press any key to end the program");
             Console.ReadKey();
         }
