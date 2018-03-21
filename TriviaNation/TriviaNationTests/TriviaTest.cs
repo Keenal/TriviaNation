@@ -57,11 +57,11 @@ namespace TriviaNation
             Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
             mockDatabase.Setup(r => r.RetrieveNumberOfRowsInTable()).Returns(5);
             mockDatabase.Setup(r => r.TableName).Returns("Table Name");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("This is the first row.\n And this is its answer\n Question Type");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 2)).Returns("This is the second row.\n And this is its answer\n Question Type");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 3)).Returns("This is the third row.\n And this is its answer\n Question Type");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 4)).Returns("This is the fourth row.\n And this is its answer\n Question Type");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 5)).Returns("This is the fifth row.\n And this is its answer\n Question Type");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", "1")).Returns("This is the first row.\n And this is its answer\n Question Type");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", "2")).Returns("This is the second row.\n And this is its answer\n Question Type");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", "3")).Returns("This is the third row.\n And this is its answer\n Question Type");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", "4")).Returns("This is the fourth row.\n And this is its answer\n Question Type");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", "5")).Returns("This is the fifth row.\n And this is its answer\n Question Type");
             sut = new Trivia(mockDatabase.Object, question);
             int i = 0;
 
