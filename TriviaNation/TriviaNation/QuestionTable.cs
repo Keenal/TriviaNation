@@ -104,8 +104,9 @@ namespace TriviaNation
         /// </summary>
         /// <param name="rowNumber">The number of the row to retrieve from the Table</param>
         /// <returns name="retrievedRow">The row that was retrieved</param>
-        public String RetrieveTableRow(String tableName, int rowNumber)
+        public String RetrieveTableRow(String tableName, string rowNumber)
         {
+            int row = Convert.ToInt32(rowNumber);
             String retrievedRow = DataBaseOperations.RetrieveRowFromTable("" +
                 "SELECT * FROM" +
                "(" +
@@ -114,7 +115,7 @@ namespace TriviaNation
                 ", * " +
                "From " + tableName + 
                ") t2 " +
-               "where RowNum = " + rowNumber + ";");
+               "where RowNum = " + row + ";");
 
             return retrievedRow;
         }

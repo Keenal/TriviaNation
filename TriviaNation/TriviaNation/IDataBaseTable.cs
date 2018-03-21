@@ -43,7 +43,7 @@ namespace TriviaNation
         int RetrieveNumberOfRowsInTable();
         int RetriveNumberOfColsInTable();
         void InsertRowIntoTable(String tableName, IDataEntry dataEntry);
-        String RetrieveTableRow(String tableName, int rowNumber);
+        String RetrieveTableRow(String tableName, string rowValue);
         void DeleteRowFromTable(String question);
     }
 }

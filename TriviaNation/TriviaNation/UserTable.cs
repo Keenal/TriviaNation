@@ -85,10 +85,10 @@ namespace TriviaNation
             String username = list[0];
             String email = list[1];
             String password = list[2];
-            String confirmpassword = list[3];
-            String score = list[4];
+        //    String confirmpassword = list[3];
+            String score = list[3];
 
-            String insertString = "INSERT INTO " + tableName + "(username, email, password, confirmpassword, score) VALUES ('" + username + "', '" + email + "', '" + password + "', '" + confirmpassword + "', '" + score + "');";
+            String insertString = "INSERT INTO " + tableName + "(username, email, password, score) VALUES ('" + username + "', '" + email + "', '" + password + "', '" + score + "');";
             DataBaseOperations.InsertIntoTable(insertString);
         }
 
@@ -106,17 +106,27 @@ namespace TriviaNation
         /// </summary>
         /// <param name="rowNumber">The number of the row to retrieve from the Table</param>
         /// <returns name="retrievedRow">The row that was retrieved</param>
-        public String RetrieveTableRow(String tableName, int rowNumber)
+        public String RetrieveTableRow(String tableName, string userName)
         {
-            String retrievedRow = DataBaseOperations.RetrieveRowFromTable("" +
-                "SELECT * FROM" +
-               "(" +
-                "Select " +
-                "Row_Number() Over (Order By username) As RowNum" +
-                ", * " +
-               "From " + tableName +
-               ") t2 " +
-               "where RowNum = " + rowNumber + ";");
+
+            int row = 0;
+            // This part may need adjusting
+            if (userName[0].Equals('c') && userName[1].Equals('x'))
+            {
+                row = Convert.ToInt32(userName.Substring(2));
+            }
+            else
+                row = Convert.ToInt32(userName);
+
+            string retrievedRow = DataBaseOperations.RetrieveRowFromTable("" +
+             "SELECT * FROM" +
+            "(" +
+             "Select " +
+             "Row_Number() Over (Order By username) As RowNum" +
+             ", * " +
+            "From " + tableName +
+            ") t2 " +
+            "where RowNum = " + row + ";");
 
             return retrievedRow;
         }
@@ -127,7 +137,6 @@ namespace TriviaNation
         /// <returns name ="numberOfColsInTable">The number of columns in a table</returns>
         public int RetriveNumberOfColsInTable()
         {
-
             return DataBaseOperations.RetrieveNumberOfColsInTable(TableName);
         }
 
@@ -141,5 +150,5 @@ namespace TriviaNation
 
             DataBaseOperations.DeleteRowFromTable(rowToDelete);
         }
-    }
-}
+    }  
+}   
