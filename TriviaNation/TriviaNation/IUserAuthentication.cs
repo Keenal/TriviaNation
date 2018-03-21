@@ -8,7 +8,7 @@ namespace TriviaNation
 {
     public interface IUserAuthentication
     {
-        Boolean AuthenticateUser(string userName, string password);
+        Boolean AuthenticateUser(string email, string password);
         string GetUserName();
     }
 }

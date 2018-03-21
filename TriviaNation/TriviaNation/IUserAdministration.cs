@@ -10,7 +10,7 @@ namespace TriviaNation
     {
         // This can be combined with ITriviaAdministration (rename it administration)
         Boolean AddUser(string username, string email, string password, string confirmPassword, string score);
-        void DeleteUser(string questionNumber);
+        void DeleteUser(int questionNumber);
         string ListUsers();
     }
 }

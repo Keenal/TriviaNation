@@ -127,7 +127,7 @@ namespace TriviaNationTests
             insertCmd.ExecuteNonQuery();
 
             // Act
-            String rowRetrieved = QT.RetrieveTableRow("QTTestTable3", "1");
+            String rowRetrieved = QT.RetrieveTableRow("QTTestTable3", 1);
 
             // Assert
             Assert.AreEqual("This is question1" + "\n" + "This is answer1" + "\n" + "TypeTest1" + "\n", rowRetrieved);

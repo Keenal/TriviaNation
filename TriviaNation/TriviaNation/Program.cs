@@ -49,7 +49,7 @@ namespace TriviaNation
             string test = admin.ListQuestions();
             Console.WriteLine(test);
             Console.WriteLine("The number of cols in this table are: {0}", QT.RetriveNumberOfColsInTable());
-            admin.DeleteQuestion("1");
+            admin.DeleteQuestion(1);
             Console.WriteLine("The number of rows in this table are now: {0}", QT.RetrieveNumberOfRowsInTable());
             test = admin.ListQuestions();
             Console.WriteLine(test);
@@ -79,7 +79,7 @@ namespace TriviaNation
             Boolean flag = userAdmin.AddUser("Phil", "tiger@uwf.edu", "house", "home", "107");
             Console.WriteLine("Password Confirmed? " + flag);
             Console.WriteLine("The number of rows in USER table are now: {0}", UT.RetrieveNumberOfRowsInTable());
-            userAdmin.DeleteUser("1");
+            userAdmin.DeleteUser(1);
             Console.WriteLine("The number of rows in USER table are now: {0}", UT.RetrieveNumberOfRowsInTable());
 
             ////////////////

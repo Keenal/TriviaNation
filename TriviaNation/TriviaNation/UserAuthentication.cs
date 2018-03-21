@@ -24,7 +24,7 @@ namespace TriviaNation
             string[] splitRow;
             for (int i = 1; i <= database.RetrieveNumberOfRowsInTable(); i++)
             {
-                userData = database.RetrieveTableRow(database.TableName, i.ToString());
+                userData = database.RetrieveTableRow(database.TableName, i);
                 splitRow = userData.Split(separator: '\n');
                 if (splitRow[1].Equals(email) && splitRow[2].Equals(password))
                 {

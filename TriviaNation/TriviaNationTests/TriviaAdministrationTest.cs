@@ -74,10 +74,10 @@ namespace TriviaNation
             Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
             mockDatabase.Setup(r => r.RetrieveNumberOfRowsInTable()).Returns(4);
             mockDatabase.Setup(r => r.TableName).Returns("Table Name");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", "1")).Returns("Testing row One ");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", "2")).Returns("Testing row Two ");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", "3")).Returns("Testing row Three ");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", "4")).Returns("Testing row Four");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("Testing row One ");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 2)).Returns("Testing row Two ");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 3)).Returns("Testing row Three ");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 4)).Returns("Testing row Four");
             sut = new TriviaAdministration(question, mockDatabase.Object);
 
             // Act
@@ -94,7 +94,7 @@ namespace TriviaNation
             string query = null;
             Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
             mockDatabase.Setup(r => r.TableName).Returns("Table Name");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", "1")).Returns("This is the question? \n This is the answer.");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("This is the question? \n This is the answer.");
             mockDatabase.Setup(r => r.DeleteRowFromTable(It.IsAny<string>())).Callback<string>((s1) => 
             {
                 query = s1;
@@ -102,7 +102,7 @@ namespace TriviaNation
             sut = new TriviaAdministration(question, mockDatabase.Object);
 
             // Act
-            sut.DeleteQuestion("1");
+            sut.DeleteQuestion(1);
 
             //Assert
             Assert.AreEqual("This is the question? ", query);
@@ -144,7 +144,7 @@ namespace TriviaNation
             admin.AddQuestion("This is a question", "This is an answer", "Question Type");
 
             // Assert
-            Assert.AreEqual("This is a question\nThis is an answer\nQuestion Type\n", QT.RetrieveTableRow(QT.TableName, "1"));
+            Assert.AreEqual("This is a question\nThis is an answer\nQuestion Type\n", QT.RetrieveTableRow(QT.TableName, 1));
         }
 
         [Ignore]
@@ -161,7 +161,7 @@ namespace TriviaNation
             string test = admin.ListQuestions();
 
             // Act
-            admin.DeleteQuestion("1");
+            admin.DeleteQuestion(1);
 
             // Assert
             Assert.AreNotSame(admin.ListQuestions(), test);

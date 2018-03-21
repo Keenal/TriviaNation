@@ -43,7 +43,7 @@ namespace TriviaNation
         }
 
         // This may not be used but I implemented it anyways.  Deletes a user's data
-        public void DeleteUser(string userNumber)
+        public void DeleteUser(int userNumber)
         {
             String tableRow = database.RetrieveTableRow(database.TableName, userNumber);
             String[] split = tableRow.Split(separator: '\n');
@@ -58,8 +58,8 @@ namespace TriviaNation
             string listOfUsers = "";
             for (int i = 1; i <= database.RetrieveNumberOfRowsInTable(); i++)
             {
-                string marker = "cx" + i;
-                listOfUsers = listOfUsers + i + ". " + database.RetrieveTableRow(database.TableName, marker);
+               // string marker = "cx" + i;
+                listOfUsers = listOfUsers + i + ". " + database.RetrieveTableRow(database.TableName, i);
             }
 
             return listOfUsers;
