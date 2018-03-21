@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriviaNationMap", "TriviaNationMap.csproj", "{14B2FF04-3B4C-6D2C-A3D0-044FBBA8AF6F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriviaNationMap.Editor", "TriviaNationMap.Editor.csproj", "{D68603FF-52ED-E537-B550-B8D64557B565}"

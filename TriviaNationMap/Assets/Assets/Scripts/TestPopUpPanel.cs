@@ -7,17 +7,17 @@ using TriviaNation;
 
 public class TestPopUpPanel : MonoBehaviour
 {
-    private PopUpPanel popUpPanel;
-    private DisplayManager displayManager;
+    public PopUpPanel popUpPanel;
+    public DisplayManager displayManager;
 
     //Creates the actions
-    private UnityAction yesAction;
-    private UnityAction noAction;
-    private UnityAction cancelAction;
+    public UnityAction yesAction;
+    public UnityAction noAction;
+    public UnityAction cancelAction;
 
-    private QuestionTable questionTable = new QuestionTable();
+    public IDataBaseTable questionTable = new QuestionTable();
 
-    private void Awake()
+    void Awake()
     {
         new DataBaseOperations();
         DataBaseOperations.ConnectToDB();
@@ -39,12 +39,12 @@ public class TestPopUpPanel : MonoBehaviour
     //These are wrapped into UnityActions
     public void TestYes()
     {
-        displayManager.DisplayMessage(questionTable.RetrieveTableRow(1).ToString());
+        displayManager.DisplayMessage(questionTable.RetrieveTableRow(questionTable.TableName, 1).ToString());
     }
 
     public void TestNo()
     {
-        displayManager.DisplayMessage(questionTable.RetrieveTableRow(2).ToString());
+        displayManager.DisplayMessage(questionTable.RetrieveTableRow(questionTable.TableName, 1).ToString());
     }
 
     public void TestCancel()

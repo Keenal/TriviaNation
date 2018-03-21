@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Collections;
+using System;
 
 public class PopUpPanel : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class PopUpPanel : MonoBehaviour
     public Button cancelButton;
     public GameObject popUpPanelObject;
 
-    private static PopUpPanel popUpPanel;
+    public static PopUpPanel popUpPanel;
 
     public static PopUpPanel Instance ()
     {
@@ -30,10 +31,11 @@ public class PopUpPanel : MonoBehaviour
     //Yes - No - Cancel
     //Parameters:  A string, a Yes event, a No event, and Cancel event
     public void Choice(string question, UnityAction yesEvent, UnityAction noEvent, UnityAction cancelEvent)
-    {   
+    {
         //Activates the panel
         popUpPanelObject.SetActive(true);
-
+        Debug.Log("PopUpPanel Started\n\n");
+        Console.WriteLine("PopUpPanel Started\n\n");
         //Removes all listeners from the button so that when you click it later, it does not
         //call an older function.
         yesButton.onClick.RemoveAllListeners();
