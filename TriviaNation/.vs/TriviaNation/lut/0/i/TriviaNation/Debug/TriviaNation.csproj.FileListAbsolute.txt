@@ -1,0 +1,7 @@
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\.vs\TriviaNation\lut\0\b\TriviaNation\bin\Debug\TriviaNation.exe.config
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\.vs\TriviaNation\lut\0\b\TriviaNation\bin\Debug\TriviaNation.exe
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\.vs\TriviaNation\lut\0\b\TriviaNation\bin\Debug\TriviaNation.pdb
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\.vs\TriviaNation\lut\0\i\TriviaNation\Debug\TriviaNation.csproj.CoreCompileInputs.cache
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\.vs\TriviaNation\lut\0\i\TriviaNation\Debug\TriviaNation.csproj.CopyComplete
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\.vs\TriviaNation\lut\0\i\TriviaNation\Debug\TriviaNation.exe
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\.vs\TriviaNation\lut\0\i\TriviaNation\Debug\TriviaNation.pdb

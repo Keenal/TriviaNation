@@ -1,8 +1,0 @@
-C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\.vs\TriviaNation\lut\12980\b\TriviaNation\bin\Debug\TriviaNation.exe.config
-C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\.vs\TriviaNation\lut\12980\b\TriviaNation\bin\Debug\TriviaNation.exe
-C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\.vs\TriviaNation\lut\12980\b\TriviaNation\bin\Debug\TriviaNation.pdb
-C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\.vs\TriviaNation\lut\12980\i\TriviaNation\Debug\TriviaNation.csprojResolveAssemblyReference.cache
-C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\.vs\TriviaNation\lut\12980\i\TriviaNation\Debug\TriviaNation.csproj.CoreCompileInputs.cache
-C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\.vs\TriviaNation\lut\12980\i\TriviaNation\Debug\TriviaNation.csproj.CopyComplete
-C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\.vs\TriviaNation\lut\12980\i\TriviaNation\Debug\TriviaNation.exe
-C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\.vs\TriviaNation\lut\12980\i\TriviaNation\Debug\TriviaNation.pdb
