@@ -106,17 +106,17 @@ namespace TriviaNation
         /// </summary>
         /// <param name="rowNumber">The number of the row to retrieve from the Table</param>
         /// <returns name="retrievedRow">The row that was retrieved</param>
-        public String RetrieveTableRow(String tableName, string userName)
+        public String RetrieveTableRow(String tableName, string rowValue)
         {
 
             int row = 0;
             // This part may need adjusting
-            if (userName[0].Equals('c') && userName[1].Equals('x'))
+            if (rowValue[0].Equals('c') && rowValue[1].Equals('x'))
             {
-                row = Convert.ToInt32(userName.Substring(2));
+                row = Convert.ToInt32(rowValue.Substring(2));
             }
             else
-                row = Convert.ToInt32(userName);
+                row = Convert.ToInt32(rowValue);
 
             string retrievedRow = DataBaseOperations.RetrieveRowFromTable("" +
              "SELECT * FROM" +

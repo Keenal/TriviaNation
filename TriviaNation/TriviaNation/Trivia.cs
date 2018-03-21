@@ -66,7 +66,7 @@ namespace TriviaNation
         /// <returns name="randomNum">The question from the database</returns>
         public string GetRandomQuestion()
         {
-            int n = RandomGenerator();
+            string n = RandomGenerator().ToString();
             string retrieveRow = database.RetrieveTableRow(database.TableName, n);
             string[] split = retrieveRow.Split(separator: '\n');
             questions.Question = split[0];

@@ -69,7 +69,7 @@ namespace TriviaNation
         /// Deletes a question from the database
         /// </summary>
         /// <param name="questionNumber">The user input question number that matches the row position of a question</param>
-        public void DeleteQuestion(int questionNumber)
+        public void DeleteQuestion(string questionNumber)
         {
             /* The commented code below will be in the handler.  Will be a graphical
              * list rather than from console.
@@ -79,8 +79,8 @@ namespace TriviaNation
              * int questionNumber = Convert.ToInt32(Console.ReadLine());
              * DeleteQuestion(questionNumber);
              */
-            String tableRow = database.RetrieveTableRow(database.TableName, questionNumber);
-            String[] split = tableRow.Split(separator: '\n');
+            string tableRow = database.RetrieveTableRow(database.TableName, questionNumber);
+            string[] split = tableRow.Split(separator: '\n');
             question.Question = split[0];
             database.DeleteRowFromTable(question.Question);
         }
@@ -94,7 +94,7 @@ namespace TriviaNation
             string listOfQuestions = "";
             for (int i = 1; i <= database.RetrieveNumberOfRowsInTable(); i++)
             {
-                listOfQuestions = listOfQuestions + i + ". " + database.RetrieveTableRow(database.TableName, i);
+                listOfQuestions = listOfQuestions + i + ". " + database.RetrieveTableRow(database.TableName, i.ToString());
             }
             
             return listOfQuestions;
