@@ -68,6 +68,7 @@
     <Compile Include="QuestionTableTest.cs" />
     <Compile Include="TriviaAdministrationTest.cs" />
     <Compile Include="TriviaTest.cs" />
+    <Compile Include="UserTableTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

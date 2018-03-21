@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\TriviaNation"
+    "\\TriviaNation",
+    "\\TriviaNation\\TriviaNation"
   ],
   "SelectedNode": "\\TriviaNation\\TriviaNation.sln",
   "PreviewInSolutionExplorer": false
