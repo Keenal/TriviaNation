@@ -35,6 +35,9 @@ namespace TriviaNation
         /// </summary>
         private IDataBaseTable database;
 
+        /// <summary>
+        /// Constructs a TriviaAdministration object with default values as instance fields
+        /// </summary>
         public TriviaAdministration()
         {
             this.question = null;

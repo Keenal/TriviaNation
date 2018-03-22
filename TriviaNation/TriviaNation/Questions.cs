@@ -35,6 +35,9 @@ namespace TriviaNation
         // For future sprint.
         private int pointValue;
 
+        /// <summary>
+        /// The type of question
+        /// </summary>
         private string questionType;
 
         /// <summary>
