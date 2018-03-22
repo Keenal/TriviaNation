@@ -40,12 +40,12 @@ namespace TriviaNation
             QT.CreateTable(QT.TableName, QT.TableCreationString);
             Console.WriteLine("The table exists: {0}", QT.TableExists(QT.TableName));
             IQuestion question = new Questions();
-           
+
             ITriviaAdministration admin = new TriviaAdministration(question, QT);
             admin.AddQuestion("Test", "Yup", "Question Type: MC (Test)");
             admin.AddQuestion("Working?", "Affirmitive", "Question Type: T/F (Test)");
-            admin.AddQuestion("No more objects necessary?", "Fer Shizzle", "Question Type: Matching (Test)");          
-            Console.WriteLine("The number of rows in this table are: {0}", QT.RetrieveNumberOfRowsInTable());   
+            admin.AddQuestion("No more objects necessary?", "Fer Shizzle", "Question Type: Matching (Test)");
+            Console.WriteLine("The number of rows in this table are: {0}", QT.RetrieveNumberOfRowsInTable());
             string test = admin.ListQuestions();
             Console.WriteLine(test);
             Console.WriteLine("The number of cols in this table are: {0}", QT.RetriveNumberOfColsInTable());
@@ -53,6 +53,15 @@ namespace TriviaNation
             Console.WriteLine("The number of rows in this table are now: {0}", QT.RetrieveNumberOfRowsInTable());
             test = admin.ListQuestions();
             Console.WriteLine(test);
+
+            ///////////////////
+            //IDataBaseTable territoryTable = new TerritoryTable();
+            //Console.WriteLine("The table exists: {0}", territoryTable.TableExists(territoryTable.TableName));
+            //ITerritory territory = new Territory();
+            //ITerritoryAdministration territoryAdmin = new TerritoryAdministration(territory, territoryTable);
+            //var listTest = territoryAdmin.ListTerritories();
+            //Console.WriteLine(listTest);
+            //Console.WriteLine("The number of rows in the Territory table are now: {0}", territoryTable.RetrieveNumberOfRowsInTable());
 
             /////////////////
             IDataBaseTable UT = new UserTable();
@@ -82,7 +91,7 @@ namespace TriviaNation
             userAdmin.DeleteUser(1);
             Console.WriteLine("The number of rows in USER table are now: {0}", UT.RetrieveNumberOfRowsInTable());
 
-            ////////////////
+            //////////////
 
             Console.WriteLine("Testing Trivia Now");
             ITrivia trivia = new Trivia(QT, question);
