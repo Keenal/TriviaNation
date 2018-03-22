@@ -5,12 +5,13 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C41E0523-E3E1-40D7-ADBB-539D90B240EA}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>TriviaNation</RootNamespace>
     <AssemblyName>TriviaNation</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,6 +50,8 @@
     <Compile Include="IDataBaseTable.cs" />
     <Compile Include="IDataEntry.cs" />
     <Compile Include="IQuestion.cs" />
+    <Compile Include="ITerritory.cs" />
+    <Compile Include="ITerritoryAdministration.cs" />
     <Compile Include="ITrivia.cs" />
     <Compile Include="ITriviaAdministration.cs" />
     <Compile Include="IUser.cs" />
@@ -54,6 +60,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionTable.cs" />
+    <Compile Include="Territory.cs" />
+    <Compile Include="TerritoryAdministration.cs" />
+    <Compile Include="TerritoryTable.cs" />
     <Compile Include="TriviaAdministration.cs" />
     <Compile Include="Questions.cs" />
     <Compile Include="Trivia.cs" />
