@@ -70,7 +70,7 @@ namespace TriviaNation
              "SELECT * FROM" +
             "(" +
              "Select " +
-             "Row_Number() Over (Order By username) As RowNum" +
+             "Row_Number() Over (Order By territoryIndex) As RowNum" +
              ", * " +
             "From " + tableName +
             ") t2 " +
