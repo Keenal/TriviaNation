@@ -66,8 +66,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionsTest.cs" />
     <Compile Include="QuestionTableTest.cs" />
+    <Compile Include="TerritoryAdministrationTest.cs" />
     <Compile Include="TerritoryTableTest.cs" />
     <Compile Include="TriviaAdministrationTest.cs" />
+    <Compile Include="TriviaTerritoryTest.cs" />
     <Compile Include="TriviaTest.cs" />
     <Compile Include="UserTest.cs" />
     <Compile Include="UserAdministrationTest.cs" />
