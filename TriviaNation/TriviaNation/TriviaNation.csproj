@@ -11,6 +11,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -21,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,6 +32,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -43,21 +49,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBaseOperations.cs" />
-    <Compile Include="IDataBaseTable.cs" />
-    <Compile Include="IDataEntry.cs" />
-    <Compile Include="IQuestion.cs" />
-    <Compile Include="ITrivia.cs" />
-    <Compile Include="ITriviaAdministration.cs" />
+    <Compile Include="Repository\Abstract\IDataBaseTable.cs" />
+    <Compile Include="Repository\Abstract\IDataEntry.cs" />
+    <Compile Include="Models\Abstract\IQuestion.cs" />
+    <Compile Include="Models\Abstract\ITriviaTerritory.cs" />
+    <Compile Include="Admin\Abstract\ITerritoryAdministration.cs" />
+    <Compile Include="Models\Abstract\ITrivia.cs" />
+    <Compile Include="Admin\Abstract\ITriviaAdministration.cs" />
+    <Compile Include="Models\Abstract\IUser.cs" />
+    <Compile Include="Admin\Abstract\IUserAdministration.cs" />
+    <Compile Include="Admin\Abstract\IUserAuthentication.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuestionTable.cs" />
-    <Compile Include="TriviaAdministration.cs" />
-    <Compile Include="Questions.cs" />
-    <Compile Include="Trivia.cs" />
-    <Compile Include="UserTable.cs" />
+    <Compile Include="Repository\QuestionTable.cs" />
+    <Compile Include="Models\TriviaTerritory.cs" />
+    <Compile Include="Admin\TerritoryAdministration.cs" />
+    <Compile Include="Repository\TerritoryTable.cs" />
+    <Compile Include="Admin\TriviaAdministration.cs" />
+    <Compile Include="Models\Questions.cs" />
+    <Compile Include="Admin\Trivia.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Admin\User\UserAdministration.cs" />
+    <Compile Include="Admin\User\UserAuthentication.cs" />
+    <Compile Include="Repository\UserTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

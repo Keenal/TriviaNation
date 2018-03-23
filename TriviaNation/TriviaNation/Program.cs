@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 /**
 TriviaNation is a networked trivia game designed for use in 
@@ -34,61 +33,73 @@ namespace TriviaNation
     {
         static void Main(string[] args)
         {
-            /* This all LOOKS like a lot more code for program.cs, 
-             * but actually it is much less.  Its very efficient, 
-             * especially for future implementation. I'll take down
-             * the comments and white space when everyone can see the 
-             * changes. Trivia testing was also added.
-             */
             new DataBaseOperations();
             DataBaseOperations.ConnectToDB();
-            // Corrected for interface use (also required for my classes ~Randy)
             IDataBaseTable QT = new QuestionTable();
             QT.CreateTable(QT.TableName, QT.TableCreationString);
             Console.WriteLine("The table exists: {0}", QT.TableExists(QT.TableName));
             IQuestion question = new Questions();
-            /* This (ITriviaAdministration) IS an IDataEntry interface.  
-             * Interface inherits the IDataEntry inteferface. For future 
-             * implementation. Will make interfaces granular, versatile, 
-             * and easy to change. 
-             */
+
             ITriviaAdministration admin = new TriviaAdministration(question, QT);
-
-            // Same as InsertRowIntoTable method call had here before.
-            admin.AddQuestion("Test", "Yup", "Question Type: MC (Test)");
-            admin.AddQuestion("Working?", "Affirmitive", "Question Type: T/F (Test)");
-            admin.AddQuestion("No more objects necessary?", "Fer Shizzle", "Question Type: Matching (Test)");
-           
-            Console.WriteLine("The number of rows in this table are: {0}", QT.RetrieveNumberOfRowsInTable());
-
-            // Takes the place of all the RetriveTableRow method calls for output
+            //admin.AddQuestion("Test", "Yup", "Question Type: MC (Test)");
+            //admin.AddQuestion("Working?", "Affirmitive", "Question Type: T/F (Test)");
+            //admin.AddQuestion("No more objects necessary?", "Fer Shizzle", "Question Type: Matching (Test)");
+            //Console.WriteLine("The number of rows in this table are: {0}", QT.RetrieveNumberOfRowsInTable());
             string test = admin.ListQuestions();
+            //Console.WriteLine(test);
+            //Console.WriteLine("The number of cols in this table are: {0}", QT.RetriveNumberOfColsInTable());
+            //admin.DeleteQuestion(1);
+            //Console.WriteLine("The number of rows in this table are now: {0}", QT.RetrieveNumberOfRowsInTable());
+            //test = admin.ListQuestions();
+            //Console.WriteLine(test);
+
+            /////////////////////
+            //IDataBaseTable territoryTable = new TerritoryTable();
+            //Console.WriteLine("The table exists: {0}", territoryTable.TableExists(territoryTable.TableName));
+            //ITriviaTerritory territory = new TriviaTerritory();
+            //ITerritoryAdministration territoryAdmin = new TerritoryAdministration(territory, territoryTable);
+            //var listTest = territoryAdmin.ListTerritories();
+            //Console.WriteLine(listTest);
+            //Console.WriteLine("The number of rows in the Territory table are now: {0}", territoryTable.RetrieveNumberOfRowsInTable());
+
+            /////////////////
+            IDataBaseTable UT = new UserTable();
+            UT.CreateTable(UT.TableName, UT.TableCreationString);
+            Console.WriteLine("The table exists: {0}", UT.TableExists(QT.TableName));
+            IUser user = new User();
+            IUserAdministration userAdmin = new UserAdministration(user, UT);
+            userAdmin.AddUser("Bob", "robert@uwf.edu", "password", "password", "65");
+            userAdmin.AddUser("Sugar", "rcq1@uwf.edu", "abcd1234", "abcd1234", "107");
+            test = userAdmin.ListUsers();
             Console.WriteLine(test);
+            Console.WriteLine("The number of rows in USER table are now: {0}", UT.RetrieveNumberOfRowsInTable());
 
-            Console.WriteLine("The number of cols in this table are: {0}", QT.RetriveNumberOfColsInTable());
+            IUserAuthentication validate = new UserAuthentication(UT, user);
+            Console.WriteLine("Testing proper user name and password that exists: ");
+            Boolean isAuthenticated = validate.AuthenticateUser("robert@uwf.edu", "password");
+            Console.WriteLine("Authentication is: " + isAuthenticated);
 
-            // Replaces the "QT.DeleteRowFromTable("This is question1");"
-            admin.DeleteQuestion(1);
+            Console.WriteLine("Testing invalid user name and password that does not exist: ");
+            isAuthenticated = validate.AuthenticateUser("Bobby", "password");
+            Console.WriteLine("Authentication is: " + isAuthenticated);
 
-            Console.WriteLine("The number of rows in this table are now: {0}", QT.RetrieveNumberOfRowsInTable());
+            Console.WriteLine("Testing invalid confirmation password:");
+            Boolean flag = userAdmin.AddUser("Phil", "tiger@uwf.edu", "house", "home", "107");
+            Console.WriteLine("Password Confirmed? " + flag);
+            Console.WriteLine("The number of rows in USER table are now: {0}", UT.RetrieveNumberOfRowsInTable());
+            userAdmin.DeleteUser(1);
+            Console.WriteLine("The number of rows in USER table are now: {0}", UT.RetrieveNumberOfRowsInTable());
 
-            // Takes the place of all the RetrieveTableRow method calls for output
-            test = admin.ListQuestions();
-            Console.WriteLine(test);
+            //////////////
 
-            // Lastly, added testing for Trivia
-            ITrivia trivia = new Trivia(QT, question);
-            Console.WriteLine(trivia.GetRandomQuestion());
-            string answer = Console.ReadLine();
-            Console.WriteLine("Your answer is: " + trivia.EvaluateAnswer(answer));
-            Console.WriteLine(trivia.GetRandomQuestion());
-            answer = Console.ReadLine();
-            Console.WriteLine("Your answer is: " + trivia.EvaluateAnswer(answer));
-            // End Trivia Testing
-
-            UserTable userTable = new UserTable();
-            Console.WriteLine("UserTable exists = " + userTable.TableExists(userTable.TableName));
-            Console.WriteLine("Number of columns in UserTable = " + userTable.RetriveNumberOfColsInTable());
+            //Console.WriteLine("Testing Trivia Now");
+            //ITrivia trivia = new Trivia(QT, question);
+            //Console.WriteLine(trivia.GetRandomQuestion());
+            //string answer = Console.ReadLine();
+            //Console.WriteLine("Your answer is: " + trivia.EvaluateAnswer(answer));
+            //Console.WriteLine(trivia.GetRandomQuestion());
+            //answer = Console.ReadLine();
+            //Console.WriteLine("Your answer is: " + trivia.EvaluateAnswer(answer));
 
             Console.WriteLine("Press any key to end the program");
             Console.ReadKey();
