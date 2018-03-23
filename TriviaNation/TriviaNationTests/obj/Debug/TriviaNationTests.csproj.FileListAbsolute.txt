@@ -9,9 +9,7 @@ C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\D
 C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Moq.dll
 C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\System.Threading.Tasks.Extensions.dll
 C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\System.ValueTuple.dll
-C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.exe
 C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.pdb
-C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.exe.config
 C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Castle.Core.xml
 C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
@@ -128,3 +126,5 @@ C:\Users\westh\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\obj\Debu
 C:\Users\westh\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\obj\Debug\TriviaNationTests.pdb
 C:\Users\westh\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.exe
 C:\Users\westh\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.exe.config
+C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.dll
+C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.dll.config

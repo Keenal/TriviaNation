@@ -23,9 +23,6 @@ C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\Tri
 C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csproj.CoreCompileInputs.cache
 C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.exe
 C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.pdb
-C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.dll.config
-C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.dll
-C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.dll
 C:\Users\westh\Source\Repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.pdb
 C:\Users\westh\Source\Repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csprojResolveAssemblyReference.cache
 C:\Users\westh\Source\Repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csproj.CoreCompileInputs.cache
@@ -33,3 +30,6 @@ C:\Users\westh\Source\Repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\Tri
 C:\Users\westh\Source\Repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.exe.config
 C:\Users\westh\Source\Repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.exe
 C:\Users\westh\Source\Repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.exe
+C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.exe.config
+C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.exe
+C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.exe

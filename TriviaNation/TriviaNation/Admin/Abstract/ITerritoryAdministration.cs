@@ -11,6 +11,6 @@ namespace TriviaNation
 
         void DeleteTerritory(string territoryIndex);
 
-        string ListTerritories();
+        List<TriviaTerritory> ListTerritories();
     }
 }

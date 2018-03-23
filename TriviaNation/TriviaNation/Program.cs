@@ -54,13 +54,13 @@ namespace TriviaNation
             Console.WriteLine(test);
 
             ///////////////////
-            //IDataBaseTable territoryTable = new TerritoryTable();
-            //Console.WriteLine("The table exists: {0}", territoryTable.TableExists(territoryTable.TableName));
-            //ITerritory territory = new Territory();
-            //ITerritoryAdministration territoryAdmin = new TerritoryAdministration(territory, territoryTable);
-            //var listTest = territoryAdmin.ListTerritories();
-            //Console.WriteLine(listTest);
-            //Console.WriteLine("The number of rows in the Territory table are now: {0}", territoryTable.RetrieveNumberOfRowsInTable());
+            IDataBaseTable territoryTable = new TerritoryTable();
+            Console.WriteLine("The table exists: {0}", territoryTable.TableExists(territoryTable.TableName));
+            ITriviaTerritory territory = new TriviaTerritory();
+            ITerritoryAdministration territoryAdmin = new TerritoryAdministration(territory, territoryTable);
+            var listTest = territoryAdmin.ListTerritories();
+            Console.WriteLine(listTest);
+            Console.WriteLine("The number of rows in the Territory table are now: {0}", territoryTable.RetrieveNumberOfRowsInTable());
 
             /////////////////
             IDataBaseTable UT = new UserTable();

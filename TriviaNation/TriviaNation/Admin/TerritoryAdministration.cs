@@ -7,7 +7,7 @@ namespace TriviaNation
 {
     public class TerritoryAdministration : ITerritoryAdministration
     {
-        private ITerritory _territory;
+        private ITriviaTerritory _territory;
         private IDataBaseTable _database;
 
         public TerritoryAdministration()
@@ -17,7 +17,7 @@ namespace TriviaNation
             _database = null;
         }
 
-        public TerritoryAdministration(ITerritory territory, IDataBaseTable database)
+        public TerritoryAdministration(ITriviaTerritory territory, IDataBaseTable database)
         {
             _territory = territory ??
                 throw new ArgumentNullException(nameof(territory));
@@ -35,20 +35,35 @@ namespace TriviaNation
             _database.InsertRowIntoTable(_database.TableName, this);
         }
 
+
+
         public void DeleteTerritory(string territoryIndex)
         {
             _database.DeleteRowFromTable(territoryIndex);
         }
-        public string ListTerritories()
+
+        public List<TriviaTerritory> ListTerritories()
         {
+            List<TriviaTerritory> territories = new List<TriviaTerritory>();
             string listOfTerritories = "";
+            string[] test;
+ 
             for (int i = 1; i <= _database.RetrieveNumberOfRowsInTable(); i++)
             {
                 // string marker = "cx" + i;
-                listOfTerritories = listOfTerritories + i + ". " + _database.RetrieveTableRow(_database.TableName, i);
+                TriviaTerritory territory = new TriviaTerritory();
+                listOfTerritories = _database.RetrieveTableRow(_database.TableName, i);
+
+                test = listOfTerritories.Split('\n');
+
+                territory.territoryIndex = test[0];
+                territory.userName = test[1];
+                territory.color = test[2];
+
+                territories.Add(territory);
             }
 
-            return listOfTerritories;
+            return territories;
         }
 
         public IEnumerable<string> GetValues()
@@ -59,6 +74,7 @@ namespace TriviaNation
                 _territory.userName,
                 _territory.color
             };
+
             return territoryData;
         }
 

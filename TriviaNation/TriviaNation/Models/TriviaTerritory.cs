@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TriviaNation
 {
-    public class Territory : ITerritory
+    public class TriviaTerritory : ITriviaTerritory
     {
         public string territoryIndex { get; set; }
 
