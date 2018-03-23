@@ -84,7 +84,6 @@ namespace TriviaNation
             String username = list[0];
             String email = list[1];
             String password = list[2];
-        //    String confirmpassword = list[3];
             String score = list[3];
 
             String insertString = "INSERT INTO " + tableName + "(username, email, password, score) VALUES ('" + username + "', '" + email + "', '" + password + "', '" + score + "');";
