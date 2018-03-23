@@ -1,5 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+using System.Text.RegularExpressions;
 using UnityEngine.UI;
 using TriviaNation;
+using I18N;
+using I18N.West;
+using System.Data;
+
 
 public class SignUp : MonoBehaviour {
 
@@ -37,6 +46,21 @@ public class SignUp : MonoBehaviour {
 
 		//check if confirm password is equal to password
 		bool CP = false;
+
+
+		//create User Information Table 
+		new DataBaseOperations();
+		DataBaseOperations.ConnectToDB ();
+
+		IDataBaseTable UT = new UserTable ();
+
+
+
+		UT.CreateTable(UT.TableName, UT.TableCreationString);
+
+
+
+		Debug.Log("Table exist" + UT.TableExists (UT.TableName));
 
 
 		//check if two users can not use the same name
@@ -136,34 +160,47 @@ public class SignUp : MonoBehaviour {
 
 			*/
 
+			/*
 			//create User Information Table 
 			new DataBaseOperations();
 			DataBaseOperations.ConnectToDB ();
+
 			IDataBaseTable UT = new UserTable ();
+
+
+
 			UT.CreateTable(UT.TableName, UT.TableCreationString);
+
+			*/
+
+			Debug.Log("Table exist" + UT.TableExists (UT.TableName));
 
 			IUser user = new User ();
 
-			//IDataEntry info1 = new User(Username,Email,Password,null);
+			IUserAdministration newUser = new UserAdministration (user,UT);
 
-			//assign user input to IDataEntry 
+
+			/*
 			user.UserName = Username;
-			IDataEntry user_username = user.UserName;
+			IDataEntry user_username = (IDataEntry)user;
 
 			user.Email = Email;
-			IDataEntry user_email = user.Email;
+			IDataEntry user_email = (IDataEntry)user;
 
 			user.Password = Password;
-			IDataEntry user_password = user.Password;
+			IDataEntry user_password = (IDataEntry)user;
 
 			user.Score = null;
-			IDataEntry user_score = user.Score;
+			IDataEntry user_score = null;
+	*/
+			newUser.AddUser (Username, Email, Password, Password,null);
 
-			UT.InsertRowIntoTable ("UserTable", user_username.ToString());
-			UT.InsertRowIntoTable ("UserTable", user_email.ToString());
-			UT.InsertRowIntoTable ("UserTable", user_password.ToString());
-			UT.InsertRowIntoTable ("UserTable", user_score.ToString());
-
+			/*
+			UT.InsertRowIntoTable ("UserTable", user_username);
+			UT.InsertRowIntoTable ("UserTable", user_email);
+			UT.InsertRowIntoTable ("UserTable", user_password);
+			UT.InsertRowIntoTable ("UserTable", user_score);
+	*/
 
 
 
