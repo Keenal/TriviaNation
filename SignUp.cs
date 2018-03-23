@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-using System.Text.RegularExpressions;
 using UnityEngine.UI;
+using TriviaNation;
 
 public class SignUp : MonoBehaviour {
 
@@ -11,7 +7,6 @@ public class SignUp : MonoBehaviour {
 	public GameObject email;
 	public GameObject password;
 	public GameObject confirmPassword;
-
 
 	private string Username;
 	private string Email;
@@ -112,14 +107,66 @@ public class SignUp : MonoBehaviour {
 					
 					Password = "";
 					Clear = false;
+
+					char Ecrypted = (char)(c * i);
+					Password += Ecrypted.ToString();
 				
 				}
-				char Ecrypted = (char)(c * i);
-				Password += Ecrypted.ToString();
+
 
 			}
-			form = (Username + Environment.NewLine + Email + Environment.NewLine + Password);
-			System.IO.File.WriteAllText (Username + ".txt",form);
+
+			/*
+			//create User Information Table 
+			new DataBaseOperations();
+			DataBaseOperations.ConnectToDB ();
+			IDataBaseTable UT = new UserTable ();
+			UT.CreateTable(UT.TableName, UT.TableCreationString);
+
+			IUser user = new User ();
+
+			IDataEntry info1 = new User(Username,Email, Password,"0");
+			//IDataEntry info2 = new User (Email);
+			//IDataEntry info3 = new User (Password);
+
+
+			UT.InsertRowIntoTable ("UserTable", info1);
+			//UT.InsertRowIntoTable ("UserTable", info2);
+			//UT.InsertRowIntoTable ("UserTable", info3);
+
+			*/
+
+			//create User Information Table 
+			new DataBaseOperations();
+			DataBaseOperations.ConnectToDB ();
+			IDataBaseTable UT = new UserTable ();
+			UT.CreateTable(UT.TableName, UT.TableCreationString);
+
+			IUser user = new User ();
+
+			//IDataEntry info1 = new User(Username,Email,Password,null);
+
+			//assign user input to IDataEntry 
+			user.UserName = Username;
+			IDataEntry user_username = user.UserName;
+
+			user.Email = Email;
+			IDataEntry user_email = user.Email;
+
+			user.Password = Password;
+			IDataEntry user_password = user.Password;
+
+			user.Score = null;
+			IDataEntry user_score = user.Score;
+
+			UT.InsertRowIntoTable ("UserTable", user_username.ToString());
+			UT.InsertRowIntoTable ("UserTable", user_email.ToString());
+			UT.InsertRowIntoTable ("UserTable", user_password.ToString());
+			UT.InsertRowIntoTable ("UserTable", user_score.ToString());
+
+
+
+
 
 			username.GetComponent<InputField>().text = "";
 			email.GetComponent<InputField>().text = "";
@@ -127,7 +174,8 @@ public class SignUp : MonoBehaviour {
 			confirmPassword.GetComponent<InputField>().text = "";
 
 			print ("Sign Up Successfully");
-
+			Console.WriteLine("Sign Up Successfully");
+	
 		}
 	}
 
@@ -199,3 +247,4 @@ public class SignUp : MonoBehaviour {
 		}
 	}
 }
+
