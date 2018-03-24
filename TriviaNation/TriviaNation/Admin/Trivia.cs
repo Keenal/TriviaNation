@@ -64,7 +64,7 @@ namespace TriviaNation
         /// Returns a random question from the database
         /// </summary>
         /// <returns name="randomNum">The question from the database</returns>
-        public string GetRandomQuestion()
+        public IQuestion GetRandomQuestion()
         {
             int n = RandomGenerator();
             string retrieveRow = database.RetrieveTableRow(database.TableName, n);
@@ -72,7 +72,7 @@ namespace TriviaNation
             questions.Question = split[0];
             questions.Answer = split[1];
             questions.QuestionType = split[2];
-            return questions.Question;
+            return questions;
         }
 
         /// <summary>

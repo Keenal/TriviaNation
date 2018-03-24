@@ -25,7 +25,7 @@ namespace TriviaNation
     /// </summary>
     public interface ITrivia
     {
-        string GetRandomQuestion();
+        IQuestion GetRandomQuestion();
         Boolean EvaluateAnswer(string answer);
         int RandomGenerator();
     }

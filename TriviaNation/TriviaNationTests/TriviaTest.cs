@@ -68,7 +68,7 @@ namespace TriviaNation
             // Act
             while (i <= 5)
             {
-                string test = sut.GetRandomQuestion();
+                IQuestion test = sut.GetRandomQuestion();
                 // Assert
                 if (test.Equals("This is the first row."))
                     Assert.AreEqual("This is the first row.", test);
