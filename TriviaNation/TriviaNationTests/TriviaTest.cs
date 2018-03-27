@@ -70,16 +70,16 @@ namespace TriviaNation
             {
                 IQuestion test = sut.GetRandomQuestion();
                 // Assert
-                if (test.Equals("This is the first row."))
-                    Assert.AreEqual("This is the first row.", test);
-                else if (test.Equals("This is the second row."))
-                    Assert.AreEqual("This is the second row.", test);
-                else if (test.Equals("This is the third row."))
-                    Assert.AreEqual("This is the third row.", test);
-                else if (test.Equals("This is the fourth row."))
-                    Assert.AreEqual("This is the fourth row.", test);
-                else if (test.Equals("This is the fifth row."))
-                    Assert.AreEqual("This is the fifth row.", test);
+                if (test.Question.Equals("This is the first row."))
+                    Assert.AreEqual("This is the first row.", test.Question);
+                else if (test.Question.Equals("This is the second row."))
+                    Assert.AreEqual("This is the second row.", test.Question);
+                else if (test.Question.Equals("This is the third row."))
+                    Assert.AreEqual("This is the third row.", test.Question);
+                else if (test.Question.Equals("This is the fourth row."))
+                    Assert.AreEqual("This is the fourth row.", test.Question);
+                else if (test.Question.Equals("This is the fifth row."))
+                    Assert.AreEqual("This is the fifth row.", test.Question);
                 else
                     Assert.Fail();
                 i++;

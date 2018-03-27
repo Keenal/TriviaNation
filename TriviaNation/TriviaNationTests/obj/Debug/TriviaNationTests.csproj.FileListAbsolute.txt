@@ -128,3 +128,4 @@ C:\Users\westh\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debu
 C:\Users\westh\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.exe.config
 C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.dll
 C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.dll.config
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.dll.config
