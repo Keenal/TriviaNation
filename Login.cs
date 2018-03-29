@@ -1,11 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
-using UnityEngine;
 using System.IO;
-
+using TriviaNation;
 
 
 //using TriviaNation.DataBaseOperation;
@@ -28,83 +27,56 @@ CEN3032    "TriviaNation" SEII- Group 1's class project
 
 public class Login : MonoBehaviour {
 
-	public GameObject username;
+	public GameObject email;
 	public GameObject password;
 
 
-	private string Username;
+	private string Email;
 	private string Password;
-	private string[] lines;
-	private string DecryptedPassword;
-
 
 	public void EnterButton()
 	{
-		//check is the username is valid
-		bool UN = false;
+		//create User Information Table 
+		new DataBaseOperations();
+		DataBaseOperations.ConnectToDB ();
 
-		//check if the password is valid 
-		bool PW = false;
+		IDataBaseTable UT = new UserTable ();
+		IUser user = new User ();
 
-		//check if the username exist in the Database
-		if (Username != "") {
-			if (Username.Length < 20) {
-				UN = true;
-			} else {
-				Debug.LogWarning ("Username length need be be least than 20");
-				}
 
+		IUserAuthentication user1 = new UserAuthentication (UT, user);
+
+		bool t = user1.AuthenticateUser (Email, Password);
+
+		///If t is returning ture, connect to main GUI
+		if (t) {
+			Debug.Log ("Login Successfully");
+			Debug.Log ("True");
 		} else {
-			Debug.LogWarning ("Username File Empty");
-			}
-
-
-		//check if the password match the username
-		if (Password != "") {
-			
-			if (System.IO.File.Exists (Username + ".txt")) {
-				
-				int i = 1;
-
-				foreach (char c in lines[2]) {
-					i++;
-					char Decrypted = (char)(c / i);
-					DecryptedPassword += Decrypted.ToString ();
-				}
-			
-				if (Password == DecryptedPassword) {
-					PW = true;
-				} 
-
-			} else {
-				Debug.LogWarning ("Password does not match the Username ");
-
-				} 
-
-			if (UN == true && PW == true) {
-				print ("Login successful");
-				username.GetComponent<InputField> ().text = "";
-				password.GetComponent<InputField> ().text = "";
-			}
+			Debug.Log("Login Failed");
 		}
+
+		email.GetComponent<InputField> ().text = "";
+		password.GetComponent<InputField> ().text = "";
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
 		if (Input.GetKeyDown (KeyCode.Tab)) {
-			if (username.GetComponent<InputField> ().isFocused) {
+			if (email.GetComponent<InputField> ().isFocused) {
 				password.GetComponent<InputField> ().Select ();
 			}
 		}
 
 		if (Input.GetKeyDown (KeyCode.Return)) {
-			if (Username != "" && Password != "") {
+			if (Email != "" && Password != "") {
 				EnterButton ();
 			}
 		}
 
-		Username = username.GetComponent<InputField> ().text;
+		Email = email.GetComponent<InputField> ().text;
 		Password = password.GetComponent<InputField> ().text;
 		
 	}
