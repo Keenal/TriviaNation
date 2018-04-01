@@ -1,4 +1,6 @@
-﻿/**
+﻿using System.Collections.Generic;
+
+/**
 TriviaNation is a networked trivia game designed for use in
 classrooms. Class members are each in control of a nation on
 a map. The goal of the game is to increase the size of the nation 
@@ -15,7 +17,6 @@ making it an enjoyable experience.
 CEN3032    "TriviaNation" SEII- Group 1's class project
 File Name: ITriviaAdministration.cs 
 */
-
 namespace TriviaNation
 {
     /// <summary>
@@ -27,6 +28,6 @@ namespace TriviaNation
 
         void DeleteQuestion(int questionNumber);
 
-        string ListQuestions();
+        IEnumerable<IQuestion> ListQuestions();
     }
 }

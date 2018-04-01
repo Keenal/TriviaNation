@@ -41,12 +41,12 @@ namespace TriviaNation
             IQuestion question = new Questions();
 
             ITriviaAdministration admin = new TriviaAdministration(question, QT);
-            //admin.AddQuestion("Test", "Yup", "Question Type: MC (Test)");
+            admin.AddQuestion("Test", "Yup", "Question Type: MC (Test)");
             //admin.AddQuestion("Working?", "Affirmitive", "Question Type: T/F (Test)");
             //admin.AddQuestion("No more objects necessary?", "Fer Shizzle", "Question Type: Matching (Test)");
             //Console.WriteLine("The number of rows in this table are: {0}", QT.RetrieveNumberOfRowsInTable());
-            string test = admin.ListQuestions();
-            //Console.WriteLine(test);
+            List<IQuestion> test1 = (List<IQuestion>)admin.ListQuestions();
+            Console.WriteLine(test1[0].Question);
             //Console.WriteLine("The number of cols in this table are: {0}", QT.RetriveNumberOfColsInTable());
             //admin.DeleteQuestion(1);
             //Console.WriteLine("The number of rows in this table are now: {0}", QT.RetrieveNumberOfRowsInTable());
@@ -70,8 +70,9 @@ namespace TriviaNation
             IUserAdministration userAdmin = new UserAdministration(user, UT);
             userAdmin.AddUser("Bob", "robert@uwf.edu", "password", "password", "65");
             userAdmin.AddUser("Sugar", "rcq1@uwf.edu", "abcd1234", "abcd1234", "107");
-            test = userAdmin.ListUsers();
-            Console.WriteLine(test);
+            List<IUser> test = (List<IUser>) userAdmin.ListUsers();
+            Console.WriteLine(test[0].UserName + "\n" + test[0].Email + "\n" + test[0].Password + "\n" + test[0].Score);
+            Console.WriteLine(test[1].UserName + "\n" + test[1].Email + "\n" + test[1].Password + "\n" + test[1].Score);
             Console.WriteLine("The number of rows in USER table are now: {0}", UT.RetrieveNumberOfRowsInTable());
 
             IUserAuthentication validate = new UserAuthentication(UT, user);

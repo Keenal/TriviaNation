@@ -79,23 +79,23 @@ namespace TriviaNation
         }
 
         [TestMethod]
-        public void ListingTheUsersInTheDatabaseShouldListThemAllAndShouldListTheirProperStringValuesInOrder()
+        public void ListingTheUsersInTheDatabaseShouldListThemAllAndShouldListTheirProperValuesInOrderFromAnIUserList()
         {
             // Arrange
             Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
             mockDatabase.Setup(r => r.RetrieveNumberOfRowsInTable()).Returns(4);
             mockDatabase.Setup(r => r.TableName).Returns("Table Name");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("Billy ");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 2)).Returns("TomTom ");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 3)).Returns("Eernest ");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 4)).Returns("Thor");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("Billy \ntest\ntest\ntest");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 2)).Returns("TomTom \ntest\ntest\ntest");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 3)).Returns("Eernest \ntest\ntest\ntest");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 4)).Returns("Thor\ntest\ntest\ntest");
             IUserAdministration sut = new UserAdministration(user, mockDatabase.Object);
 
             // Act
-            string test = sut.ListUsers();
+            List<IUser> test = (List<IUser>)sut.ListUsers();
 
             // Assert
-            Assert.AreEqual("1. Billy 2. TomTom 3. Eernest 4. Thor", test);
+            Assert.AreEqual("Billy TomTom Eernest Thor", test[0].UserName + test[1].UserName + test[2].UserName + test[3].UserName);
         }
 
         [TestMethod]

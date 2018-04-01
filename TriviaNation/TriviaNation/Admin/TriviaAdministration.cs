@@ -89,19 +89,30 @@ namespace TriviaNation
         }
 
         /// <summary>
-        /// Returns all questions and answers in the database in the form of a string
+        /// Returns all question data in the database in the form of a list of objects
         /// </summary>
-        /// /// <returns>The list of questions</returns>
-        public string ListQuestions()
+        /// /// <returns>The list of question objects</returns>
+        public IEnumerable<IQuestion> ListQuestions()
         {
-            string listOfQuestions = "";
+            string questionString = "";
+            string[] splitQuestionData = null;
+            List<IQuestion> allQuestionModels = new List<IQuestion>();
             for (int i = 1; i <= database.RetrieveNumberOfRowsInTable(); i++)
             {
-                listOfQuestions = listOfQuestions + i + ". " + database.RetrieveTableRow(database.TableName, i);
+                questionString = database.RetrieveTableRow(database.TableName, i);
+                splitQuestionData = questionString.Split(separator: '\n');
+                IQuestion questionModel = new Questions
+                {
+                    Question = splitQuestionData[0],
+                    Answer = splitQuestionData[1],
+                    QuestionType = splitQuestionData[2]
+                };
+                allQuestionModels.Add(questionModel);
             }
-            
-            return listOfQuestions;
+
+            return allQuestionModels;
         }
+
 
         /// <summary>
         /// Returns a list of question properties/values

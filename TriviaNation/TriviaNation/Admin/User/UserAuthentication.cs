@@ -77,9 +77,9 @@ namespace TriviaNation
         }
 
         // For future sprint.
-        public string GetUserScore()
+        public IUser GetUserData()
         {
-            return "";
+            return user;
         }
 
         /// <summary>

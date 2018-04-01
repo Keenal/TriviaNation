@@ -53,38 +53,51 @@ namespace TriviaNation
         }
 
         [TestMethod]
-        public void IfTheDatabaseHasANumberOfQuestionsInTheTableThenListingTheQuestionsShouldOutputTheCorrectNumberOfQuestionsToString()
+
+        public void IfTheDatabaseHasANumberOfQuestionsInTheTableThenListingTheQuestionsShouldFillAListWithTheCorrectNumberOfQuestions()
         {
             // Arrange
             Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
-            mockDatabase.Setup(r => r.RetrieveNumberOfRowsInTable()).Returns(9);
+            mockDatabase.Setup(r => r.RetrieveNumberOfRowsInTable()).Returns(1);
+            mockDatabase.Setup(r => r.TableName).Returns("Table Name");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("This is the question?\nThis is the answer\nThis is the question type");
             sut = new TriviaAdministration(question, mockDatabase.Object);
 
             // Act
-            string test = sut.ListQuestions();
+            List<IQuestion> test = (List<IQuestion>)sut.ListQuestions();
 
             // Assert
-            Assert.AreEqual("1. 2. 3. 4. 5. 6. 7. 8. 9. ", test);
+            Assert.AreEqual("This is the question?", test[0].Question);
+            try
+            {
+                string t = test[1].Question;
+                Assert.Fail(); // raises AssertionException
+            }
+            catch (Exception)
+            {
+                // Catches the assertion exception, and the test passes
+            }
         }
 
+
         [TestMethod]
-        public void ListingTheQuestionsInTheDatabaseShouldListThemAllAndShouldListTheirProperStringValuesInOrder()
+        public void ListingTheQuestionsInTheDatabaseShouldListThemAllAndShouldListTheirProperObjectStringValuesInOrder()
         {
             // Arrange
             Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
             mockDatabase.Setup(r => r.RetrieveNumberOfRowsInTable()).Returns(4);
             mockDatabase.Setup(r => r.TableName).Returns("Table Name");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("Testing row One ");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 2)).Returns("Testing row Two ");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 3)).Returns("Testing row Three ");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 4)).Returns("Testing row Four");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("Testing row One\n WithAnswer1\ntype");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 2)).Returns("Testing row Two\nWithAnswer2\ntype");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 3)).Returns("Testing row Three\nWithAnswer3\ntype");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 4)).Returns("Testing row Four\nWithAnswer4\ntype");
             sut = new TriviaAdministration(question, mockDatabase.Object);
 
             // Act
-            string testy = sut.ListQuestions();
+            List<IQuestion> test = (List<IQuestion>) sut.ListQuestions();
 
             // Assert
-            Assert.AreEqual("1. Testing row One 2. Testing row Two 3. Testing row Three 4. Testing row Four", testy);
+            Assert.AreEqual("Testing row One WithAnswer1Testing row TwoWithAnswer2Testing row ThreeWithAnswer3Testing row FourWithAnswer4", test[0].Question + test[0].Answer + test[1].Question + test[1].Answer + test[2].Question + test[2].Answer + test[3].Question + test[3].Answer);
         }
 
         [TestMethod]
@@ -158,14 +171,18 @@ namespace TriviaNation
             QT.CreateTable(QT.TableName, QT.TableCreationString);
             Console.WriteLine(QT.TableExists(QT.TableName));
             admin.AddQuestion("This is a question", "This is an answer", "Question Type");
-            string test = admin.ListQuestions();
+            List<IQuestion> test = (List<IQuestion>)admin.ListQuestions();
 
             // Act
             admin.DeleteQuestion(1);
 
             // Assert
+            if ("This is a question\nThis is an answer\nQuestion Type\n".Equals(QT.RetrieveTableRow(QT.TableName, 1)))
+            {
+                Assert.Fail();
+            }
+            Assert.AreNotEqual("This is a question\nThis is an answer\nQuestion Type\n", QT.RetrieveTableRow(QT.TableName, 1));
             Assert.AreNotSame(admin.ListQuestions(), test);
-            Assert.AreNotEqual(admin.ListQuestions(), test);
         }
     }
 }

@@ -98,15 +98,26 @@ namespace TriviaNation
         /// Returns all users and their data in the database in the form of a string
         /// </summary>
         /// /// <returns>The list of users</returns>
-        public string ListUsers()
+        public IEnumerable<IUser> ListUsers()
         {
-            string listOfUsers = "";
+            string userString = "";
+            string[] splitUserData = null;
+            List<IUser> allUserModels = new List<IUser>();
             for (int i = 1; i <= database.RetrieveNumberOfRowsInTable(); i++)
             {
-                listOfUsers = listOfUsers + i + ". " + database.RetrieveTableRow(database.TableName, i);
+                userString = database.RetrieveTableRow(database.TableName, i);
+                splitUserData = userString.Split(separator: '\n');
+                IUser userModel = new User
+                {
+                    UserName = splitUserData[0],
+                    Email = splitUserData[1],
+                    Password = splitUserData[2],
+                    Score = splitUserData[3]
+                };
+                allUserModels.Add(userModel);
             }
 
-            return listOfUsers;
+            return allUserModels;
         }
 
         /// <summary>
