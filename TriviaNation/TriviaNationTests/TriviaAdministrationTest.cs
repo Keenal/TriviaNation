@@ -164,7 +164,7 @@ namespace TriviaNation
             Assert.AreEqual("This is the question? ", test.Question);
         }
 
-        [Ignore]
+        // [Ignore]
         [TestMethod]
         // This is an integration test 
         public void InsertingAnEditedQuestionShouldOverwriteQuestionObjectWithNewInsertedQuestionStringAndReturnTheEditedQuestionInIntegrationTesting()

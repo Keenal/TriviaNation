@@ -88,10 +88,19 @@ namespace TriviaNation
         /// <param name="userNumber">The username that matches the row position of a user</param>
         public void DeleteUser(int userNumber)
         {
-            String tableRow = database.RetrieveTableRow(database.TableName, userNumber);
-            String[] split = tableRow.Split(separator: '\n');
-            user.UserName = split[0];
+            SetRowToObject(userNumber);
             database.DeleteRowFromTable(user.UserName);
+        }
+
+        // Refactored code
+        private void SetRowToObject(int userNumber)
+        {
+            string tableRow = database.RetrieveTableRow(database.TableName, userNumber);
+            string[] split = tableRow.Split(separator: '\n');
+            user.UserName = split[0];
+            user.Email = split[1];
+            user.Password = split[2];
+            user.Score = split[3];
         }
 
         /// <summary>
@@ -100,19 +109,16 @@ namespace TriviaNation
         /// /// <returns>The list of users</returns>
         public IEnumerable<IUser> ListUsers()
         {
-            string userString = "";
-            string[] splitUserData = null;
             List<IUser> allUserModels = new List<IUser>();
             for (int i = 1; i <= database.RetrieveNumberOfRowsInTable(); i++)
             {
-                userString = database.RetrieveTableRow(database.TableName, i);
-                splitUserData = userString.Split(separator: '\n');
+                SetRowToObject(i);
                 IUser userModel = new User
                 {
-                    UserName = splitUserData[0],
-                    Email = splitUserData[1],
-                    Password = splitUserData[2],
-                    Score = splitUserData[3]
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    Password = user.Password,
+                    Score = user.Score
                 };
                 allUserModels.Add(userModel);
             }

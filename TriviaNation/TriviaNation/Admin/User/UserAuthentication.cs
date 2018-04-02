@@ -76,7 +76,7 @@ namespace TriviaNation
             return false;
         }
 
-        // For future sprint.
+        // To return user object affiliated with authentication
         public IUser GetUserData()
         {
             return user;

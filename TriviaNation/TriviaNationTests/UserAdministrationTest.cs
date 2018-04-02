@@ -64,7 +64,7 @@ namespace TriviaNation
             string query = null;
             Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
             mockDatabase.Setup(r => r.TableName).Returns("Table Name");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("Huey \n jump@uwf.edu");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("Huey \n jump@uwf.edu\nred\n35");
             mockDatabase.Setup(r => r.DeleteRowFromTable(It.IsAny<string>())).Callback<string>((s1) =>
             {
                 query = s1;
