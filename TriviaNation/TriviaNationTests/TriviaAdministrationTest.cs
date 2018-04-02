@@ -101,13 +101,13 @@ namespace TriviaNation
         }
 
         [TestMethod]
-        public void MethodForDeletingAQuestionShouldFirstRetrieveARowFromDatabaseThenAccessOnlyTheQuestionColumnStringInOrderToEnterItAsTheArgumentForMethodDeleteRowFromTable()
+        public void MethodForDeletingAQuestionShouldFirstRetrieveARowFromDatabaseThroughPrivateMethodThenAccessOnlyTheQuestionColumnStringInOrderToEnterItAsTheArgumentForMethodDeleteRowFromTable()
         {
             // Arrange
             string query = null;
             Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
             mockDatabase.Setup(r => r.TableName).Returns("Table Name");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("This is the question? \n This is the answer.");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("This is the question? \n This is the answer.\ntype");
             mockDatabase.Setup(r => r.DeleteRowFromTable(It.IsAny<string>())).Callback<string>((s1) => 
             {
                 query = s1;
@@ -140,6 +140,55 @@ namespace TriviaNation
             // Assert
             Assert.AreSame(sut, test);
             Assert.AreEqual(sut, test);
+        }
+
+        [TestMethod]
+        public void RetrievingAQuestionForEditingShouldDeleteTheQuestionFromTheDatabaseAndReturnTheDeletedQuestionObject()
+        {
+            // Arrange
+            string query = null;
+            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
+            mockDatabase.Setup(r => r.TableName).Returns("Table Name");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("This is the question? \n This is the answer.\ntype");
+            mockDatabase.Setup(r => r.DeleteRowFromTable(It.IsAny<string>())).Callback<string>((s1) =>
+            {
+                query = s1;
+            });
+            sut = new TriviaAdministration(question, mockDatabase.Object);
+
+            // Act
+            IQuestion test = sut.GetEditableQuestion(1);
+
+            //Assert
+            Assert.AreEqual("This is the question? ", query);
+            Assert.AreEqual("This is the question? ", test.Question);
+        }
+
+        [Ignore]
+        [TestMethod]
+        // This is an integration test 
+        public void InsertingAnEditedQuestionShouldOverwriteQuestionObjectWithNewInsertedQuestionStringAndReturnTheEditedQuestionInIntegrationTesting()
+        {
+            // Arrange
+            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
+            mockDatabase.Setup(r => r.TableName).Returns("Table Name");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("Question?\n This is the answer.\ntype");
+            mockDatabase.Setup(r => r.DeleteRowFromTable(It.IsAny<string>()));
+            mockDatabase.Setup(r => r.InsertRowIntoTable("Table Name", It.IsAny<IDataEntry>())).Verifiable(); ;
+            IQuestion q = new Questions
+            {
+                Question = "Question?",
+                Answer = "Answer",
+                QuestionType = "T/F"
+            };
+            sut = new TriviaAdministration(question, mockDatabase.Object);
+
+            // Act
+            sut.AddQuestion("original question", "answer", "type");
+            sut.InsertEditedQuestion(q);
+
+            // Assert
+            Assert.AreEqual("Question?", sut.GetEditableQuestion(1).Question);
         }
 
         [Ignore]

@@ -41,17 +41,17 @@ namespace TriviaNation
             IQuestion question = new Questions();
 
             ITriviaAdministration admin = new TriviaAdministration(question, QT);
-            admin.AddQuestion("Test", "Yup", "Question Type: MC (Test)");
+            //admin.AddQuestion("Test", "Yup", "Question Type: MC (Test)");
             //admin.AddQuestion("Working?", "Affirmitive", "Question Type: T/F (Test)");
             //admin.AddQuestion("No more objects necessary?", "Fer Shizzle", "Question Type: Matching (Test)");
             //Console.WriteLine("The number of rows in this table are: {0}", QT.RetrieveNumberOfRowsInTable());
-            List<IQuestion> test1 = (List<IQuestion>)admin.ListQuestions();
-            Console.WriteLine(test1[0].Question);
+            //List<IQuestion> test1 = (List<IQuestion>)admin.ListQuestions();
+            //Console.WriteLine(test1[0].Question + "\n" + test1[1].Question);
             //Console.WriteLine("The number of cols in this table are: {0}", QT.RetriveNumberOfColsInTable());
             //admin.DeleteQuestion(1);
             //Console.WriteLine("The number of rows in this table are now: {0}", QT.RetrieveNumberOfRowsInTable());
-            //test = admin.ListQuestions();
-            //Console.WriteLine(test);
+            //test1 = (List<IQuestion>)admin.ListQuestions();
+            //Console.WriteLine(test1[0].Question);
 
             /////////////////////
             //IDataBaseTable territoryTable = new TerritoryTable();

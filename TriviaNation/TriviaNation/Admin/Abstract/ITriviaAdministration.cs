@@ -29,5 +29,7 @@ namespace TriviaNation
         void DeleteQuestion(int questionNumber);
 
         IEnumerable<IQuestion> ListQuestions();
+        IQuestion GetEditableQuestion(int questionNumber);
+        void InsertEditedQuestion(IQuestion editedQuestion);
     }
 }

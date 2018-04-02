@@ -82,10 +82,34 @@ namespace TriviaNation
              * int questionNumber = Convert.ToInt32(Console.ReadLine());
              * DeleteQuestion(questionNumber);
              */
+            SetRowToObject(questionNumber);
+            database.DeleteRowFromTable(question.Question);
+        }
+
+        // Refactored code
+        private void SetRowToObject(int questionNumber)
+        {
             string tableRow = database.RetrieveTableRow(database.TableName, questionNumber);
             string[] split = tableRow.Split(separator: '\n');
             question.Question = split[0];
-            database.DeleteRowFromTable(question.Question);
+            question.Answer = split[1];
+            question.QuestionType = split[2];
+        }
+
+        // First get the question object to edit (in GUI will apply new strings to this object)
+        public IQuestion GetEditableQuestion(int questionNumber)
+        {
+            DeleteQuestion(questionNumber);
+            return question;
+        }
+
+        // Send newly edited question object back here to be inserted.  
+        // Requires minimal code on the GUI side of things.  GUI side 
+        // should only need to set edited questions to object and then 
+        // send object here. Note* This really doesnt need testing?  Already tested in Add method?
+        public void InsertEditedQuestion(IQuestion editedQuestion)
+        {
+            AddQuestion(editedQuestion.Question, editedQuestion.Answer, editedQuestion.QuestionType);
         }
 
         /// <summary>
@@ -94,19 +118,17 @@ namespace TriviaNation
         /// /// <returns>The list of question objects</returns>
         public IEnumerable<IQuestion> ListQuestions()
         {
-            string questionString = "";
-            string[] splitQuestionData = null;
             List<IQuestion> allQuestionModels = new List<IQuestion>();
             for (int i = 1; i <= database.RetrieveNumberOfRowsInTable(); i++)
             {
-                questionString = database.RetrieveTableRow(database.TableName, i);
-                splitQuestionData = questionString.Split(separator: '\n');
+                SetRowToObject(i);
                 IQuestion questionModel = new Questions
                 {
-                    Question = splitQuestionData[0],
-                    Answer = splitQuestionData[1],
-                    QuestionType = splitQuestionData[2]
+                    Question = question.Question,
+                    Answer = question.Answer,
+                    QuestionType = question.QuestionType
                 };
+
                 allQuestionModels.Add(questionModel);
             }
 
@@ -127,6 +149,6 @@ namespace TriviaNation
 
             return questionValues;
         }
-     
+
     }
 }
