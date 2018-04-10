@@ -67,6 +67,7 @@
     <Compile Include="Admin\Abstract\IUserAuthentication.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\QuestionPackTable.cs" />
     <Compile Include="Repository\QuestionTable.cs" />
     <Compile Include="Models\TriviaTerritory.cs" />
     <Compile Include="Admin\TerritoryAdministration.cs" />
