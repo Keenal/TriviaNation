@@ -72,6 +72,7 @@ namespace TriviaNation
             questions.Question = split[0];
             questions.Answer = split[1];
             questions.QuestionType = split[2];
+            questions.QuestionPack = split[3];
             return questions;
         }
 

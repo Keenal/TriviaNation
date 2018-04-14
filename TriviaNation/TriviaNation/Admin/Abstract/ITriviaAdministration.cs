@@ -24,7 +24,7 @@ namespace TriviaNation
     /// </summary>
     public interface ITriviaAdministration : IDataEntry
     {
-        void AddQuestion(string question, string answer, string questionType);
+        void AddQuestion(string question, string answer, string questionType, string questionPack);
 
         void DeleteQuestion(int questionNumber);
 

@@ -31,6 +31,10 @@ namespace TriviaNation
         /// The answer to a question
         /// </summary>
         private string answer;
+        /// <summary>
+        /// The Package of Questions this question belongs to
+        /// </summary>
+        private string questionPack;
 
         // For future sprint.
         private int pointValue;
@@ -48,6 +52,7 @@ namespace TriviaNation
             this.question = "";
             this.answer = "";
             this.pointValue = 0;
+            this.questionPack = "";
         }
 
         /// <summary>
@@ -107,6 +112,19 @@ namespace TriviaNation
             set
             {
                 questionType = value;
+            }
+        }
+
+        public string QuestionPack
+        {
+            get
+            {
+                return questionPack;
+            }
+
+            set
+            {
+                questionPack = value;
             }
         }
     }

@@ -36,16 +36,22 @@ namespace TriviaNation
             new DataBaseOperations();
             DataBaseOperations.ConnectToDB();
             IDataBaseTable QT = new QuestionTable();
-            QT.CreateTable(QT.TableName, QT.TableCreationString);
+            //QT.CreateTable(QT.TableName, QT.TableCreationString);
             Console.WriteLine("The table exists: {0}", QT.TableExists(QT.TableName));
 
-            //IQuestion question = new Questions();
+            IQuestion question = new Questions();
 
-            //ITriviaAdministration admin = new TriviaAdministration(question, QT);
-            //admin.AddQuestion("Test", "Yup", "Question Type: MC (Test)");
-            //admin.AddQuestion("Working?", "Affirmitive", "Question Type: T/F (Test)");
-            //admin.AddQuestion("No more objects necessary?", "Fer Shizzle", "Question Type: Matching (Test)");
-            //Console.WriteLine("The number of rows in this table are: {0}", QT.RetrieveNumberOfRowsInTable());
+            ITriviaAdministration admin = new TriviaAdministration(question, QT);
+            //admin.AddQuestion("Test", "Yup", "Question Type: MC (Test)", "QuestionPack1");
+            //admin.AddQuestion("Working?", "Affirmitive", "Question Type: T/F (Test)", "QuestionPack3");
+            //admin.AddQuestion("No more objects necessary?", "Fer Shizzle", "Question Type: Matching (Test)", "QuestionPack2");
+            //admin.AddQuestion("Another question?", "yes another question", "Question Type: MC (Test)", "QuestionPack1");
+            //admin.AddQuestion("Another question1?", "yes another question1", "Question Type: MC (Test)", "QuestionPack1");
+            //admin.AddQuestion("Another question2?", "yes another question2", "Question Type: MC (Test)", "QuestionPack2");
+            //admin.AddQuestion("Another question3?", "yes another question3", "Question Type: MC (Test)", "QuestionPack3");
+            Console.WriteLine("The number of rows in this table are: {0}", QT.RetrieveNumberOfRowsInTable());
+            String rowsFromTable = QT.RetrieveTableRowsByCriteria(QT.TableName, "QuestionPack", "QuestionPack1");
+            Console.WriteLine(rowsFromTable);
             //List<IQuestion> test1 = (List<IQuestion>)admin.ListQuestions();
             //Console.WriteLine(test1[0].Question + "\n" + test1[1].Question);
             //Console.WriteLine("The number of cols in this table are: {0}", QT.RetriveNumberOfColsInTable());

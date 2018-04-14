@@ -42,5 +42,10 @@ namespace TriviaNation
         {
             get; set;
         }
+
+        string QuestionPack
+        {
+            get; set;
+        }
     }
 }

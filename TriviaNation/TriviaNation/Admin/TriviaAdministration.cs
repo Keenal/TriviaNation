@@ -60,11 +60,12 @@ namespace TriviaNation
         /// </summary>
         /// <param name="query">The question</param>
         /// <param name="answer">The answer</param>
-        public void AddQuestion(string query, string answer, string questionType)
+        public void AddQuestion(string query, string answer, string questionType, string questionPack)
         {
             question.Question = query;
             question.Answer = answer;
             question.QuestionType = questionType;
+            question.QuestionPack = questionPack;
             database.InsertRowIntoTable(database.TableName, this);
         }
 
@@ -94,6 +95,7 @@ namespace TriviaNation
             question.Question = split[0];
             question.Answer = split[1];
             question.QuestionType = split[2];
+            question.QuestionPack = split[3];
         }
 
         // First get the question object to edit (in GUI will apply new strings to this object)
@@ -109,7 +111,7 @@ namespace TriviaNation
         // send object here. Note* This really doesnt need testing?  Already tested in Add method?
         public void InsertEditedQuestion(IQuestion editedQuestion)
         {
-            AddQuestion(editedQuestion.Question, editedQuestion.Answer, editedQuestion.QuestionType);
+            AddQuestion(editedQuestion.Question, editedQuestion.Answer, editedQuestion.QuestionType, editedQuestion.QuestionPack);
         }
 
         /// <summary>
@@ -126,7 +128,8 @@ namespace TriviaNation
                 {
                     Question = question.Question,
                     Answer = question.Answer,
-                    QuestionType = question.QuestionType
+                    QuestionType = question.QuestionType,
+                    QuestionPack = question.QuestionPack
                 };
 
                 allQuestionModels.Add(questionModel);
@@ -134,7 +137,6 @@ namespace TriviaNation
 
             return allQuestionModels;
         }
-
 
         /// <summary>
         /// Returns a list of question properties/values
@@ -144,7 +146,7 @@ namespace TriviaNation
         {
             List<string> questionValues = new List<string>
             {
-                question.Question, question.Answer, question.QuestionType
+                question.Question, question.Answer, question.QuestionType, question.QuestionPack
             };
 
             return questionValues;

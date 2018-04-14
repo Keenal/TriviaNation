@@ -120,6 +120,23 @@ namespace TriviaNation
         }
 
         /// <summary>
+        /// Retrieves rows from the Table using a set of defined criteria (ie the name of the question pack)
+        /// </summary>
+        /// <param name="tableName">The name of the table to retrieve the rows from</param>
+        /// <param name="columnName">The name of the column we will be matching criteria from</param>
+        /// <param name="matchingCriteria">The criteria we want to check the column for to match</param>
+        /// <returns name="retrievedRows">The rows that were retrieved</param>
+        public String RetrieveTableRowsByCriteria(String tableName, String columnName, String matchingCriteria)
+        {
+            String retrievedRows = DataBaseOperations.RetrieveRowsFromTableMatchingCriteria("" +
+                "SELECT * " +
+                "FROM " + tableName + " " +
+                "WHERE " + columnName + " = '" + matchingCriteria + "';");
+
+            return retrievedRows;
+        }
+
+        /// <summary>
         /// Retrieves the number of columns a table contains
         /// </summary>
         /// <returns name ="numberOfColsInTable">The number of columns in a table</returns>
