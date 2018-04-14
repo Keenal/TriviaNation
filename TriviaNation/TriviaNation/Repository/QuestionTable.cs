@@ -29,7 +29,7 @@ namespace TriviaNation
         //name of this specific DataBase Table
         private const String tableName = "QuestionTable";
         //String used to create this specific Table
-        private const String tableCreationString = "(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null, questionType varchar(4000) not null);";
+        private const String tableCreationString = "(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null, questionType varchar(4000) not null, questionPack varchar(4000) not null);";
         
         /// <summary>
         /// Default Constructor for the QuestionTable class
@@ -84,8 +84,9 @@ namespace TriviaNation
             String question = list[0];
             String answer = list[1];
             String questionType = list[2];
+            String questionPack = list[3];
 
-            String insertString = "INSERT INTO " + tableName + "(question, answer, questionType) VALUES ('" + question + "', '" + answer + "', '" + questionType + "');";
+            String insertString = "INSERT INTO " + tableName + "(question, answer, questionType, questionPack) VALUES ('" + question + "', '" + answer + "', '" + questionType + "', '" + questionPack + "');";
             DataBaseOperations.InsertIntoTable(insertString);
         }
 

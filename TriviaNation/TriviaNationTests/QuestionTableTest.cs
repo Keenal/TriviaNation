@@ -44,8 +44,8 @@ namespace TriviaNationTests
             String sqlString = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'QTTestTable1'";
             int count = 0;
             String nameOfTestTable = "QTTestTable1";
-            String tableCreationString = "(columnone varchar(4000) not null PRIMARY KEY, columntwo varchar(4000) not null);";
-
+            String tableCreationString = "(columnone varchar(4000) not null PRIMARY KEY, columntwo varchar(4000) not null, columnthree varchar(4000) not null, columnfour varchar(4000) not null);";
+            
             // Act
             QT.CreateTable(nameOfTestTable, tableCreationString);
             SqlCommand command = new SqlCommand(sqlString, s_connection);
@@ -66,7 +66,7 @@ namespace TriviaNationTests
             String tableDropCode = ("DROP TABLE IF EXISTS QTTestTable2;");
             SqlCommand deleteTableCommand = new SqlCommand(tableDropCode, s_connection);
             deleteTableCommand.ExecuteNonQuery();
-            String tableCreationString = "CREATE TABLE QTTestTable2(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null, questionType varchar(4000) not null);";
+            String tableCreationString = "CREATE TABLE QTTestTable2(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null, questionType varchar(4000) not null, questionPack varchar(4000) not null);";
             SqlCommand command = new SqlCommand(tableCreationString, s_connection);
             command.ExecuteNonQuery();
             String retrievedRow = "";
@@ -76,6 +76,8 @@ namespace TriviaNationTests
             questionAndAnswer.Add("QuestionTest");
             questionAndAnswer.Add("AnswerTest");
             questionAndAnswer.Add("QuestionTypeTest");
+            questionAndAnswer.Add("QuestionPackTest");
+
             Mock<IDataEntry> mockDataEntry = new Mock<IDataEntry>();
             mockDataEntry.Setup(r => r.GetValues()).Returns(questionAndAnswer);
 
@@ -96,7 +98,7 @@ namespace TriviaNationTests
             }
 
             // Assert
-            Assert.AreEqual(("QuestionTest" + "\n" + "AnswerTest" + "\n" + "QuestionTypeTest" + "\n"), retrievedRow);
+            Assert.AreEqual(("QuestionTest" + "\n" + "AnswerTest" + "\n" + "QuestionTypeTest" + "\n" + "QuestionPackTest" + "\n"), retrievedRow);
         }
 
         [TestMethod]
@@ -119,10 +121,10 @@ namespace TriviaNationTests
             String tableDropCode = ("DROP TABLE IF EXISTS QTTestTable3;");
             SqlCommand deleteTableCommand = new SqlCommand(tableDropCode, s_connection);
             deleteTableCommand.ExecuteNonQuery();
-            String tableCreationString = "CREATE TABLE QTTestTable3(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null, questionType varchar(4000) not null);";
+            String tableCreationString = "CREATE TABLE QTTestTable3(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null, questionType varchar(4000) not null, questionPack varchar(4000) not null);";
             SqlCommand createCmd = new SqlCommand(tableCreationString, s_connection);
             createCmd.ExecuteNonQuery();
-            String insertString = "INSERT INTO QTTestTable3(question, answer, questionType) VALUES ('This is question1', 'This is answer1', 'TypeTest1');";
+            String insertString = "INSERT INTO QTTestTable3(question, answer, questionType, questionPack) VALUES ('This is question1', 'This is answer1', 'TypeTest1', 'This is questionPackTest1');";
             SqlCommand insertCmd = new SqlCommand(insertString, s_connection);
             insertCmd.ExecuteNonQuery();
 
@@ -130,7 +132,7 @@ namespace TriviaNationTests
             String rowRetrieved = QT.RetrieveTableRow("QTTestTable3", 1);
 
             // Assert
-            Assert.AreEqual("This is question1" + "\n" + "This is answer1" + "\n" + "TypeTest1" + "\n", rowRetrieved);
+            Assert.AreEqual("This is question1" + "\n" + "This is answer1" + "\n" + "TypeTest1" + "\n" + "This is questionPackTest1" + "\n", rowRetrieved);
         }
 
         [TestMethod]
@@ -168,14 +170,17 @@ namespace TriviaNationTests
             Assert.AreEqual(1, count);
         }
 
+        
         public void CleanUpAfterTests()
         {
             String DropTableSQLCode1 = ("DROP TABLE IF EXISTS QTTestTable1;");
             SqlCommand deleteTableCommand1 = new SqlCommand(DropTableSQLCode1, s_connection);
             deleteTableCommand1.ExecuteNonQuery();
+
             String DropTableSQLCode2 = ("DROP TABLE IF EXISTS QTTestTable2;");
             SqlCommand deleteTableCommand2 = new SqlCommand(DropTableSQLCode2, s_connection);
             deleteTableCommand2.ExecuteNonQuery();
+
             String DropTableSQLCode3 = ("DROP TABLE IF EXISTS QTTestTable3;");
             SqlCommand deleteTableCommand3 = new SqlCommand(DropTableSQLCode3, s_connection);
             deleteTableCommand3.ExecuteNonQuery();
