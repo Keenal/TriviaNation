@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient; // referance - System.Data
 
 /**
@@ -12,18 +11,14 @@ a map. The goal of the game is to increase the size of the nation
 by winning trivia challenges and defeating other class members 
 in contested territories. The focus is on gamifying learning and 
 making it an enjoyable experience.
-
 @author Timothy McWatters
 @author Keenal Shah
 @author Randy Quimby
 @author Wesley Easton
 @author Wenwen Xu
-
 @version 1.0
-
 CEN3032    "TriviaNation" SEII- Group 1's class project
 File Name: DataBaseOperations.cs 
-
     This class connects to the db, determines if a table exist in a database, creates and deletes a table in the database, 
     inserts and deletes a row in the table, and retrieves the row and the number of row.
 */
@@ -43,6 +38,13 @@ namespace TriviaNation
             set => s_connection = value;
         }
 
+        /// <summary>
+        /// Default constructor for the DataBaseOperations class
+        /// </summary>
+        public DataBaseOperations()
+        {
+
+        }
         /// <summary>
         /// Connects to database based on hard coded database information
         /// </summary>
@@ -77,7 +79,7 @@ namespace TriviaNation
             SqlCommand command = new SqlCommand(sqlString, s_connection);
             SqlDataReader myReader = null;
             int count = 0;
-    
+
             try
             {
                 myReader = command.ExecuteReader();
@@ -158,7 +160,8 @@ namespace TriviaNation
         /// </summary>
         /// <param name="tableName">The name of the Table to place number of row inquiry</param>
         /// <returns name="numberOfColsInTable">The number of cols in this particular Table</param>
-        public static int RetrieveNumberOfColsInTable(String tableName) {
+        public static int RetrieveNumberOfColsInTable(String tableName)
+        {
             int numberOfColsInTable = 0;
             String TSQLSourceCode = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + tableName + "';";
 
@@ -203,7 +206,10 @@ namespace TriviaNation
                 {
                     while (reader.Read())
                     {
-                        retrievedRow += reader.GetString(1) + "\n" + reader.GetString(2) + "\n";
+                        for (int i = 1; i < reader.FieldCount; i++)
+                        {
+                            retrievedRow += (reader.GetString(i) + "\n");
+                        }
                     }
                 }
             }
