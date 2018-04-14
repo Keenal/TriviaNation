@@ -3,3 +3,5 @@
 ################################################################################
 
 /TriviaNation/.vs/TriviaNation/v15/Server/sqlite3
+/TriviaNation/packages
+/TriviaNation/TriviaNationTests/bin/Debug
