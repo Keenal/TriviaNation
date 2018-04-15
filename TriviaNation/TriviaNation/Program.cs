@@ -35,12 +35,12 @@ namespace TriviaNation
         {
             new DataBaseOperations();
             DataBaseOperations.ConnectToDB();
-            IDataBaseTable QT = new QuestionTable();
-            QT.CreateTable(QT.TableName, QT.TableCreationString);
-            Console.WriteLine("The table exists: {0}", QT.TableExists(QT.TableName));
-            IQuestion question = new Questions();
+            //IDataBaseTable QT = new QuestionTable();
+            //QT.CreateTable(QT.TableName, QT.TableCreationString);
+            //Console.WriteLine("The table exists: {0}", QT.TableExists(QT.TableName));
+            //IQuestion question = new Questions();
 
-            ITriviaAdministration admin = new TriviaAdministration(question, QT);
+            //ITriviaAdministration admin = new TriviaAdministration(question, QT);
             //admin.AddQuestion("Test", "Yup", "Question Type: MC (Test)");
             //admin.AddQuestion("Working?", "Affirmitive", "Question Type: T/F (Test)");
             //admin.AddQuestion("No more objects necessary?", "Fer Shizzle", "Question Type: Matching (Test)");
@@ -64,32 +64,33 @@ namespace TriviaNation
 
             /////////////////
             IDataBaseTable UT = new UserTable();
-            UT.CreateTable(UT.TableName, UT.TableCreationString);
-            Console.WriteLine("The table exists: {0}", UT.TableExists(QT.TableName));
+            //UT.CreateTable(UT.TableName, UT.TableCreationString);
+            //Console.WriteLine("The table exists: {0}", UT.TableExists(QT.TableName));
             IUser user = new User();
             IUserAdministration userAdmin = new UserAdministration(user, UT);
-            userAdmin.AddUser("Bob", "robert@uwf.edu", "password", "password", "65");
-            userAdmin.AddUser("Sugar", "rcq1@uwf.edu", "abcd1234", "abcd1234", "107");
-            List<IUser> test = (List<IUser>) userAdmin.ListUsers();
-            Console.WriteLine(test[0].UserName + "\n" + test[0].Email + "\n" + test[0].Password + "\n" + test[0].Score);
-            Console.WriteLine(test[1].UserName + "\n" + test[1].Email + "\n" + test[1].Password + "\n" + test[1].Score);
-            Console.WriteLine("The number of rows in USER table are now: {0}", UT.RetrieveNumberOfRowsInTable());
+            userAdmin.BuildUserInfo();
+            //userAdmin.AddUser("Bob", "robert@uwf.edu", "password", "password", "65");
+            //userAdmin.AddUser("Sugar", "rcq1@uwf.edu", "abcd1234", "abcd1234", "107");
+            //List<IUser> test = (List<IUser>) userAdmin.ListUsers();
+            //Console.WriteLine(test[0].UserName + "\n" + test[0].Email + "\n" + test[0].Password + "\n" + test[0].Score);
+            //Console.WriteLine(test[1].UserName + "\n" + test[1].Email + "\n" + test[1].Password + "\n" + test[1].Score);
+            //Console.WriteLine("The number of rows in USER table are now: {0}", UT.RetrieveNumberOfRowsInTable());
 
-            IUserAuthentication validate = new UserAuthentication(UT, user);
-            Console.WriteLine("Testing proper user name and password that exists: ");
-            Boolean isAuthenticated = validate.AuthenticateUser("robert@uwf.edu", "password");
-            Console.WriteLine("Authentication is: " + isAuthenticated);
+            //IUserAuthentication validate = new UserAuthentication(UT, user);
+            //Console.WriteLine("Testing proper user name and password that exists: ");
+            //Boolean isAuthenticated = validate.AuthenticateUser("robert@uwf.edu", "password");
+            //Console.WriteLine("Authentication is: " + isAuthenticated);
 
-            Console.WriteLine("Testing invalid user name and password that does not exist: ");
-            isAuthenticated = validate.AuthenticateUser("Bobby", "password");
-            Console.WriteLine("Authentication is: " + isAuthenticated);
+            //Console.WriteLine("Testing invalid user name and password that does not exist: ");
+            //isAuthenticated = validate.AuthenticateUser("Bobby", "password");
+            //Console.WriteLine("Authentication is: " + isAuthenticated);
 
-            Console.WriteLine("Testing invalid confirmation password:");
-            Boolean flag = userAdmin.AddUser("Phil", "tiger@uwf.edu", "house", "home", "107");
-            Console.WriteLine("Password Confirmed? " + flag);
-            Console.WriteLine("The number of rows in USER table are now: {0}", UT.RetrieveNumberOfRowsInTable());
-            userAdmin.DeleteUser(1);
-            Console.WriteLine("The number of rows in USER table are now: {0}", UT.RetrieveNumberOfRowsInTable());
+            //Console.WriteLine("Testing invalid confirmation password:");
+            //Boolean flag = userAdmin.AddUser("Phil", "tiger@uwf.edu", "house", "home", "107");
+            //Console.WriteLine("Password Confirmed? " + flag);
+            //Console.WriteLine("The number of rows in USER table are now: {0}", UT.RetrieveNumberOfRowsInTable());
+            //userAdmin.DeleteUser(1);
+            //Console.WriteLine("The number of rows in USER table are now: {0}", UT.RetrieveNumberOfRowsInTable());
 
             //////////////
 

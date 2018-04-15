@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 /**
 TriviaNation is a networked trivia game designed for use in 
@@ -25,7 +24,7 @@ File Name: QuestionPackTable.cs
 
 namespace TriviaNation
 {
-    class QuestionPackTable : IDataBaseTable
+    public class QuestionPackTable : IDataBaseTable
     {
         //name of this specific DataBase Table
         private const String tableName = "QuestionTable";

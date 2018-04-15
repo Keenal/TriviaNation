@@ -79,6 +79,8 @@
     <Compile Include="Admin\User\UserAdministration.cs" />
     <Compile Include="Admin\User\UserAuthentication.cs" />
     <Compile Include="Repository\UserTable.cs" />
+    <Compile Include="Services\Abstract\IQuestionEvaluation.cs" />
+    <Compile Include="Services\QuestionEvaluation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

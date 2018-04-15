@@ -126,6 +126,26 @@ namespace TriviaNation
             return allUserModels;
         }
 
+        public IList<string> BuildUserInfo()
+        {
+            List<string> userDisplayTable = new List<string>();
+
+            userDisplayTable.Add("Rank\n");
+            userDisplayTable.Add("User Name\n");
+            userDisplayTable.Add("Score\n");
+
+            for (int i = 1; i <= database.RetrieveNumberOfRowsInTable(); i++)
+            {
+                string tableRow = database.RetrieveTableRow(database.TableName, i);
+
+                string[] split = tableRow.Split(separator: '\n');
+                userDisplayTable.Add(i.ToString() + "\n");
+                userDisplayTable.Add(split[0] + "\n");
+                userDisplayTable.Add(split[3] + "\n");
+            }
+            return userDisplayTable;
+        }
+
         /// <summary>
         /// Returns a list of user properties/values
         /// </summary>
