@@ -2,32 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace TriviaNation
+namespace TriviaNation.Models.Abstract
 
 /// <summary>
-/// Interface for the User class
+/// Interface for the Teacher class
 /// </summary>
+
 {
-    public interface IUser
+    public interface ITeacher
     {
-        string UserName
+        double GameStartTime
         {
             get; set;
         }
 
-        string Email
+        double GameEndTime
+        {
+            get; set; 
+        }
+
+        double QuestionStartTime
         {
             get; set;
         }
 
-        string Password
+        double QuestionEndTime
         {
             get; set;
         }
-        string Score
-        {
-            get; set;
-        }
+
     }
 }
