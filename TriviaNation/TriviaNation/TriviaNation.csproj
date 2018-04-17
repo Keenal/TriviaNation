@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBaseOperations.cs" />
+    <Compile Include="Models\Abstract\ITeacher.cs" />
     <Compile Include="Models\Teacher.cs" />
     <Compile Include="Repository\Abstract\IDataBaseTable.cs" />
     <Compile Include="Repository\Abstract\IDataEntry.cs" />
