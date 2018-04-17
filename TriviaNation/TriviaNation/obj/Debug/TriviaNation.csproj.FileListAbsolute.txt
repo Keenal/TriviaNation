@@ -36,3 +36,13 @@ C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\ob
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.exe
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.pdb
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csprojResolveAssemblyReference.cache
+C:\Users\Keena\source\repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.exe.config
+C:\Users\Keena\source\repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.exe
+C:\Users\Keena\source\repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.pdb
+C:\Users\Keena\source\repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\System.Security.Cryptography.Algorithms.dll
+C:\Users\Keena\source\repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Keena\source\repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csprojResolveAssemblyReference.cache
+C:\Users\Keena\source\repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csproj.CoreCompileInputs.cache
+C:\Users\Keena\source\repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csproj.CopyComplete
+C:\Users\Keena\source\repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.exe
+C:\Users\Keena\source\repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.pdb
