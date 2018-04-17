@@ -7,7 +7,7 @@ using TriviaNation.Models.Abstract;
 using System.Timers;
 
 namespace TriviaNation.Models
-
+    
 {
     class Teacher
 
@@ -16,16 +16,13 @@ namespace TriviaNation.Models
 
         // game time limit 
 
-        private string gameStartTime;
-        private string gameEndTime;
-
         // start the game timer 
             // log in as a teacher, open the game and set the time, players can play the game only after the teacher has set the time
 
-        public static void startGameTimer()
+        public static void countGameTimer()
         {
 
-            int startGame = 5000; // this is 2 second - get the teacher to set this manually
+            int startGame = 2000; // this is 2 second - get the teacher to set this manually
             // Create a timer with a two second interval.
             aTimer = new System.Timers.Timer(startGame); 
             // Hook up the Elapsed event for the timer. 
@@ -42,7 +39,19 @@ namespace TriviaNation.Models
         }
 
         // end the game timer
-            // after the given time, a display message tells that the time is up and the screen should take them to the leaderboard screen
+        // after the given time, a display message tells that the time is up and the screen should take them to the leaderboard screen
+
+        public static void startGameTimer() {
+            Console.WriteLine("\nPress the Enter key to exit the application...\n");
+            Console.WriteLine("The application started at {0:HH:mm:ss.fff}", DateTime.Now);
+            Console.ReadLine();
+            aTimer.Stop();
+            aTimer.Dispose();
+
+            Console.WriteLine("Terminating the application...");
+        }
+
+        
 
 
         // question time limit

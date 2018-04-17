@@ -40,8 +40,6 @@ namespace TriviaNation
 
             new DataBaseOperations();
 
-            
-
 
             DataBaseOperations.ConnectToDB();
             IDataBaseTable QT = new QuestionTable();
@@ -116,19 +114,16 @@ namespace TriviaNation
             //Console.WriteLine("Your answer is: " + trivia.EvaluateAnswer(answer));
 
 
-
+            // code to start the timer
             Models.Teacher portal = new Models.Teacher();
+
+            Models.Teacher.countGameTimer();
 
             Models.Teacher.startGameTimer();
 
-            Console.WriteLine("\nPress the Enter key to exit the application...\n");
-            Console.WriteLine("The application started at {0:HH:mm:ss.fff}", DateTime.Now);
-            Console.ReadLine();
-            aTimer.Stop();
-            aTimer.Dispose();
 
-            Console.WriteLine("Terminating the application...");
 
+            // timer code ends here^
 
             Console.WriteLine("Press any key to end the program");
             Console.ReadKey();
