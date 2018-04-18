@@ -21,7 +21,7 @@ namespace TriviaNation
     /// <summary>
     /// Interface for the Question class
     /// </summary>
-    public interface IQuestion
+    public interface IQuestion : IDataEntry
     {
         string Question
         {
@@ -39,6 +39,11 @@ namespace TriviaNation
         }
 
         string QuestionType
+        {
+            get; set;
+        }
+
+        string QuestionPack
         {
             get; set;
         }

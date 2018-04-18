@@ -36,3 +36,6 @@ C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\ob
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.exe
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.pdb
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csprojResolveAssemblyReference.cache
+C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\System.Security.Cryptography.Algorithms.dll
+C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csproj.CopyComplete

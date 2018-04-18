@@ -27,24 +27,16 @@ namespace TriviaNation
     public class QuestionTable : IDataBaseTable
     {
         //name of this specific DataBase Table
-        private const String tableName = "QuestionTable";
+        public string TableName { get; }
         //String used to create this specific Table
-        private const String tableCreationString = "(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null, questionType varchar(4000) not null);";
+        private const string tableCreationString = "(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null, questionType varchar(4000) not null, questionPack varchar(4000) not null);";
         
         /// <summary>
         /// Default Constructor for the QuestionTable class
         /// </summary>
-        public QuestionTable()
+        public QuestionTable(String tableName)
         {
-
-        }
-
-        /// <summary>
-        /// Accessor for tableName
-        /// </summary>
-        public String TableName
-        {
-            get => tableName;
+            this.TableName = tableName;
         }
 
         /// <summary>
@@ -84,8 +76,9 @@ namespace TriviaNation
             String question = list[0];
             String answer = list[1];
             String questionType = list[2];
+            String questionPack = list[3];
 
-            String insertString = "INSERT INTO " + tableName + "(question, answer, questionType) VALUES ('" + question + "', '" + answer + "', '" + questionType + "');";
+            String insertString = "INSERT INTO " + tableName + "(question, answer, questionType, questionPack) VALUES ('" + question + "', '" + answer + "', '" + questionType + "', '" + questionPack + "');";
             DataBaseOperations.InsertIntoTable(insertString);
         }
 
@@ -119,6 +112,23 @@ namespace TriviaNation
         }
 
         /// <summary>
+        /// Retrieves rows from the Table using a set of defined criteria (ie the name of the question pack)
+        /// </summary>
+        /// <param name="tableName">The name of the table to retrieve the rows from</param>
+        /// <param name="columnName">The name of the column we will be matching criteria from</param>
+        /// <param name="matchingCriteria">The criteria we want to check the column for to match</param>
+        /// <returns name="retrievedRows">The rows that were retrieved</param>
+        public String RetrieveTableRowsByCriteria(String tableName, String columnName, String matchingCriteria)
+        {
+            String retrievedRows = DataBaseOperations.RetrieveRowsFromTableMatchingCriteria("" +
+                "SELECT * " +
+                "FROM " + tableName + " " +
+                "WHERE " + columnName + " = '" + matchingCriteria + "';");
+
+            return retrievedRows;
+        }
+
+        /// <summary>
         /// Retrieves the number of columns a table contains
         /// </summary>
         /// <returns name ="numberOfColsInTable">The number of columns in a table</returns>
@@ -134,7 +144,7 @@ namespace TriviaNation
         /// <param name="question">The question nomenclature of the row to DELETE from the Table</param>
         public void DeleteRowFromTable(String question)
         {
-            String rowToDelete = ("DELETE FROM " + tableName + " WHERE question='" + question + "';");
+            String rowToDelete = ("DELETE FROM " + TableName + " WHERE question='" + question + "';");
 
             DataBaseOperations.DeleteRowFromTable(rowToDelete);
         }
