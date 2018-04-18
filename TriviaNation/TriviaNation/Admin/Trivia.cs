@@ -1,4 +1,5 @@
 ﻿using System;
+using TriviaNation.Models.Abstract;
 
 /**
 TriviaNation is a networked trivia game designed for use in
@@ -32,22 +33,24 @@ namespace TriviaNation
         /// <summary>
         /// IQuestion object for modeling question data
         /// </summary>
-        private IQuestion questions;
+        private IQuestionPack questionPack;
         /// <summary>
         /// Random object for generating random integers 
         /// </summary>
         private Random random;
-        
+        private IQuestion question;
+
         /// <summary>
         /// Constructs a Trivia object with database, random generation and question objects as instance fields through use of IDataBaseTable and IQuestion interfaces 
         /// </summary>
         /// <param name="database">The database object related to questions</param>
-        /// <param name="questions">The question object</param>
-        public Trivia(IDataBaseTable database, IQuestion questions)
+        /// <param name="questionPack">The questionPack we are getting qeustions from</param>
+        public Trivia(IDataBaseTable database, IQuestionPack questionPack)
         {
             this.database = database;
-            this.questions = questions;
+            this.questionPack = questionPack;
             random = new Random();
+            questionPack.PopulateListFromTable();
         }
 
         /// <summary>
@@ -67,13 +70,9 @@ namespace TriviaNation
         public IQuestion GetRandomQuestion()
         {
             int n = RandomGenerator();
-            string retrieveRow = database.RetrieveTableRow(database.TableName, n);
-            string[] split = retrieveRow.Split(separator: '\n');
-            questions.Question = split[0];
-            questions.Answer = split[1];
-            questions.QuestionType = split[2];
-            questions.QuestionPack = split[3];
-            return questions;
+            question = questionPack.QuestionPackQuestions[n];
+
+            return question;
         }
 
         /// <summary>
@@ -83,7 +82,7 @@ namespace TriviaNation
         /// <returns></returns>
         public Boolean EvaluateAnswer(string answer)
         {
-            if (answer.Trim().Equals(questions.Answer, StringComparison.InvariantCultureIgnoreCase))
+            if (answer.Trim().Equals(question.Answer, StringComparison.InvariantCultureIgnoreCase))
             {
                 return true;
             }

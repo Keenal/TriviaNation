@@ -55,6 +55,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBaseOperations.cs" />
+    <Compile Include="Models\Abstract\IQuestionPack.cs" />
+    <Compile Include="Models\QuestionPack.cs" />
     <Compile Include="Repository\Abstract\IDataBaseTable.cs" />
     <Compile Include="Repository\Abstract\IDataEntry.cs" />
     <Compile Include="Models\Abstract\IQuestion.cs" />

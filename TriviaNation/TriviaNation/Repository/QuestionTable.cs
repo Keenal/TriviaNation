@@ -27,24 +27,16 @@ namespace TriviaNation
     public class QuestionTable : IDataBaseTable
     {
         //name of this specific DataBase Table
-        private const String tableName = "QuestionTable";
+        public string TableName { get; }
         //String used to create this specific Table
-        private const String tableCreationString = "(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null, questionType varchar(4000) not null, questionPack varchar(4000) not null);";
+        private const string tableCreationString = "(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null, questionType varchar(4000) not null, questionPack varchar(4000) not null);";
         
         /// <summary>
         /// Default Constructor for the QuestionTable class
         /// </summary>
-        public QuestionTable()
+        public QuestionTable(String tableName)
         {
-
-        }
-
-        /// <summary>
-        /// Accessor for tableName
-        /// </summary>
-        public String TableName
-        {
-            get => tableName;
+            this.TableName = tableName;
         }
 
         /// <summary>
@@ -152,7 +144,7 @@ namespace TriviaNation
         /// <param name="question">The question nomenclature of the row to DELETE from the Table</param>
         public void DeleteRowFromTable(String question)
         {
-            String rowToDelete = ("DELETE FROM " + tableName + " WHERE question='" + question + "';");
+            String rowToDelete = ("DELETE FROM " + TableName + " WHERE question='" + question + "';");
 
             DataBaseOperations.DeleteRowFromTable(rowToDelete);
         }

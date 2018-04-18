@@ -1,4 +1,7 @@
-﻿/**
+﻿
+
+using System.Collections.Generic;
+/**
 TriviaNation is a networked trivia game designed for use in
 classrooms. Class members are each in control of a nation on
 a map. The goal of the game is to increase the size of the nation 
@@ -15,7 +18,6 @@ making it an enjoyable experience.
 CEN3032    "TriviaNation" SEII- Group 1's class project
 File Name: Questions.cs 
 */
-
 namespace TriviaNation
 {
     /// <summary>
@@ -47,12 +49,13 @@ namespace TriviaNation
         /// <summary>
         /// Constructs a Question object with default values as instance fields
         /// </summary>
-        public Questions()
+        public Questions(string question, string answer, string questionType, int pointValue, string questionPack)
         {
-            this.question = "";
-            this.answer = "";
-            this.pointValue = 0;
-            this.questionPack = "";
+            this.question = question;
+            this.answer = answer;
+            this.questionType = questionType;
+            this.pointValue = pointValue;
+            this.questionPack = questionPack;
         }
 
         /// <summary>
@@ -126,6 +129,20 @@ namespace TriviaNation
             {
                 questionPack = value;
             }
+        }
+
+        /// <summary>
+        /// Returns a list of question properties/values
+        /// </summary>
+        /// <returns>The list of properties/values</returns>
+        public IEnumerable<string> GetValues()
+        {
+            List<string> questionValues = new List<string>
+            {
+                this.Question, this.Answer, this.QuestionType, this.QuestionPack
+            };
+
+            return questionValues;
         }
     }
 }
