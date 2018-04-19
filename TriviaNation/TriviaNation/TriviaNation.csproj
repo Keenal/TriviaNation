@@ -55,18 +55,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBaseOperations.cs" />
+    <Compile Include="Models\Abstract\IQuestionPack.cs" />
+    <Compile Include="Models\QuestionPack.cs" />
     <Compile Include="Repository\Abstract\IDataBaseTable.cs" />
     <Compile Include="Repository\Abstract\IDataEntry.cs" />
     <Compile Include="Models\Abstract\IQuestion.cs" />
     <Compile Include="Models\Abstract\ITriviaTerritory.cs" />
     <Compile Include="Admin\Abstract\ITerritoryAdministration.cs" />
-    <Compile Include="Models\Abstract\ITrivia.cs" />
+    <Compile Include="Admin\Abstract\ITrivia.cs" />
     <Compile Include="Admin\Abstract\ITriviaAdministration.cs" />
     <Compile Include="Models\Abstract\IUser.cs" />
     <Compile Include="Admin\Abstract\IUserAdministration.cs" />
     <Compile Include="Admin\Abstract\IUserAuthentication.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\QuestionPackTable.cs" />
     <Compile Include="Repository\QuestionTable.cs" />
     <Compile Include="Models\TriviaTerritory.cs" />
     <Compile Include="Admin\TerritoryAdministration.cs" />

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TriviaNation.Models.Abstract;
 
 /**
 TriviaNation is a networked trivia game designed for use in
@@ -22,14 +23,13 @@ namespace TriviaNation
     /// <summary>
     /// Interface for the TriviaAdministration class.  Extends IDataEntry.
     /// </summary>
-    public interface ITriviaAdministration : IDataEntry
+    public interface ITriviaAdministration
     {
-        void AddQuestion(string question, string answer, string questionType);
+        IQuestionPack AddQuestionPack(string questionPackName, int questionPointValue);
 
-        void DeleteQuestion(int questionNumber);
+        void DeleteQuestionPack(string questionPackName);
 
-        IEnumerable<IQuestion> ListQuestions();
-        IQuestion GetEditableQuestion(int questionNumber);
-        void InsertEditedQuestion(IQuestion editedQuestion);
+        IEnumerable<IQuestionPack> ListQuestionPacks();
+ 
     }
 }
