@@ -139,7 +139,7 @@ namespace TriviaNation
         {
             List<string> questionValues = new List<string>
             {
-                this.Question, this.Answer, this.QuestionType, this.QuestionPack
+                this.Question, this.Answer, this.QuestionType, this.PointValue.ToString(), this.QuestionPack
             };
 
             return questionValues;

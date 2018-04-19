@@ -26,7 +26,7 @@ namespace TriviaNation
     /// <summary>
     /// A class to handle administrative tasks for questions and answers
     /// </summary>
-    public class TriviaAdministration
+    public class TriviaAdministration : ITriviaAdministration
     {
         /// <summary>
         /// IQuestion object for modeling question data
@@ -36,15 +36,10 @@ namespace TriviaNation
         /// IQuestion object for modeling question data
         /// </summary>
         private IDataBaseTable questionPackTable;
-        /// <summary>
-        /// IDataBaseTable object for storing and retrieving question data
-        /// </summary>
-        private IDataBaseTable database;
 
         /// <summary>
         /// Constructs a TriviaAdministration object with database instance field through use of interfaces 
         /// </summary>
-        /// <param name="database">The database object related to questions</param>
         public TriviaAdministration()
         {
             this.questionPackTable = new QuestionPackTable();
@@ -56,14 +51,15 @@ namespace TriviaNation
         /// </summary>
         /// <param name="query">The question</param>
         /// <param name="answer">The answer</param>
-        public void AddQuestionPack(string questionPackName, int questionPointValue)
+        public IQuestionPack AddQuestionPack(string questionPackName, int questionPointValue)
         {
             //creates a new instance of a QuestionPack
             IQuestionPack questionPack = new QuestionPack(questionPackName, questionPointValue, null);
 
             //creates a new QuestionTable named for this QuestionPack
-            String tableName = ("QP" + questionPackName + "Table");
+            String tableName = (questionPackName);
             IDataBaseTable newQuestionTable = new QuestionTable(tableName);
+            newQuestionTable.CreateTable(newQuestionTable.TableName, newQuestionTable.TableCreationString);
 
             //adds the database table to the QuestionPack object
             questionPack.Database = newQuestionTable;
@@ -76,6 +72,8 @@ namespace TriviaNation
             //adds the question pack to the questionPackList
             questionPackList.Add(questionPack);
 
+            //returns the QuestionPack that was added
+            return questionPack;
         }
 
         /// <summary>
@@ -88,7 +86,7 @@ namespace TriviaNation
             {
                 if (questionPackList[i].Equals(questionPackName))
                 {
-                    string questionPackTableName = ("QP" + questionPackList[i].QuestionPackName + "Table");
+                    string questionPackTableName = (questionPackList[i].QuestionPackName);
                     DataBaseOperations.DeleteTable(questionPackTableName);
                     questionPackList.Remove(questionPackList[i]);
                 }

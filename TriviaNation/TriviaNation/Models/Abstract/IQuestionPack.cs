@@ -19,6 +19,10 @@ namespace TriviaNation.Models.Abstract
         }
         IDataBaseTable Database { get; set; }
 
+        void AddQuestion(string questionText, string answer, string questionType);
+
+        IEnumerable<IQuestion> ListQuestions();
+
         void PopulateListFromTable();
     }
 }
