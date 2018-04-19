@@ -22,12 +22,19 @@ namespace TriviaNation.Models
         /// </summary>
         /// <param name="questionPackName">The question object</param>
         /// <param name="database">The database object related to questions</param>
-        public QuestionPack(String questionPackName, int pointValue, IDataBaseTable dataBase)
+        public QuestionPack(String questionPackName, int pointValue)
         {
+            //sets up the QuestionPack
             this.QuestionPackName = questionPackName;
             this.PointValue = pointValue;
+
+            //creates a new QuestionTable named for this QuestionPack
+            Database = new QuestionTable(questionPackName);
+            Database.CreateTable(Database.TableName, Database.TableCreationString);
+
+            //populates the List<Questions> for this QuestionPack
             this.QuestionPackQuestions = new List<IQuestion>();
-            this.Database = dataBase;
+            PopulateListFromTable();
         }
 
 
@@ -149,7 +156,7 @@ namespace TriviaNation.Models
         {
             List<string> questionValues = new List<string>
             {
-                this.QuestionPackName
+                this.QuestionPackName, this.PointValue.ToString()
             };
 
             return questionValues;

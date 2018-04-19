@@ -44,6 +44,7 @@ namespace TriviaNation
         {
             this.questionPackTable = new QuestionPackTable();
             this.questionPackList = new List<IQuestionPack>();
+            PopulateListFromTable();
         }
 
         /// <summary>
@@ -54,19 +55,10 @@ namespace TriviaNation
         public IQuestionPack AddQuestionPack(string questionPackName, int questionPointValue)
         {
             //creates a new instance of a QuestionPack
-            IQuestionPack questionPack = new QuestionPack(questionPackName, questionPointValue, null);
-
-            //creates a new QuestionTable named for this QuestionPack
-            String tableName = (questionPackName);
-            IDataBaseTable newQuestionTable = new QuestionTable(tableName);
-            newQuestionTable.CreateTable(newQuestionTable.TableName, newQuestionTable.TableCreationString);
-
-            //adds the database table to the QuestionPack object
-            questionPack.Database = newQuestionTable;
+            IQuestionPack questionPack = new QuestionPack(questionPackName, questionPointValue);
 
             //insert this question pack into the master QuestionPackTable that includes all the active
-            //question pack names... later can add additional information like qeustion pack price and creater
-            //ect... using the QuestionPack class' getValues() method
+            //question packs
             questionPackTable.InsertRowIntoTable(questionPackTable.TableName, questionPack);
 
             //adds the question pack to the questionPackList
@@ -100,6 +92,33 @@ namespace TriviaNation
         public IEnumerable<IQuestionPack> ListQuestionPacks()
         {
             return questionPackList;
+        }
+
+        /// <summary>
+        /// Returns all question data in the database in the form of a list of objects
+        /// </summary>
+        /// /// <returns>The list of question objects</returns>
+        public void PopulateListFromTable()
+        {
+            for (int i = 1; i <= questionPackTable.RetrieveNumberOfRowsInTable(); i++)
+            {
+                IQuestionPack questionPackToAdd = SetRowToObject(i);
+                questionPackList.Add(questionPackToAdd);
+            }
+        }
+
+        // Refactored code
+        private IQuestionPack SetRowToObject(int questionPackNumber)
+        {
+            string tableRow = questionPackTable.RetrieveTableRow(questionPackTable.TableName, questionPackNumber);
+            string[] split = tableRow.Split(separator: '\n');
+
+            string questionPackName = split[0];
+            string pointValueString = split[1];
+            int pointValue = Convert.ToInt32(pointValueString);
+
+            IQuestionPack questionPack = new QuestionPack(questionPackName, questionPackNumber);
+            return questionPack;
         }
     }
 }
