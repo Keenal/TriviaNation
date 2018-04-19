@@ -77,15 +77,15 @@ namespace TriviaNation
         /// <summary>
         /// Deletes a question from the database
         /// </summary>
-        /// <param name="questionNumber">The user input question number that matches the row position of a question</param>
+        /// <param name="questionPackName">The name of the question pack to delete</param>
         public void DeleteQuestionPack(string questionPackName)
         {
             for (int i = 0; i < QuestionPackList.Count; i++)
             {
-                if (QuestionPackList[i].Equals(questionPackName))
+                if (QuestionPackList[i].QuestionPackName.Equals(questionPackName))
                 {
-                    string questionPackTableName = (QuestionPackList[i].QuestionPackName);
-                    DataBaseOperations.DeleteTable(questionPackTableName);
+                    DataBaseOperations.DeleteTable(questionPackName);
+                    questionPackTable.DeleteRowFromTable(questionPackName);
                     QuestionPackList.Remove(QuestionPackList[i]);
                 }
             }
@@ -97,15 +97,15 @@ namespace TriviaNation
         /// /// <returns>The list of question objects</returns>
         public IQuestionPack RetrieveQuestionPackByName(string questionPackName)
         {
-            for (int i = 0; i < QuestionPackList.Count; i++)
-            {
-                if (QuestionPackList[i].QuestionPackName.Equals(questionPackName))
-                {
-                    return QuestionPackList[i];
-                }
-            }
-            Console.WriteLine("WARNING: Question Pack Name does not exist");
-            return null;
+           for (int i = 0; i < QuestionPackList.Count; i++)
+           {
+              if (QuestionPackList[i].QuestionPackName.Equals(questionPackName))
+              {
+                 return QuestionPackList[i];
+              }
+           }
+           Console.WriteLine("WARNING: Question Pack " + questionPackName + " does not exist");
+           return null;
         }
 
         /// <summary>

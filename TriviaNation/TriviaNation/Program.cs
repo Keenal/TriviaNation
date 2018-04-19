@@ -48,9 +48,10 @@ namespace TriviaNation
             questionPackTable.CreateTable(questionPackTable.TableName, questionPackTable.TableCreationString);
             //set up selection, creation or deletion of QuestionPacks
             ITriviaAdministration triviaAdmin = new TriviaAdministration(); // comment out triviaAdmin above if you need to use this
-            //Create 2 QuestionPacks
+            //Create 3 QuestionPacks
             IQuestionPack qp1 = triviaAdmin.AddQuestionPack("questionPack1", 5);
             IQuestionPack qp2 = triviaAdmin.AddQuestionPack("questionPack2", 10);
+            IQuestionPack qp3 = triviaAdmin.AddQuestionPack("questionPack3", 20);
             //populate questionPacks
             qp1.AddQuestion("Is this questionPack1, q1?", "yes~no~maybe~blue~yes", "MC");
             qp1.AddQuestion("Is this questionPack1, q2?", "no~yes~maybe~blue~yes", "MC");
@@ -72,8 +73,17 @@ namespace TriviaNation
             qp2.AddQuestion("Is this questionPack2, q7?", "yes~no~maybe~blue~yes", "MC");
             qp2.AddQuestion("Is this questionPack2, q8?", "YES~NO~MAYBE~BLUE~YES", "MC");
             qp2.AddQuestion("Is this questionPack2, q9?", "red~purple~fox~yes~yes", "MC");
-            */
 
+            qp3.AddQuestion("Is this questionPack3, q1?", "yes~no~maybe~blue~yes", "MC");
+            qp3.AddQuestion("Is this questionPack3, q2?", "no~yes~maybe~blue~yes", "MC");
+            qp3.AddQuestion("Is this questionPack3, q3?", "maybe~no~yes~blue~yes", "MC");
+            qp3.AddQuestion("Is this questionPack3, q4?", "blue~no~maybe~yes~yes", "MC");
+            qp3.AddQuestion("Is this questionPack3, q5?", "5~4~3~6~5", "MC");
+            qp3.AddQuestion("Is this questionPack3, q6?", "q4~q6~maybe~blue~q6", "MC");
+            qp3.AddQuestion("Is this questionPack3, q7?", "yes~no~maybe~blue~yes", "MC");
+            qp3.AddQuestion("Is this questionPack3, q8?", "YES~NO~MAYBE~BLUE~YES", "MC");
+            qp3.AddQuestion("Is this questionPack3, q9?", "red~purple~fox~yes~yes", "MC");
+            */
             
             //list all QuestionPacks
             IEnumerable<IQuestionPack> qpList = triviaAdmin.ListQuestionPacks();
@@ -82,47 +92,78 @@ namespace TriviaNation
                 Console.WriteLine(qp.QuestionPackName);
                 Console.WriteLine(qp.PointValue);
                 Console.WriteLine();
-
             }
-            
+
             //list all the Questions in qp1
             IQuestionPack qp1 = triviaAdmin.RetrieveQuestionPackByName("questionPack1");
-            for (int i = 0; i < qp1.QuestionPackQuestions.Count; i++)
+            if (qp1 != null)
             {
-                Console.WriteLine(qp1.QuestionPackQuestions[i].Question);
-                Console.WriteLine(qp1.QuestionPackQuestions[i].Answer);
-                Console.WriteLine(qp1.QuestionPackQuestions[i].QuestionType);
-                Console.WriteLine(qp1.QuestionPackQuestions[i].PointValue);
-                Console.WriteLine(qp1.QuestionPackQuestions[i].QuestionPack);
-                Console.WriteLine();
+                for (int i = 0; i < qp1.QuestionPackQuestions.Count; i++)
+                {
+                    Console.WriteLine(qp1.QuestionPackQuestions[i].Question);
+                    Console.WriteLine(qp1.QuestionPackQuestions[i].Answer);
+                    Console.WriteLine(qp1.QuestionPackQuestions[i].QuestionType);
+                    Console.WriteLine(qp1.QuestionPackQuestions[i].PointValue);
+                    Console.WriteLine(qp1.QuestionPackQuestions[i].QuestionPack);
+                    Console.WriteLine();
+                }
             }
-             
+
             //list all the Questions in qp2
             IQuestionPack qp2 = triviaAdmin.RetrieveQuestionPackByName("questionPack2");
-            for (int i = 0; i < qp2.QuestionPackQuestions.Count; i++)
+            if (qp2 != null)
             {
-                Console.WriteLine(qp2.QuestionPackQuestions[i].Question);
-                Console.WriteLine(qp2.QuestionPackQuestions[i].Answer);
-                Console.WriteLine(qp2.QuestionPackQuestions[i].QuestionType);
-                Console.WriteLine(qp2.QuestionPackQuestions[i].PointValue);
-                Console.WriteLine(qp2.QuestionPackQuestions[i].QuestionPack);
-                Console.WriteLine();
+                for (int i = 0; i < qp2.QuestionPackQuestions.Count; i++)
+                {
+                    Console.WriteLine(qp2.QuestionPackQuestions[i].Question);
+                    Console.WriteLine(qp2.QuestionPackQuestions[i].Answer);
+                    Console.WriteLine(qp2.QuestionPackQuestions[i].QuestionType);
+                    Console.WriteLine(qp2.QuestionPackQuestions[i].PointValue);
+                    Console.WriteLine(qp2.QuestionPackQuestions[i].QuestionPack);
+                    Console.WriteLine();
+                }
             }
-
-
 
             //list all the Questions in qp3
             IQuestionPack qp3 = triviaAdmin.RetrieveQuestionPackByName("questionPack3");
-            for (int i = 0; i < qp3.QuestionPackQuestions.Count; i++)
+            if (qp3 != null)
             {
-                Console.WriteLine(qp3.QuestionPackQuestions[i].Question);
-                Console.WriteLine(qp3.QuestionPackQuestions[i].Answer);
-                Console.WriteLine(qp3.QuestionPackQuestions[i].QuestionType);
-                Console.WriteLine(qp3.QuestionPackQuestions[i].PointValue);
-                Console.WriteLine(qp3.QuestionPackQuestions[i].QuestionPack);
+                for (int i = 0; i < qp3.QuestionPackQuestions.Count; i++)
+                {
+                    Console.WriteLine(qp3.QuestionPackQuestions[i].Question);
+                    Console.WriteLine(qp3.QuestionPackQuestions[i].Answer);
+                    Console.WriteLine(qp3.QuestionPackQuestions[i].QuestionType);
+                    Console.WriteLine(qp3.QuestionPackQuestions[i].PointValue);
+                    Console.WriteLine(qp3.QuestionPackQuestions[i].QuestionPack);
+                    Console.WriteLine();
+                }
+            }
+
+            triviaAdmin.DeleteQuestionPack("questionPack3");
+            //list all QuestionPacks
+            IEnumerable<IQuestionPack> qpList1 = triviaAdmin.ListQuestionPacks();
+            foreach (IQuestionPack qp in qpList1)
+            {
+                Console.WriteLine(qp.QuestionPackName);
+                Console.WriteLine(qp.PointValue);
                 Console.WriteLine();
             }
 
+            //list all the Questions in qp3
+            IQuestionPack qp4 = triviaAdmin.RetrieveQuestionPackByName("questionPack3");
+            if (qp4 != null)
+            {
+                for (int i = 0; i < qp4.QuestionPackQuestions.Count; i++)
+                {
+                    Console.WriteLine(qp4.QuestionPackQuestions[i].Question);
+                    Console.WriteLine(qp4.QuestionPackQuestions[i].Answer);
+                    Console.WriteLine(qp4.QuestionPackQuestions[i].QuestionType);
+                    Console.WriteLine(qp4.QuestionPackQuestions[i].PointValue);
+                    Console.WriteLine(qp4.QuestionPackQuestions[i].QuestionPack);
+                    Console.WriteLine();
+                }
+            }
+            
             Console.WriteLine("Press any key to end the program");
             Console.ReadKey();
         }
