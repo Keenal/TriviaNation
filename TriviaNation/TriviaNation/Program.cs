@@ -80,20 +80,48 @@ namespace TriviaNation
             foreach (IQuestionPack qp in qpList)
             {
                 Console.WriteLine(qp.QuestionPackName);
+                Console.WriteLine(qp.PointValue);
+                Console.WriteLine();
+
             }
             
+            //list all the Questions in qp1
             IQuestionPack qp1 = triviaAdmin.RetrieveQuestionPackByName("questionPack1");
             for (int i = 0; i < qp1.QuestionPackQuestions.Count; i++)
             {
                 Console.WriteLine(qp1.QuestionPackQuestions[i].Question);
+                Console.WriteLine(qp1.QuestionPackQuestions[i].Answer);
+                Console.WriteLine(qp1.QuestionPackQuestions[i].QuestionType);
+                Console.WriteLine(qp1.QuestionPackQuestions[i].PointValue);
+                Console.WriteLine(qp1.QuestionPackQuestions[i].QuestionPack);
+                Console.WriteLine();
             }
-
+             
+            //list all the Questions in qp2
             IQuestionPack qp2 = triviaAdmin.RetrieveQuestionPackByName("questionPack2");
             for (int i = 0; i < qp2.QuestionPackQuestions.Count; i++)
             {
                 Console.WriteLine(qp2.QuestionPackQuestions[i].Question);
+                Console.WriteLine(qp2.QuestionPackQuestions[i].Answer);
+                Console.WriteLine(qp2.QuestionPackQuestions[i].QuestionType);
+                Console.WriteLine(qp2.QuestionPackQuestions[i].PointValue);
+                Console.WriteLine(qp2.QuestionPackQuestions[i].QuestionPack);
+                Console.WriteLine();
             }
-            
+
+
+
+            //list all the Questions in qp3
+            IQuestionPack qp3 = triviaAdmin.RetrieveQuestionPackByName("questionPack3");
+            for (int i = 0; i < qp3.QuestionPackQuestions.Count; i++)
+            {
+                Console.WriteLine(qp3.QuestionPackQuestions[i].Question);
+                Console.WriteLine(qp3.QuestionPackQuestions[i].Answer);
+                Console.WriteLine(qp3.QuestionPackQuestions[i].QuestionType);
+                Console.WriteLine(qp3.QuestionPackQuestions[i].PointValue);
+                Console.WriteLine(qp3.QuestionPackQuestions[i].QuestionPack);
+                Console.WriteLine();
+            }
 
             Console.WriteLine("Press any key to end the program");
             Console.ReadKey();

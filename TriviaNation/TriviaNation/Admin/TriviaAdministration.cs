@@ -138,8 +138,8 @@ namespace TriviaNation
 
             string questionPackName = split[0];
             string pointValueString = split[1];
-            int pointValue = Convert.ToInt32(pointValueString);
-            IQuestionPack questionPack = new QuestionPack(questionPackName, questionPackNumber);
+            int pointValue = int.Parse(pointValueString);
+            IQuestionPack questionPack = new QuestionPack(questionPackName, pointValue);
             return questionPack;
         }
     }

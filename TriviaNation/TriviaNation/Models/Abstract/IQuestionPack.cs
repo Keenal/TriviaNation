@@ -13,6 +13,11 @@ namespace TriviaNation.Models.Abstract
             get; set;
         }
 
+        int PointValue
+        {
+            get; set;
+        }
+
         List<IQuestion> QuestionPackQuestions
         {
             get;
