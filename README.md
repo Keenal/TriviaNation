@@ -15,5 +15,3 @@ Wesley Easton
 
 Randy Quimby
 
-Testing a merge with Questions branch *
-

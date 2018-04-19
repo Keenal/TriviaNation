@@ -88,10 +88,6 @@ namespace TriviaNation
             }
             else
                 return false;
-
-            // all questions should have a flag for what kind of question it is (IE "m" for multiple choice)
-            // Will need to overide and/or add more evaluateAnswer methods for different answer formats
-            // place a call to here in the handler
         }
 
     }

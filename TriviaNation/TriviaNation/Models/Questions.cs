@@ -58,6 +58,11 @@ namespace TriviaNation
             this.questionPack = questionPack;
         }
 
+        public Questions()
+        {
+
+        }
+
         /// <summary>
         /// Accessor and mutator Property for the question in a trivia
         /// </summary>
