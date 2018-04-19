@@ -1,20 +1,21 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using TriviaNation.Models.Abstract;
 
 namespace TriviaNation
 {
     [TestClass]
     public class TriviaTest
     {
-        private IQuestion question;
+        private IQuestionPack question;
         private IDataBaseTable database;
         private ITrivia sut;
 
         [TestInitialize]
         public void Initialize()
         {
-            question = new Questions();
+            question = new QuestionPack();
             database = new QuestionTable();
             sut = null;
         }
