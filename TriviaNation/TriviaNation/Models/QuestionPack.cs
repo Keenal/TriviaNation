@@ -24,13 +24,10 @@ namespace TriviaNation.Models
         /// <param name="database">The database object related to questions</param>
         public QuestionPack(String questionPackName, int pointValue)
         {
-            //sets up the QuestionPack
+            //constructs the QuestionPack
             this.QuestionPackName = questionPackName;
             this.PointValue = pointValue;
-
-            //creates a new QuestionTable named for this QuestionPack
             Database = new QuestionTable(questionPackName);
-            Database.CreateTable(Database.TableName, Database.TableCreationString);
 
             //populates the List<Questions> for this QuestionPack
             this.QuestionPackQuestions = new List<IQuestion>();
@@ -127,10 +124,13 @@ namespace TriviaNation.Models
         /// /// <returns>The list of question objects</returns>
         public void PopulateListFromTable()
         {
-            for (int i = 1; i <= Database.RetrieveNumberOfRowsInTable(); i++)
+            if (Database.TableExists(Database.TableName))
             {
-                IQuestion questionToAdd = SetRowToObject(i);
-                QuestionPackQuestions.Add(questionToAdd);
+                for (int i = 1; i <= Database.RetrieveNumberOfRowsInTable(); i++)
+                {
+                    IQuestion questionToAdd = SetRowToObject(i);
+                    QuestionPackQuestions.Add(questionToAdd);
+                }
             }
         }
             

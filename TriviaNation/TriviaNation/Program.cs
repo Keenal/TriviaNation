@@ -38,57 +38,62 @@ namespace TriviaNation
             //connect to the DB
             new DataBaseOperations();
             DataBaseOperations.ConnectToDB();
-
-            QuestionPackTable questionPackTable = new QuestionPackTable();
-            questionPackTable.CreateTable(questionPackTable.TableName, questionPackTable.TableCreationString);
-            
-
-            //set up selection, creation or deletion of QuestionPacks
             ITriviaAdministration triviaAdmin = new TriviaAdministration();
 
+            //COMMENTED OUT CODE IS USED IF ALL THE TABLES ARE NEEDED TO BE 
+            //RECREATED AND REPOPULATED IN CASE OF CHANGES WHILE DEBUGGING
+            /*
+            //creates a new QuestionPackTable to populate with QuestionPacks
+            QuestionPackTable questionPackTable = new QuestionPackTable();
+            questionPackTable.CreateTable(questionPackTable.TableName, questionPackTable.TableCreationString);
+            //set up selection, creation or deletion of QuestionPacks
+            ITriviaAdministration triviaAdmin = new TriviaAdministration(); // comment out triviaAdmin above if you need to use this
             //Create 2 QuestionPacks
             IQuestionPack qp1 = triviaAdmin.AddQuestionPack("questionPack1", 5);
             IQuestionPack qp2 = triviaAdmin.AddQuestionPack("questionPack2", 10);
-            
-
             //populate questionPacks
-            qp1.AddQuestion("Is this qp1, q1?", "yes~no~maybe~blue~yes", "MC");
-            qp1.AddQuestion("Is this qp1, q2?", "no~yes~maybe~blue~yes", "MC");
-            qp1.AddQuestion("Is this qp1, q3?", "maybe~no~yes~blue~yes", "MC");
-            qp1.AddQuestion("Is this qp1, q4?", "blue~no~maybe~yes~yes", "MC");
-            qp1.AddQuestion("Is this qp1, q5?", "5~4~3~6~5", "MC");
-            qp1.AddQuestion("Is this qp1, q6?", "q4~q6~maybe~blue~q6", "MC");
-            qp1.AddQuestion("Is this qp1, q7?", "yes~no~maybe~blue~yes", "MC");
-            qp1.AddQuestion("Is this qp1, q8?", "YES~NO~MAYBE~BLUE~YES", "MC");
-            qp1.AddQuestion("Is this qp1, q9?", "red~purple~fox~yes~yes", "MC");
-            qp1.AddQuestion("Is this qp1, q10?", "Yes~No~Maybe~Blue~Yes", "MC");
+            qp1.AddQuestion("Is this questionPack1, q1?", "yes~no~maybe~blue~yes", "MC");
+            qp1.AddQuestion("Is this questionPack1, q2?", "no~yes~maybe~blue~yes", "MC");
+            qp1.AddQuestion("Is this questionPack1, q3?", "maybe~no~yes~blue~yes", "MC");
+            qp1.AddQuestion("Is this questionPack1, q4?", "blue~no~maybe~yes~yes", "MC");
+            qp1.AddQuestion("Is this questionPack1, q5?", "5~4~3~6~5", "MC");
+            qp1.AddQuestion("Is this questionPack1, q6?", "q4~q6~maybe~blue~q6", "MC");
+            qp1.AddQuestion("Is this questionPack1, q7?", "yes~no~maybe~blue~yes", "MC");
+            qp1.AddQuestion("Is this questionPack1, q8?", "YES~NO~MAYBE~BLUE~YES", "MC");
+            qp1.AddQuestion("Is this questionPack1, q9?", "red~purple~fox~yes~yes", "MC");
+            qp1.AddQuestion("Is this questionPack1, q10?", "Yes~No~Maybe~Blue~Yes", "MC");
 
-            qp2.AddQuestion("Is this qp2, q1?", "yes~no~maybe~blue~yes", "MC");
-            qp2.AddQuestion("Is this qp2, q2?", "no~yes~maybe~blue~yes", "MC");
-            qp2.AddQuestion("Is this qp2, q3?", "maybe~no~yes~blue~yes", "MC");
-            qp2.AddQuestion("Is this qp2, q4?", "blue~no~maybe~yes~yes", "MC");
-            qp2.AddQuestion("Is this qp2, q5?", "5~4~3~6~5", "MC");
-            qp2.AddQuestion("Is this qp2, q6?", "q4~q6~maybe~blue~q6", "MC");
-            qp2.AddQuestion("Is this qp2, q7?", "yes~no~maybe~blue~yes", "MC");
-            qp2.AddQuestion("Is this qp2, q8?", "YES~NO~MAYBE~BLUE~YES", "MC");
-            qp2.AddQuestion("Is this qp2, q9?", "red~purple~fox~yes~yes", "MC");
+            qp2.AddQuestion("Is this questionPack2, q1?", "yes~no~maybe~blue~yes", "MC");
+            qp2.AddQuestion("Is this questionPack2, q2?", "no~yes~maybe~blue~yes", "MC");
+            qp2.AddQuestion("Is this questionPack2, q3?", "maybe~no~yes~blue~yes", "MC");
+            qp2.AddQuestion("Is this questionPack2, q4?", "blue~no~maybe~yes~yes", "MC");
+            qp2.AddQuestion("Is this questionPack2, q5?", "5~4~3~6~5", "MC");
+            qp2.AddQuestion("Is this questionPack2, q6?", "q4~q6~maybe~blue~q6", "MC");
+            qp2.AddQuestion("Is this questionPack2, q7?", "yes~no~maybe~blue~yes", "MC");
+            qp2.AddQuestion("Is this questionPack2, q8?", "YES~NO~MAYBE~BLUE~YES", "MC");
+            qp2.AddQuestion("Is this questionPack2, q9?", "red~purple~fox~yes~yes", "MC");
+            */
 
+            
             //list all QuestionPacks
             IEnumerable<IQuestionPack> qpList = triviaAdmin.ListQuestionPacks();
             foreach (IQuestionPack qp in qpList)
             {
                 Console.WriteLine(qp.QuestionPackName);
             }
-
+            
+            IQuestionPack qp1 = triviaAdmin.RetrieveQuestionPackByName("questionPack1");
             for (int i = 0; i < qp1.QuestionPackQuestions.Count; i++)
             {
                 Console.WriteLine(qp1.QuestionPackQuestions[i].Question);
             }
 
+            IQuestionPack qp2 = triviaAdmin.RetrieveQuestionPackByName("questionPack2");
             for (int i = 0; i < qp2.QuestionPackQuestions.Count; i++)
             {
                 Console.WriteLine(qp2.QuestionPackQuestions[i].Question);
             }
+            
 
             Console.WriteLine("Press any key to end the program");
             Console.ReadKey();
