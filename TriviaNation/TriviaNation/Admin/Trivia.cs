@@ -40,6 +40,16 @@ namespace TriviaNation
         private Random random;
         private IQuestion question;
 
+        // For testing purposes
+        public Trivia(IDataBaseTable database, IQuestion question)
+        {
+            this.database = null;
+            this.questionPack = null;
+            random = new Random();
+            this.database = database;
+            this.question = question;
+        }
+
         /// <summary>
         /// Constructs a Trivia object with database, random generation and question objects as instance fields through use of IDataBaseTable and IQuestion interfaces 
         /// </summary>

@@ -19,14 +19,14 @@ namespace TriviaNationTests
             new DataBaseOperations();
             DataBaseOperations.ConnectToDB();
             s_connection = DataBaseOperations.Connection;
-            QT = new QuestionTable();
+            QT = new QuestionTable("TableName");
         }
 
         [TestMethod]
         public void TestTableExistsMethodToSeeIfAKnownTableExists()
         {
             // Arrange
-            var sut = new QuestionTable();
+            var sut = new QuestionTable("TableName");
 
             // Act
             bool tableExists = sut.TableExists(sut.TableName);
@@ -105,7 +105,7 @@ namespace TriviaNationTests
         public void TestRetrieveNumberOfRowsInTableMethodShouldReturnIntNotNUll()
         {
             //Arrange
-            var sut = new QuestionTable();
+            var sut = new QuestionTable("TableName");
 
             //Act
             int numberReturned = sut.RetrieveNumberOfRowsInTable();
@@ -139,7 +139,7 @@ namespace TriviaNationTests
         public void TestRetrieveNumberOfColsInTableMethodShouldReturnIntNotNUll()
         {
             //Arrange
-            var sut = new QuestionTable();
+            var sut = new QuestionTable("TableName");
 
             //Act
             int numberReturned = sut.RetriveNumberOfColsInTable();
@@ -153,7 +153,7 @@ namespace TriviaNationTests
         {
             // Arrange
             int count = 1;
-            var sut = new QuestionTable();
+            var sut = new QuestionTable("tableName");
             String questionString = "This is question1";
             String sqlString = "DELETE FROM QuestionTable WHERE question='" + questionString + "';";
 

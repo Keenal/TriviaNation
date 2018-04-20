@@ -67,8 +67,6 @@ namespace TriviaNation
         /// <param name="score">The user's score</param>
         public Boolean AddUser(string userName, string email, string password, string confirmPassword, string score)
         {
-            // score needs to be converted to int or made into an int and converted to string 
-            // for future sprint though.
             if (password.Equals(confirmPassword))
             {
                 user.UserName = userName;
@@ -92,7 +90,6 @@ namespace TriviaNation
             database.DeleteRowFromTable(user.UserName);
         }
 
-        // Refactored code
         private void SetRowToObject(int userNumber)
         {
             string tableRow = database.RetrieveTableRow(database.TableName, userNumber);
@@ -125,6 +122,8 @@ namespace TriviaNation
 
             return allUserModels;
         }
+
+      
 
         /// <summary>
         /// Returns a list of user properties/values

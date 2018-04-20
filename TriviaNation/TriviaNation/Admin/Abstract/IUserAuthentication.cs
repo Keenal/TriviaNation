@@ -9,5 +9,6 @@ namespace TriviaNation
     {
         Boolean AuthenticateUser(string email, string password);
         string GetUserName();
+        Boolean IsAdministrator();
     }
 }
