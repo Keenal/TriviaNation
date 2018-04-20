@@ -168,6 +168,7 @@ namespace TriviaNation
             }
             */
 
+            //This block of code was for testing the retrieval of random questions
             IQuestionPack qp2 = triviaAdmin.RetrieveQuestionPackByName("questionPack2");
             ITrivia trivia = new Trivia(qp2);
 
@@ -175,6 +176,8 @@ namespace TriviaNation
             Console.WriteLine(trivia.GetRandomQuestion().Question);
             Console.WriteLine(trivia.GetRandomQuestion().Question);
             Console.WriteLine(trivia.GetRandomQuestion().Question);
+            
+
 
             Console.WriteLine("Press any key to end the program");
             Console.ReadKey();

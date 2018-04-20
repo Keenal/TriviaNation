@@ -26,6 +26,10 @@ namespace TriviaNation.Models.Abstract
 
         void AddQuestion(string questionText, string answer, string questionType);
 
+        void DeleteQuestion(string questionText);
+
+        void DeleteQuestion(int questionNumber);
+
         IEnumerable<IQuestion> ListQuestions();
 
         void PopulateListFromTable();
