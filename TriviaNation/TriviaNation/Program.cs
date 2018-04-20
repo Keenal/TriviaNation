@@ -84,7 +84,10 @@ namespace TriviaNation
             qp3.AddQuestion("Is this questionPack3, q8?", "YES~NO~MAYBE~BLUE~YES", "MC");
             qp3.AddQuestion("Is this questionPack3, q9?", "red~purple~fox~yes~yes", "MC");
             */
-            
+
+            //This section of code was for testing the listing of QuestionPacks, QuestionPack
+            //Questions, and deleting QuestionPacks
+            /*
             //list all QuestionPacks
             IEnumerable<IQuestionPack> qpList = triviaAdmin.ListQuestionPacks();
             foreach (IQuestionPack qp in qpList)
@@ -163,7 +166,16 @@ namespace TriviaNation
                     Console.WriteLine();
                 }
             }
-            
+            */
+
+            IQuestionPack qp2 = triviaAdmin.RetrieveQuestionPackByName("questionPack2");
+            ITrivia trivia = new Trivia(qp2);
+
+            Console.WriteLine(trivia.GetRandomQuestion().Question);
+            Console.WriteLine(trivia.GetRandomQuestion().Question);
+            Console.WriteLine(trivia.GetRandomQuestion().Question);
+            Console.WriteLine(trivia.GetRandomQuestion().Question);
+
             Console.WriteLine("Press any key to end the program");
             Console.ReadKey();
         }

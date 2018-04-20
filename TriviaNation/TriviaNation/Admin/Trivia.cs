@@ -38,6 +38,9 @@ namespace TriviaNation
         /// Random object for generating random integers 
         /// </summary>
         private Random random;
+        /// <summary>
+        /// question object for referancing this question
+        /// </summary>
         private IQuestion question;
 
         /// <summary>
@@ -45,12 +48,11 @@ namespace TriviaNation
         /// </summary>
         /// <param name="database">The database object related to questions</param>
         /// <param name="questionPack">The questionPack we are getting qeustions from</param>
-        public Trivia(IDataBaseTable database, IQuestionPack questionPack)
+        public Trivia(IQuestionPack questionPack)
         {
-            this.database = database;
             this.questionPack = questionPack;
+            database = new QuestionTable(questionPack.QuestionPackName);
             random = new Random();
-            questionPack.PopulateListFromTable();
         }
 
         /// <summary>
@@ -89,6 +91,5 @@ namespace TriviaNation
             else
                 return false;
         }
-
     }
 }
