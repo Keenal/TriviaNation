@@ -11,7 +11,7 @@ namespace TriviaNation.Models
     {
         public string QuestionPackName { get; set; }
 
-        public int PointValue { get; private set; }
+        public int PointValue { get; set; }
 
         public IDataBaseTable Database { get; set; }
 
@@ -22,12 +22,16 @@ namespace TriviaNation.Models
         /// </summary>
         /// <param name="questionPackName">The question object</param>
         /// <param name="database">The database object related to questions</param>
-        public QuestionPack(String questionPackName, int pointValue, IDataBaseTable dataBase)
+        public QuestionPack(String questionPackName, int pointValue)
         {
+            //constructs the QuestionPack
             this.QuestionPackName = questionPackName;
             this.PointValue = pointValue;
+            Database = new QuestionTable(questionPackName);
+
+            //populates the List<Questions> for this QuestionPack
             this.QuestionPackQuestions = new List<IQuestion>();
-            this.Database = dataBase;
+            PopulateListFromTable();
         }
 
 
@@ -120,10 +124,13 @@ namespace TriviaNation.Models
         /// /// <returns>The list of question objects</returns>
         public void PopulateListFromTable()
         {
-            for (int i = 1; i <= Database.RetrieveNumberOfRowsInTable(); i++)
+            if (Database.TableExists(Database.TableName))
             {
-                IQuestion questionToAdd = SetRowToObject(i);
-                QuestionPackQuestions.Add(questionToAdd);
+                for (int i = 1; i <= Database.RetrieveNumberOfRowsInTable(); i++)
+                {
+                    IQuestion questionToAdd = SetRowToObject(i);
+                    QuestionPackQuestions.Add(questionToAdd);
+                }
             }
         }
             
@@ -136,8 +143,11 @@ namespace TriviaNation.Models
             string questionText = split[0];
             string answer = split[1];
             string questionType = split[2];
+            string pointValueString = split[3];
+            string questionPackName = split[4];
+            int pointValueInt = int.Parse(pointValueString); 
 
-            IQuestion question = new Questions(questionText, answer, questionType, PointValue, QuestionPackName);
+            IQuestion question = new Questions(questionText, answer, questionType, pointValueInt, questionPackName);
             return question;
         }
 
@@ -149,7 +159,7 @@ namespace TriviaNation.Models
         {
             List<string> questionValues = new List<string>
             {
-                this.QuestionPackName
+                this.QuestionPackName, this.PointValue.ToString()
             };
 
             return questionValues;

@@ -44,6 +44,6 @@ namespace TriviaNation
         void InsertRowIntoTable(String tableName, IDataEntry dataEntry);
         String RetrieveTableRow(String tableName, int rowNumber);
         String RetrieveTableRowsByCriteria(String tableName, String columnName, String matchingCriteria);
-        void DeleteRowFromTable(String question);
+        void DeleteRowFromTable(String firstColumnText);
     }
 }

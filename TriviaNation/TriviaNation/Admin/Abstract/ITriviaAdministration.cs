@@ -29,6 +29,8 @@ namespace TriviaNation
 
         void DeleteQuestionPack(string questionPackName);
 
+        IQuestionPack RetrieveQuestionPackByName(string questionPackName);
+
         IEnumerable<IQuestionPack> ListQuestionPacks();
  
     }
