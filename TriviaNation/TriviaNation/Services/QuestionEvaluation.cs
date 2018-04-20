@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TriviaNation.Models;
+using TriviaNation.Models.Abstract;
 using TriviaNation.Services.Abstract;
 
 namespace TriviaNation.Services
@@ -14,11 +16,12 @@ namespace TriviaNation.Services
         IQuestion question;
         ITrivia trivia;
 
-        public QuestionEvaluation()
+        public QuestionEvaluation(IQuestionPack questionPack)
         {
-            questionTable = new QuestionTable();
+            //questionTable = new QuestionTable();
             question = new Questions();
-            trivia = new Trivia(questionTable, question);
+            //trivia = new Trivia(questionTable, question);3
+            trivia = new Trivia(questionPack);
         }
 
         public void setQuestionInfo()
