@@ -26,7 +26,7 @@ namespace TriviaNation
     /// <summary>
     /// A class to handle administrative tasks for questions and answers
     /// </summary>
-    public class TriviaAdministration
+    public class TriviaAdministration : ITriviaAdministration
     {
         /// <summary>
         /// IQuestion object for modeling question data
@@ -36,61 +36,57 @@ namespace TriviaNation
         /// IQuestion object for modeling question data
         /// </summary>
         private IDataBaseTable questionPackTable;
-        /// <summary>
-        /// IDataBaseTable object for storing and retrieving question data
-        /// </summary>
-        private IDataBaseTable database;
 
         /// <summary>
         /// Constructs a TriviaAdministration object with database instance field through use of interfaces 
         /// </summary>
-        /// <param name="database">The database object related to questions</param>
         public TriviaAdministration()
         {
             this.questionPackTable = new QuestionPackTable();
-            this.questionPackList = new List<IQuestionPack>();
+            this.QuestionPackList = new List<IQuestionPack>();
+            PopulateListFromTable();
         }
+
+        public List<IQuestionPack> QuestionPackList { get => questionPackList; set => questionPackList = value; }
 
         /// <summary>
         /// Adds a question to the database
         /// </summary>
         /// <param name="query">The question</param>
         /// <param name="answer">The answer</param>
-        public void AddQuestionPack(string questionPackName, int questionPointValue)
+        public IQuestionPack AddQuestionPack(string questionPackName, int questionPointValue)
         {
             //creates a new instance of a QuestionPack
-            IQuestionPack questionPack = new QuestionPack(questionPackName, questionPointValue, null);
+            IQuestionPack questionPack = new QuestionPack(questionPackName, questionPointValue);
 
             //creates a new QuestionTable named for this QuestionPack
-            String tableName = ("QP" + questionPackName + "Table");
-            IDataBaseTable newQuestionTable = new QuestionTable(tableName);
-
-            //adds the database table to the QuestionPack object
-            questionPack.Database = newQuestionTable;
+            IDataBaseTable questionTableDatabase = new QuestionTable(questionPackName);
+            questionTableDatabase.CreateTable(questionTableDatabase.TableName, questionTableDatabase.TableCreationString);
 
             //insert this question pack into the master QuestionPackTable that includes all the active
-            //question pack names... later can add additional information like qeustion pack price and creater
-            //ect... using the QuestionPack class' getValues() method
+            //question packs
             questionPackTable.InsertRowIntoTable(questionPackTable.TableName, questionPack);
 
             //adds the question pack to the questionPackList
-            questionPackList.Add(questionPack);
+            QuestionPackList.Add(questionPack);
 
+            //returns the QuestionPack that was added
+            return questionPack;
         }
 
         /// <summary>
         /// Deletes a question from the database
         /// </summary>
-        /// <param name="questionNumber">The user input question number that matches the row position of a question</param>
+        /// <param name="questionPackName">The name of the question pack to delete</param>
         public void DeleteQuestionPack(string questionPackName)
         {
-            for (int i = 0; i < questionPackList.Count; i++)
+            for (int i = 0; i < QuestionPackList.Count; i++)
             {
-                if (questionPackList[i].Equals(questionPackName))
+                if (QuestionPackList[i].QuestionPackName.Equals(questionPackName))
                 {
-                    string questionPackTableName = ("QP" + questionPackList[i].QuestionPackName + "Table");
-                    DataBaseOperations.DeleteTable(questionPackTableName);
-                    questionPackList.Remove(questionPackList[i]);
+                    DataBaseOperations.DeleteTable(questionPackName);
+                    questionPackTable.DeleteRowFromTable(questionPackName);
+                    QuestionPackList.Remove(QuestionPackList[i]);
                 }
             }
         }
@@ -99,9 +95,52 @@ namespace TriviaNation
         /// Returns all question data in the database in the form of a list of objects
         /// </summary>
         /// /// <returns>The list of question objects</returns>
+        public IQuestionPack RetrieveQuestionPackByName(string questionPackName)
+        {
+           for (int i = 0; i < QuestionPackList.Count; i++)
+           {
+              if (QuestionPackList[i].QuestionPackName.Equals(questionPackName))
+              {
+                 return QuestionPackList[i];
+              }
+           }
+           Console.WriteLine("WARNING: Question Pack " + questionPackName + " does not exist");
+           return null;
+        }
+
+        /// <summary>
+        /// Returns all question data in the database in the form of a list of objects
+        /// </summary>
+        /// /// <returns>The list of question objects</returns>
         public IEnumerable<IQuestionPack> ListQuestionPacks()
         {
-            return questionPackList;
+            return QuestionPackList;
+        }
+
+        /// <summary>
+        /// Returns all question data in the database in the form of a list of objects
+        /// </summary>
+        /// /// <returns>The list of question objects</returns>
+        public void PopulateListFromTable()
+        {
+            for (int i = 1; i <= questionPackTable.RetrieveNumberOfRowsInTable(); i++)
+            {
+                IQuestionPack questionPackToAdd = SetRowToObject(i);
+                QuestionPackList.Add(questionPackToAdd);
+            }
+        }
+
+        // Refactored code
+        private IQuestionPack SetRowToObject(int questionPackNumber)
+        {
+            string tableRow = questionPackTable.RetrieveTableRow(questionPackTable.TableName, questionPackNumber);
+            string[] split = tableRow.Split(separator: '\n');
+
+            string questionPackName = split[0];
+            string pointValueString = split[1];
+            int pointValue = int.Parse(pointValueString);
+            IQuestionPack questionPack = new QuestionPack(questionPackName, pointValue);
+            return questionPack;
         }
     }
 }

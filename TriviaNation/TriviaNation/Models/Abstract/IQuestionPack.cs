@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TriviaNation.Models.Abstract
 {
@@ -13,11 +10,24 @@ namespace TriviaNation.Models.Abstract
             get; set;
         }
 
+        int PointValue
+        {
+            get; set;
+        }
+
         List<IQuestion> QuestionPackQuestions
         {
             get;
         }
         IDataBaseTable Database { get; set; }
+
+        void AddQuestion(string questionText, string answer, string questionType);
+
+        void DeleteQuestion(string questionText);
+
+        void DeleteQuestion(int questionNumber);
+
+        IEnumerable<IQuestion> ListQuestions();
 
         void PopulateListFromTable();
     }

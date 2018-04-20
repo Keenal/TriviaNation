@@ -28,6 +28,7 @@ namespace TriviaNation
     /// </summary>
     public class UserAuthentication : IUserAuthentication
     {
+        private static readonly int CorrectAnswerPoints = 5;
         /// <summary>
         /// IDataBaseTable object for storing and retrieving user data
         /// </summary>
@@ -36,6 +37,12 @@ namespace TriviaNation
         /// IUser object for modeling user data
         /// </summary>
         private IUser user;
+
+        public UserAuthentication()
+        {
+            this.database = null;
+            this.user = null;
+        }
 
         /// <summary>
         /// Constructs a UserAuthentication object with database and user objects as instance fields through use of IDataBaseTable and IUser interfaces 
@@ -67,13 +74,45 @@ namespace TriviaNation
                     user.UserName = splitRow[0];
                     user.Email = splitRow[1];
                     user.Password = splitRow[2];
-                    // May need to convert to int here in future.
                     user.Score = splitRow[3];
                     return true;
                 }
             }
 
             return false;
+        }
+
+        public Boolean IsAdministrator()
+        {
+            if (user.Email.Equals("teacher"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void ComputeScore()
+        {
+            int convertedScore = Convert.ToInt32(user.Score);
+            convertedScore = convertedScore + CorrectAnswerPoints;
+            user.Score = convertedScore.ToString();
+            SaveScoreToDatabase();
+        }
+
+        public void SaveScoreToDatabase()
+        {
+            IUserAdministration admin = new UserAdministration();
+            for (int i = 0; i < database.RetrieveNumberOfRowsInTable(); i++)
+            {
+                string tableRow = database.RetrieveTableRow(database.TableName, i);
+                string[] split = tableRow.Split(separator: '\n');
+
+                if (user.UserName.Equals(split[0]))
+                {
+                   admin.DeleteUser(i);
+                   admin.AddUser(user.UserName, user.Email, user.Password, user.Password, user.Score);
+                }
+            }
         }
 
         // To return user object affiliated with authentication

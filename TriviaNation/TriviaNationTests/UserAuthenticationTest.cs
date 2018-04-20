@@ -41,5 +41,26 @@ namespace TriviaNation
             Assert.AreEqual("Max Powers", test);
         }
 
+        [TestMethod]
+        public void IfAUserNameIsATeacherThenMethodShouldReturnTrueForLoggingIntoTeacherPortal()
+        {
+            // Arrange
+            IDataBaseTable database = new UserTable();
+            IUser user = new User();
+            user.Email = "teacher";
+            IUserAuthentication sut = new UserAuthentication(database, user);
+            
+            // Act
+            Boolean test = sut.IsAdministrator();
+
+            // Assert
+            Assert.IsTrue(test);
+        }
+
+        [TestMethod]
+        public void test()
+        {
+
+        }
     }
 }

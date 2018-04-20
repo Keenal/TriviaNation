@@ -38,19 +38,31 @@ namespace TriviaNation
         /// Random object for generating random integers 
         /// </summary>
         private Random random;
+        /// <summary>
+        /// question object for referancing this question
+        /// </summary>
         private IQuestion question;
+
+        // For testing purposes
+        public Trivia(IDataBaseTable database, IQuestion question)
+        {
+            this.database = null;
+            this.questionPack = null;
+            random = new Random();
+            this.database = database;
+            this.question = question;
+        }
 
         /// <summary>
         /// Constructs a Trivia object with database, random generation and question objects as instance fields through use of IDataBaseTable and IQuestion interfaces 
         /// </summary>
         /// <param name="database">The database object related to questions</param>
         /// <param name="questionPack">The questionPack we are getting qeustions from</param>
-        public Trivia(IDataBaseTable database, IQuestionPack questionPack)
+        public Trivia(IQuestionPack questionPack)
         {
-            this.database = database;
             this.questionPack = questionPack;
+            database = new QuestionTable(questionPack.QuestionPackName);
             random = new Random();
-            questionPack.PopulateListFromTable();
         }
 
         /// <summary>
@@ -88,11 +100,6 @@ namespace TriviaNation
             }
             else
                 return false;
-
-            // all questions should have a flag for what kind of question it is (IE "m" for multiple choice)
-            // Will need to overide and/or add more evaluateAnswer methods for different answer formats
-            // place a call to here in the handler
         }
-
     }
 }

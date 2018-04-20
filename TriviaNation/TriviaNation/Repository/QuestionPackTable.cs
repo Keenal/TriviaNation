@@ -29,7 +29,7 @@ namespace TriviaNation
         //name of this specific DataBase Table
         private const String tableName = "QuestionPackTable";
         //String used to create this specific Table
-        private const String tableCreationString = "(questionPackName varchar(4000) not null PRIMARY KEY);";
+        private const String tableCreationString = "(questionPackName varchar(4000) not null PRIMARY KEY, pointValue varchar(4000) not null);";
 
         /// <summary>
         /// Default Constructor for the QuestionTable class
@@ -75,15 +75,16 @@ namespace TriviaNation
         /// <summary>
         /// Inserts a row (containing question and answer) into the Table
         /// </summary>
-        /// <param name="dataEntry">Instance of IDataEntry Interface containing qustion, answer</param>
+        /// <param name="dataEntry">Instance of IDataEntry Interface containing values for the QuestionPack</param>
         public void InsertRowIntoTable(String tableName, IDataEntry dataEntry)
         {
             List<String> list = new List<string>();
             list = (List<String>)dataEntry.GetValues();
 
             String questionPackName = list[0];
+            String pointValue = list[1];
 
-            String insertString = "INSERT INTO " + tableName + "(questionPackName) VALUES ('" + questionPackName + "');";
+            String insertString = "INSERT INTO " + tableName + "(questionPackName, pointValue) VALUES ('" + questionPackName + "', '" + pointValue + "');";
             DataBaseOperations.InsertIntoTable(insertString);
         }
 
@@ -146,10 +147,10 @@ namespace TriviaNation
         /// <summary>
         /// Deletes a row from the Table
         /// </summary>
-        /// <param name="question">The question nomenclature of the row to DELETE from the Table</param>
-        public void DeleteRowFromTable(String question)
+        /// <param name="questionPackName">The question nomenclature of the row to DELETE from the Table</param>
+        public void DeleteRowFromTable(String questionPackName)
         {
-            String rowToDelete = ("DELETE FROM " + tableName + " WHERE questionPackName='" + question + "';");
+            String rowToDelete = ("DELETE FROM " + tableName + " WHERE questionPackName='" + questionPackName + "';");
 
             DataBaseOperations.DeleteRowFromTable(rowToDelete);
         }

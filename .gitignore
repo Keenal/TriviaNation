@@ -6,3 +6,12 @@
 .vs/
 TriviaNation/.vs/
 /TriviaNation/.vs
+/TriviaNation/packages/Castle.Core.4.2.1
+/TriviaNation/packages/Microsoft.CSharp.4.4.1
+/TriviaNation/packages/Moq.4.8.2
+/TriviaNation/packages/MSTest.TestAdapter.1.2.0
+/TriviaNation/packages/MSTest.TestFramework.1.2.0
+/TriviaNation/packages/System.Core.3.5.21022.801
+/TriviaNation/packages/System.Net.Http.4.3.3
+/TriviaNation/packages/System.Security.Cryptography.Algorithms.4.3.1
+/TriviaNation/packages

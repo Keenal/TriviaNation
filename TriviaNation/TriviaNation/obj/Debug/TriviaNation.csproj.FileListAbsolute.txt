@@ -39,3 +39,10 @@ C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\ob
 C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\System.Security.Cryptography.Algorithms.dll
 C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\System.Security.Cryptography.X509Certificates.dll
 C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csproj.CopyComplete
+C:\Source\Repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csprojResolveAssemblyReference.cache
+C:\Source\Repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csproj.CoreCompileInputs.cache
+C:\Source\Repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.dll
+C:\Source\Repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.dll.config
+C:\Source\Repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.dll
+C:\Source\Repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.pdb
+C:\Source\Repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.pdb

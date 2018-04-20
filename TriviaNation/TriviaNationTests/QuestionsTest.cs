@@ -10,11 +10,11 @@ namespace TriviaNation
         public void SettingATestQuestionShouldReturnQuestion()
         {
             // Arrange
-            Questions question = new Questions
-            {
-                // Act
-                Question = "Testing Working?"
-            };
+            Questions question = new Questions();
+
+            // Act
+            question.Question = "Testing Working?";
+            
             // Assert
             Assert.AreEqual("Testing Working?", question.Question);
         }
@@ -23,11 +23,11 @@ namespace TriviaNation
         public void SettingATestAnswerShouldReturnAnswer()
         {
             // Arrange
-            Questions answer = new Questions
-            {
-                // Act
-                Answer = "Testing is working."
-            };
+            Questions answer = new Questions();
+
+            // Act
+            answer.Answer = "Testing is working.";
+            
             // Assert
             Assert.AreEqual("Testing is working.", answer.Answer);
         }
