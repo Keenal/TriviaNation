@@ -217,6 +217,32 @@ namespace TriviaNation
         }
 
         /// <summary>
+        /// RETRIEVEs rows from a Table given criteria to match
+        /// </summary>
+        /// <param name="rowToRetrieve">The SQL command to RETRIEVE a row from the Table</param>
+        /// <returns name="retrievedRow">The row retrieved from the Table</returns>
+        public static String RetrieveRowsFromTableMatchingCriteria(String rowsToRetrieve)
+        {
+            String retrievedRows = "";
+            String TSQLSourceCode = rowsToRetrieve;
+
+            using (SqlCommand command = new SqlCommand(TSQLSourceCode, s_connection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            retrievedRows += (reader.GetString(i) + "\n");
+                        }
+                    }
+                }
+            }
+            return retrievedRows;
+        }
+
+        /// <summary>
         /// DELETEs a row from a TABLE 
         /// </summary>
         /// <param name="deletionString">The String for deleting the row to DELETE from the Table</param>

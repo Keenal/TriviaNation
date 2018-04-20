@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using TriviaNation.Models;
+using TriviaNation.Models.Abstract;
 
 /**
 TriviaNation is a networked trivia game designed for use in
@@ -29,126 +31,116 @@ namespace TriviaNation
         /// <summary>
         /// IQuestion object for modeling question data
         /// </summary>
-        private IQuestion question;
+        private List<IQuestionPack> questionPackList;
         /// <summary>
-        /// IDataBaseTable object for storing and retrieving question data
+        /// IQuestion object for modeling question data
         /// </summary>
-        private IDataBaseTable database;
+        private IDataBaseTable questionPackTable;
 
         /// <summary>
-        /// Constructs a TriviaAdministration object with default values as instance fields
+        /// Constructs a TriviaAdministration object with database instance field through use of interfaces 
         /// </summary>
         public TriviaAdministration()
         {
-            this.question = null;
-            this.database = null;
+            this.questionPackTable = new QuestionPackTable();
+            this.QuestionPackList = new List<IQuestionPack>();
+            PopulateListFromTable();
         }
 
-        /// <summary>
-        /// Constructs a TriviaAdministration object with database and question types as instance fields through use of interfaces 
-        /// </summary>
-        /// <param name="question">The question object</param>
-        /// <param name="database">The database object related to questions</param>
-        public TriviaAdministration(IQuestion question, IDataBaseTable database)
-        {
-            this.question = question;
-            this.database = database;
-        }
+        public List<IQuestionPack> QuestionPackList { get => questionPackList; set => questionPackList = value; }
 
         /// <summary>
         /// Adds a question to the database
         /// </summary>
         /// <param name="query">The question</param>
         /// <param name="answer">The answer</param>
-        public void AddQuestion(string query, string answer, string questionType)
+        public IQuestionPack AddQuestionPack(string questionPackName, int questionPointValue)
         {
-            question.Question = query;
-            question.Answer = answer;
-            question.QuestionType = questionType;
-            database.InsertRowIntoTable(database.TableName, this);
+            //creates a new instance of a QuestionPack
+            IQuestionPack questionPack = new QuestionPack(questionPackName, questionPointValue);
+
+            //creates a new QuestionTable named for this QuestionPack
+            IDataBaseTable questionTableDatabase = new QuestionTable(questionPackName);
+            questionTableDatabase.CreateTable(questionTableDatabase.TableName, questionTableDatabase.TableCreationString);
+
+            //insert this question pack into the master QuestionPackTable that includes all the active
+            //question packs
+            questionPackTable.InsertRowIntoTable(questionPackTable.TableName, questionPack);
+
+            //adds the question pack to the questionPackList
+            QuestionPackList.Add(questionPack);
+
+            //returns the QuestionPack that was added
+            return questionPack;
         }
 
         /// <summary>
         /// Deletes a question from the database
         /// </summary>
-        /// <param name="questionNumber">The user input question number that matches the row position of a question</param>
-        public void DeleteQuestion(int questionNumber)
+        /// <param name="questionPackName">The name of the question pack to delete</param>
+        public void DeleteQuestionPack(string questionPackName)
         {
-            /* The commented code below will be in the handler.  Will be a graphical
-             * list rather than from console.
-             * 
-             * ListQuestions();
-             * Console.WriteLine("Enter question number to delete");
-             * int questionNumber = Convert.ToInt32(Console.ReadLine());
-             * DeleteQuestion(questionNumber);
-             */
-            SetRowToObject(questionNumber);
-            database.DeleteRowFromTable(question.Question);
-        }
-
-        // Refactored code
-        private void SetRowToObject(int questionNumber)
-        {
-            string tableRow = database.RetrieveTableRow(database.TableName, questionNumber);
-            string[] split = tableRow.Split(separator: '\n');
-            question.Question = split[0];
-            question.Answer = split[1];
-            question.QuestionType = split[2];
-        }
-
-        // First get the question object to edit (in GUI will apply new strings to this object)
-        public IQuestion GetEditableQuestion(int questionNumber)
-        {
-            DeleteQuestion(questionNumber);
-            return question;
-        }
-
-        // Send newly edited question object back here to be inserted.  
-        // Requires minimal code on the GUI side of things.  GUI side 
-        // should only need to set edited questions to object and then 
-        // send object here. Note* This really doesnt need testing?  Already tested in Add method?
-        public void InsertEditedQuestion(IQuestion editedQuestion)
-        {
-            AddQuestion(editedQuestion.Question, editedQuestion.Answer, editedQuestion.QuestionType);
+            for (int i = 0; i < QuestionPackList.Count; i++)
+            {
+                if (QuestionPackList[i].QuestionPackName.Equals(questionPackName))
+                {
+                    DataBaseOperations.DeleteTable(questionPackName);
+                    questionPackTable.DeleteRowFromTable(questionPackName);
+                    QuestionPackList.Remove(QuestionPackList[i]);
+                }
+            }
         }
 
         /// <summary>
         /// Returns all question data in the database in the form of a list of objects
         /// </summary>
         /// /// <returns>The list of question objects</returns>
-        public IEnumerable<IQuestion> ListQuestions()
+        public IQuestionPack RetrieveQuestionPackByName(string questionPackName)
         {
-            List<IQuestion> allQuestionModels = new List<IQuestion>();
-            for (int i = 1; i <= database.RetrieveNumberOfRowsInTable(); i++)
-            {
-                SetRowToObject(i);
-                IQuestion questionModel = new Questions
-                {
-                    Question = question.Question,
-                    Answer = question.Answer,
-                    QuestionType = question.QuestionType
-                };
-
-                allQuestionModels.Add(questionModel);
-            }
-
-            return allQuestionModels;
+           for (int i = 0; i < QuestionPackList.Count; i++)
+           {
+              if (QuestionPackList[i].QuestionPackName.Equals(questionPackName))
+              {
+                 return QuestionPackList[i];
+              }
+           }
+           Console.WriteLine("WARNING: Question Pack " + questionPackName + " does not exist");
+           return null;
         }
-
 
         /// <summary>
-        /// Returns a list of question properties/values
+        /// Returns all question data in the database in the form of a list of objects
         /// </summary>
-        /// <returns>The list of properties/values</returns>
-        public IEnumerable<string> GetValues()
+        /// /// <returns>The list of question objects</returns>
+        public IEnumerable<IQuestionPack> ListQuestionPacks()
         {
-            List<string> questionValues = new List<string>
-            {
-                question.Question, question.Answer, question.QuestionType
-            };
-
-            return questionValues;
+            return QuestionPackList;
         }
 
+        /// <summary>
+        /// Returns all question data in the database in the form of a list of objects
+        /// </summary>
+        /// /// <returns>The list of question objects</returns>
+        public void PopulateListFromTable()
+        {
+            for (int i = 1; i <= questionPackTable.RetrieveNumberOfRowsInTable(); i++)
+            {
+                IQuestionPack questionPackToAdd = SetRowToObject(i);
+                QuestionPackList.Add(questionPackToAdd);
+            }
+        }
+
+        // Refactored code
+        private IQuestionPack SetRowToObject(int questionPackNumber)
+        {
+            string tableRow = questionPackTable.RetrieveTableRow(questionPackTable.TableName, questionPackNumber);
+            string[] split = tableRow.Split(separator: '\n');
+
+            string questionPackName = split[0];
+            string pointValueString = split[1];
+            int pointValue = int.Parse(pointValueString);
+            IQuestionPack questionPack = new QuestionPack(questionPackName, pointValue);
+            return questionPack;
+        }
     }
 }

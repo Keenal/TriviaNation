@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TriviaNation.Models;
+using TriviaNation.Models.Abstract;
 
 /**
 TriviaNation is a networked trivia game designed for use in 
@@ -33,75 +35,149 @@ namespace TriviaNation
     {
         static void Main(string[] args)
         {
+            //connect to the DB
             new DataBaseOperations();
             DataBaseOperations.ConnectToDB();
-            //IDataBaseTable QT = new QuestionTable();
-            //QT.CreateTable(QT.TableName, QT.TableCreationString);
-            //Console.WriteLine("The table exists: {0}", QT.TableExists(QT.TableName));
-            //IQuestion question = new Questions();
+            ITriviaAdministration triviaAdmin = new TriviaAdministration();
 
-            //ITriviaAdministration admin = new TriviaAdministration(question, QT);
-            //admin.AddQuestion("Test", "Yup", "Question Type: MC (Test)");
-            //admin.AddQuestion("Working?", "Affirmitive", "Question Type: T/F (Test)");
-            //admin.AddQuestion("No more objects necessary?", "Fer Shizzle", "Question Type: Matching (Test)");
-            //Console.WriteLine("The number of rows in this table are: {0}", QT.RetrieveNumberOfRowsInTable());
-            //List<IQuestion> test1 = (List<IQuestion>)admin.ListQuestions();
-            //Console.WriteLine(test1[0].Question + "\n" + test1[1].Question);
-            //Console.WriteLine("The number of cols in this table are: {0}", QT.RetriveNumberOfColsInTable());
-            //admin.DeleteQuestion(1);
-            //Console.WriteLine("The number of rows in this table are now: {0}", QT.RetrieveNumberOfRowsInTable());
-            //test1 = (List<IQuestion>)admin.ListQuestions();
-            //Console.WriteLine(test1[0].Question);
+            //COMMENTED OUT CODE IS USED IF ALL THE TABLES ARE NEEDED TO BE 
+            //RECREATED AND REPOPULATED IN CASE OF CHANGES WHILE DEBUGGING
+            /*
+            //creates a new QuestionPackTable to populate with QuestionPacks
+            QuestionPackTable questionPackTable = new QuestionPackTable();
+            questionPackTable.CreateTable(questionPackTable.TableName, questionPackTable.TableCreationString);
+            //set up selection, creation or deletion of QuestionPacks
+            ITriviaAdministration triviaAdmin = new TriviaAdministration(); // comment out triviaAdmin above if you need to use this
+            //Create 3 QuestionPacks
+            IQuestionPack qp1 = triviaAdmin.AddQuestionPack("questionPack1", 5);
+            IQuestionPack qp2 = triviaAdmin.AddQuestionPack("questionPack2", 10);
+            IQuestionPack qp3 = triviaAdmin.AddQuestionPack("questionPack3", 20);
+            //populate questionPacks
+            qp1.AddQuestion("Is this questionPack1, q1?", "yes~no~maybe~blue~yes", "MC");
+            qp1.AddQuestion("Is this questionPack1, q2?", "no~yes~maybe~blue~yes", "MC");
+            qp1.AddQuestion("Is this questionPack1, q3?", "maybe~no~yes~blue~yes", "MC");
+            qp1.AddQuestion("Is this questionPack1, q4?", "blue~no~maybe~yes~yes", "MC");
+            qp1.AddQuestion("Is this questionPack1, q5?", "5~4~3~6~5", "MC");
+            qp1.AddQuestion("Is this questionPack1, q6?", "q4~q6~maybe~blue~q6", "MC");
+            qp1.AddQuestion("Is this questionPack1, q7?", "yes~no~maybe~blue~yes", "MC");
+            qp1.AddQuestion("Is this questionPack1, q8?", "YES~NO~MAYBE~BLUE~YES", "MC");
+            qp1.AddQuestion("Is this questionPack1, q9?", "red~purple~fox~yes~yes", "MC");
+            qp1.AddQuestion("Is this questionPack1, q10?", "Yes~No~Maybe~Blue~Yes", "MC");
 
-            /////////////////////
-            //IDataBaseTable territoryTable = new TerritoryTable();
-            //Console.WriteLine("The table exists: {0}", territoryTable.TableExists(territoryTable.TableName));
-            //ITriviaTerritory territory = new TriviaTerritory();
-            //ITerritoryAdministration territoryAdmin = new TerritoryAdministration(territory, territoryTable);
-            //var listTest = territoryAdmin.ListTerritories();
-            //Console.WriteLine(listTest);
-            //Console.WriteLine("The number of rows in the Territory table are now: {0}", territoryTable.RetrieveNumberOfRowsInTable());
+            qp2.AddQuestion("Is this questionPack2, q1?", "yes~no~maybe~blue~yes", "MC");
+            qp2.AddQuestion("Is this questionPack2, q2?", "no~yes~maybe~blue~yes", "MC");
+            qp2.AddQuestion("Is this questionPack2, q3?", "maybe~no~yes~blue~yes", "MC");
+            qp2.AddQuestion("Is this questionPack2, q4?", "blue~no~maybe~yes~yes", "MC");
+            qp2.AddQuestion("Is this questionPack2, q5?", "5~4~3~6~5", "MC");
+            qp2.AddQuestion("Is this questionPack2, q6?", "q4~q6~maybe~blue~q6", "MC");
+            qp2.AddQuestion("Is this questionPack2, q7?", "yes~no~maybe~blue~yes", "MC");
+            qp2.AddQuestion("Is this questionPack2, q8?", "YES~NO~MAYBE~BLUE~YES", "MC");
+            qp2.AddQuestion("Is this questionPack2, q9?", "red~purple~fox~yes~yes", "MC");
 
-            /////////////////
-            IDataBaseTable UT = new UserTable();
-            //UT.CreateTable(UT.TableName, UT.TableCreationString);
-            //Console.WriteLine("The table exists: {0}", UT.TableExists(QT.TableName));
-            IUser user = new User();
-            IUserAdministration userAdmin = new UserAdministration(user, UT);
-            userAdmin.BuildUserInfo();
-            //userAdmin.AddUser("Bob", "robert@uwf.edu", "password", "password", "65");
-            //userAdmin.AddUser("Sugar", "rcq1@uwf.edu", "abcd1234", "abcd1234", "107");
-            //List<IUser> test = (List<IUser>) userAdmin.ListUsers();
-            //Console.WriteLine(test[0].UserName + "\n" + test[0].Email + "\n" + test[0].Password + "\n" + test[0].Score);
-            //Console.WriteLine(test[1].UserName + "\n" + test[1].Email + "\n" + test[1].Password + "\n" + test[1].Score);
-            //Console.WriteLine("The number of rows in USER table are now: {0}", UT.RetrieveNumberOfRowsInTable());
+            qp3.AddQuestion("Is this questionPack3, q1?", "yes~no~maybe~blue~yes", "MC");
+            qp3.AddQuestion("Is this questionPack3, q2?", "no~yes~maybe~blue~yes", "MC");
+            qp3.AddQuestion("Is this questionPack3, q3?", "maybe~no~yes~blue~yes", "MC");
+            qp3.AddQuestion("Is this questionPack3, q4?", "blue~no~maybe~yes~yes", "MC");
+            qp3.AddQuestion("Is this questionPack3, q5?", "5~4~3~6~5", "MC");
+            qp3.AddQuestion("Is this questionPack3, q6?", "q4~q6~maybe~blue~q6", "MC");
+            qp3.AddQuestion("Is this questionPack3, q7?", "yes~no~maybe~blue~yes", "MC");
+            qp3.AddQuestion("Is this questionPack3, q8?", "YES~NO~MAYBE~BLUE~YES", "MC");
+            qp3.AddQuestion("Is this questionPack3, q9?", "red~purple~fox~yes~yes", "MC");
+            */
 
-            //IUserAuthentication validate = new UserAuthentication(UT, user);
-            //Console.WriteLine("Testing proper user name and password that exists: ");
-            //Boolean isAuthenticated = validate.AuthenticateUser("robert@uwf.edu", "password");
-            //Console.WriteLine("Authentication is: " + isAuthenticated);
+            //This section of code was for testing the listing of QuestionPacks, QuestionPack
+            //Questions, and deleting QuestionPacks
+            /*
+            //list all QuestionPacks
+            IEnumerable<IQuestionPack> qpList = triviaAdmin.ListQuestionPacks();
+            foreach (IQuestionPack qp in qpList)
+            {
+                Console.WriteLine(qp.QuestionPackName);
+                Console.WriteLine(qp.PointValue);
+                Console.WriteLine();
+            }
 
-            //Console.WriteLine("Testing invalid user name and password that does not exist: ");
-            //isAuthenticated = validate.AuthenticateUser("Bobby", "password");
-            //Console.WriteLine("Authentication is: " + isAuthenticated);
+            //list all the Questions in qp1
+            IQuestionPack qp1 = triviaAdmin.RetrieveQuestionPackByName("questionPack1");
+            if (qp1 != null)
+            {
+                for (int i = 0; i < qp1.QuestionPackQuestions.Count; i++)
+                {
+                    Console.WriteLine(qp1.QuestionPackQuestions[i].Question);
+                    Console.WriteLine(qp1.QuestionPackQuestions[i].Answer);
+                    Console.WriteLine(qp1.QuestionPackQuestions[i].QuestionType);
+                    Console.WriteLine(qp1.QuestionPackQuestions[i].PointValue);
+                    Console.WriteLine(qp1.QuestionPackQuestions[i].QuestionPack);
+                    Console.WriteLine();
+                }
+            }
 
-            //Console.WriteLine("Testing invalid confirmation password:");
-            //Boolean flag = userAdmin.AddUser("Phil", "tiger@uwf.edu", "house", "home", "107");
-            //Console.WriteLine("Password Confirmed? " + flag);
-            //Console.WriteLine("The number of rows in USER table are now: {0}", UT.RetrieveNumberOfRowsInTable());
-            //userAdmin.DeleteUser(1);
-            //Console.WriteLine("The number of rows in USER table are now: {0}", UT.RetrieveNumberOfRowsInTable());
+            //list all the Questions in qp2
+            IQuestionPack qp2 = triviaAdmin.RetrieveQuestionPackByName("questionPack2");
+            if (qp2 != null)
+            {
+                for (int i = 0; i < qp2.QuestionPackQuestions.Count; i++)
+                {
+                    Console.WriteLine(qp2.QuestionPackQuestions[i].Question);
+                    Console.WriteLine(qp2.QuestionPackQuestions[i].Answer);
+                    Console.WriteLine(qp2.QuestionPackQuestions[i].QuestionType);
+                    Console.WriteLine(qp2.QuestionPackQuestions[i].PointValue);
+                    Console.WriteLine(qp2.QuestionPackQuestions[i].QuestionPack);
+                    Console.WriteLine();
+                }
+            }
 
-            //////////////
+            //list all the Questions in qp3
+            IQuestionPack qp3 = triviaAdmin.RetrieveQuestionPackByName("questionPack3");
+            if (qp3 != null)
+            {
+                for (int i = 0; i < qp3.QuestionPackQuestions.Count; i++)
+                {
+                    Console.WriteLine(qp3.QuestionPackQuestions[i].Question);
+                    Console.WriteLine(qp3.QuestionPackQuestions[i].Answer);
+                    Console.WriteLine(qp3.QuestionPackQuestions[i].QuestionType);
+                    Console.WriteLine(qp3.QuestionPackQuestions[i].PointValue);
+                    Console.WriteLine(qp3.QuestionPackQuestions[i].QuestionPack);
+                    Console.WriteLine();
+                }
+            }
 
-            //Console.WriteLine("Testing Trivia Now");
-            //ITrivia trivia = new Trivia(QT, question);
-            //Console.WriteLine(trivia.GetRandomQuestion());
-            //string answer = Console.ReadLine();
-            //Console.WriteLine("Your answer is: " + trivia.EvaluateAnswer(answer));
-            //Console.WriteLine(trivia.GetRandomQuestion());
-            //answer = Console.ReadLine();
-            //Console.WriteLine("Your answer is: " + trivia.EvaluateAnswer(answer));
+            triviaAdmin.DeleteQuestionPack("questionPack3");
+            //list all QuestionPacks
+            IEnumerable<IQuestionPack> qpList1 = triviaAdmin.ListQuestionPacks();
+            foreach (IQuestionPack qp in qpList1)
+            {
+                Console.WriteLine(qp.QuestionPackName);
+                Console.WriteLine(qp.PointValue);
+                Console.WriteLine();
+            }
+
+            //list all the Questions in qp3
+            IQuestionPack qp4 = triviaAdmin.RetrieveQuestionPackByName("questionPack3");
+            if (qp4 != null)
+            {
+                for (int i = 0; i < qp4.QuestionPackQuestions.Count; i++)
+                {
+                    Console.WriteLine(qp4.QuestionPackQuestions[i].Question);
+                    Console.WriteLine(qp4.QuestionPackQuestions[i].Answer);
+                    Console.WriteLine(qp4.QuestionPackQuestions[i].QuestionType);
+                    Console.WriteLine(qp4.QuestionPackQuestions[i].PointValue);
+                    Console.WriteLine(qp4.QuestionPackQuestions[i].QuestionPack);
+                    Console.WriteLine();
+                }
+            }
+            */
+
+            //This block of code was for testing the retrieval of random questions
+            IQuestionPack qp2 = triviaAdmin.RetrieveQuestionPackByName("questionPack2");
+            ITrivia trivia = new Trivia(qp2);
+
+            Console.WriteLine(trivia.GetRandomQuestion().Question);
+            Console.WriteLine(trivia.GetRandomQuestion().Question);
+            Console.WriteLine(trivia.GetRandomQuestion().Question);
+            Console.WriteLine(trivia.GetRandomQuestion().Question);
+            
+
 
             Console.WriteLine("Press any key to end the program");
             Console.ReadKey();
