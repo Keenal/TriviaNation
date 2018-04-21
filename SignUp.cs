@@ -33,12 +33,6 @@ public class SignUp : MonoBehaviour {
 
 		IDataBaseTable UT = new UserTable ();
 
-
-
-		UT.CreateTable(UT.TableName, UT.TableCreationString);
-
-
-
 		Debug.Log("Table exist" + UT.TableExists (UT.TableName));
 
 
