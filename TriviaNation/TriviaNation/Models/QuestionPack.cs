@@ -34,6 +34,9 @@ namespace TriviaNation.Models
             PopulateListFromTable();
         }
 
+        public QuestionPack() {
+        }
+
 
         /// <summary>
         /// Adds a question to the database
