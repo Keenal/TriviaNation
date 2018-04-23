@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using TriviaNation.Models;
 using TriviaNation.Models.Abstract;
+using TriviaNation.Repository.Abstract;
 
 /**
 TriviaNation is a networked trivia game designed for use in 
@@ -169,18 +170,20 @@ namespace TriviaNation
             */
 
             //This block of code was for testing the retrieval of random questions
-            IQuestionPack qp2 = triviaAdmin.RetrieveQuestionPackByName("questionPack2");
-            ITrivia trivia = new Trivia(qp2);
+            //IQuestionPack qp2 = triviaAdmin.RetrieveQuestionPackByName("questionPack2");
+            //ITrivia trivia = new Trivia(qp2);
 
-            Console.WriteLine(trivia.GetRandomQuestion().Question);
-            Console.WriteLine(trivia.GetRandomQuestion().Question);
-            Console.WriteLine(trivia.GetRandomQuestion().Question);
-            Console.WriteLine(trivia.GetRandomQuestion().Question);
-            
+            //Console.WriteLine(trivia.GetRandomQuestion().Question);
+            //Console.WriteLine(trivia.GetRandomQuestion().Question);
+            //Console.WriteLine(trivia.GetRandomQuestion().Question);
+            //Console.WriteLine(trivia.GetRandomQuestion().Question);
+            //ITerritoryTable table= new TerritoryTable();
+            //ITriviaTerritory terr = new TriviaTerritory();
+            //ITerritoryAdministration admin = new TerritoryAdministration(terr, table);
 
-
-            Console.WriteLine("Press any key to end the program");
-            Console.ReadKey();
+            //admin.DisableTurn(admin.ListTerritories(), "Mossy");
+            //string a = "";
+            //Console.ReadKey();
         }
     }
 }

@@ -11,6 +11,12 @@ namespace TriviaNation
 
         void DeleteTerritory(string territoryIndex);
 
+        void UpdateUserAndColor(string territoryIndex, string username, string color);
+
         List<TriviaTerritory> ListTerritories();
+
+        bool CheckForTurn(string username);
+
+        void DisableTurn(List<TriviaTerritory> territoryList, string username);
     }
 }

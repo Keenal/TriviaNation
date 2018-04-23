@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TriviaNation.Repository.Abstract;
 
 /**
 TriviaNation is a networked trivia game designed for use in
@@ -32,7 +33,7 @@ namespace TriviaNation
         /// <summary>
         /// IDataBaseTable object for storing and retrieving user data
         /// </summary>
-        private IDataBaseTable database;
+        private IUserTable database;
         /// <summary>
         /// IUser object for modeling user data
         /// </summary>
@@ -49,7 +50,7 @@ namespace TriviaNation
         /// </summary>
         /// <param name="database">The database object related to users</param>
         /// <param name="user">The user object</param>
-        public UserAuthentication(IDataBaseTable database, IUser user)
+        public UserAuthentication(IUserTable database, IUser user)
         {
             this.database = database;
             this.user = user;

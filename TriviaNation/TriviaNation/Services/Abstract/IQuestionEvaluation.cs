@@ -13,6 +13,8 @@ namespace TriviaNation.Services.Abstract
 
         bool Change { get; set; }
 
+        int PointValue { get; set; }
+
         void setQuestionInfo();
 
         string evaluateAnswer(string answer);

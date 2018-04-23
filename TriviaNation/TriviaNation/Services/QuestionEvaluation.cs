@@ -11,8 +11,8 @@ namespace TriviaNation.Services
         public string Question { get; set; }
         public string Answer { get; set; }
         public bool Change { get; set; }
+        public int PointValue { get; set; }
 
-        IDataBaseTable questionTable;
         IQuestion question;
         ITrivia trivia;
 
@@ -29,6 +29,8 @@ namespace TriviaNation.Services
             question = trivia.GetRandomQuestion();
             Question = question.Question;
             Answer = question.Answer;
+            PointValue = question.PointValue;
+
         }
 
         public string evaluateAnswer(string answer)

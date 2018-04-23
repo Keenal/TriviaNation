@@ -12,5 +12,7 @@ namespace TriviaNation
         string userName { get; set; }
 
         string color { get; set; }
+
+        string playersTurn { get; set; }
     }
 }

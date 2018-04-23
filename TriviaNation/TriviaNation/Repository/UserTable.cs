@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TriviaNation.Repository.Abstract;
 
 /**
 TriviaNation is a networked trivia game designed for use in 
@@ -24,7 +25,7 @@ File Name: UserTable.cs
 
 namespace TriviaNation
 {
-    public class UserTable : IDataBaseTable
+    public class UserTable : IUserTable
     {
         //name of this specific DataBase Table
         private const String tableName = "UserTable";
@@ -128,12 +129,9 @@ namespace TriviaNation
         /// <returns name="retrievedRows">The rows that were retrieved</param>
         public String RetrieveTableRowsByCriteria(String tableName, String columnName, String matchingCriteria)
         {
-            String retrievedRows = DataBaseOperations.RetrieveRowFromTable("" +
-                "SELECT * " +
-                "FROM " + tableName + " " +
-                "WHERE " + columnName + " = '" + matchingCriteria + "';");
-
-            return retrievedRows;
+            String retrievedRows = "SELECT score FROM " + tableName + " WHERE " + columnName + " = \'" + matchingCriteria + "\'";
+           
+            return DataBaseOperations.RetrieveRowsFromTableMatchingCriteria(retrievedRows); ;
         }
 
         /// <summary>
@@ -154,6 +152,14 @@ namespace TriviaNation
             String rowToDelete = ("DELETE FROM " + tableName + " WHERE username='" + username + "';");
 
             DataBaseOperations.DeleteRowFromTable(rowToDelete);
+        }
+
+        public string UpdateScore(string user, string newScore)
+        {
+            string update = ("UPDATE " + tableName + " SET score = \'" + newScore + "\' WHERE username = \'" + user + "\'");
+
+            DataBaseOperations.UpdateTable(update);
+            return RetrieveTableRowsByCriteria(tableName, "username", user);
         }
     }  
 }   

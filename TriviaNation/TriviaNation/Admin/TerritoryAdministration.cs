@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using TriviaNation.Repository.Abstract;
 
 namespace TriviaNation
 {
     public class TerritoryAdministration : ITerritoryAdministration
     {
         private ITriviaTerritory _territory;
-        private IDataBaseTable _database;
+        private ITerritoryTable _database;
 
         public TerritoryAdministration()
         {
@@ -17,7 +16,7 @@ namespace TriviaNation
             _database = null;
         }
 
-        public TerritoryAdministration(ITriviaTerritory territory, IDataBaseTable database)
+        public TerritoryAdministration(ITriviaTerritory territory, ITerritoryTable database)
         {
             _territory = territory ??
                 throw new ArgumentNullException(nameof(territory));
@@ -35,7 +34,10 @@ namespace TriviaNation
             _database.InsertRowIntoTable(_database.TableName, this);
         }
 
-
+        public void UpdateUserAndColor(string territoryIndex, string username, string color)
+        {
+            _database.UpdateUserAndColor(territoryIndex, username, color);
+        }
 
         public void DeleteTerritory(string territoryIndex)
         {
@@ -59,6 +61,7 @@ namespace TriviaNation
                 territory.territoryIndex = test[0];
                 territory.userName = test[1];
                 territory.color = test[2];
+                territory.playersTurn = test[3];
 
                 territories.Add(territory);
             }
@@ -78,5 +81,46 @@ namespace TriviaNation
             return territoryData;
         }
 
+        public bool CheckForTurn(string username)
+        {
+            if (_database.RetrieveNumberOfDistinctRowsInTable() < 2)
+                return true;
+            return _database.CheckForTurn(username);
+        }
+
+        public void DisableTurn(List<TriviaTerritory> territoryList, string username)
+        {
+            if(_database.RetrieveNumberOfDistinctRowsInTable() < 2)
+            {
+                _database.UpdatePlayerTurn(territoryList[0].territoryIndex, "1");
+                return;
+            }
+
+            int count = 0;
+            foreach(TriviaTerritory territory in territoryList)
+            {
+                if(territory.userName.Equals(username) && territory.playersTurn.Equals("1"))
+                {
+                    _database.UpdatePlayerTurn(territory.territoryIndex, "0");
+                    break;
+                }
+                count++;
+            }
+
+            for(int i = count; i < territoryList.Count; i++)
+            {
+
+                if (territoryList[i].userName != username)
+                {
+                    _database.UpdatePlayerTurn(territoryList[i].territoryIndex, "1");
+                    break;
+                }
+
+                if(i == territoryList.Count - 1)
+                {
+                    i = 0;
+                }
+            }
+        }
     }
 }

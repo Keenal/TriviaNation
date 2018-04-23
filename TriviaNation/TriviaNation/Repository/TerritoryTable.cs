@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TriviaNation.Repository.Abstract;
 
 namespace TriviaNation
 {
-    public class TerritoryTable : IDataBaseTable
+    public class TerritoryTable : ITerritoryTable
     {
         private const string tableName = "Territories";
 
@@ -41,6 +42,11 @@ namespace TriviaNation
             return DataBaseOperations.RetrieveNumberOfRowsInTable(TableName);
         }
 
+        public int RetrieveNumberOfDistinctRowsInTable()
+        {
+            return DataBaseOperations.RetrieveNumberOfDistinctRowsInTable(TableName);
+        }
+
         public int RetriveNumberOfColsInTable()
         {
             return DataBaseOperations.RetrieveNumberOfColsInTable(TableName);
@@ -55,7 +61,7 @@ namespace TriviaNation
             string username = list[1];
             string color = list[2];
 
-            string insertString = "INSERT INTO " + tableName + "(territoryIndex, username, color) VALUES ('" + territoryIndex + "', '" + username + "', '" + color + "');";
+            string insertString = "INSERT INTO " + tableName + "(territoryIndex, username, color, playersTurn) VALUES ('" + territoryIndex + "', '" + username + "', '" + color + "', 0);";
             DataBaseOperations.InsertIntoTable(insertString);
         }
 
@@ -101,6 +107,27 @@ namespace TriviaNation
             string rowToDelete = ("DELETE FROM " + tableName + " WHERE territoryIndex='" + territoryIndex + "';");
 
             DataBaseOperations.DeleteRowFromTable(rowToDelete);
+        }
+
+        public void UpdateUserAndColor(string territoryIndex, string username, string color)
+        {
+            string update = ("UPDATE " + tableName + " SET username = \'" + username + "\', color = \'" + color + "\' WHERE territoryIndex = " + territoryIndex);
+
+            DataBaseOperations.UpdateTable(update);
+        }
+
+        public void UpdatePlayerTurn(string territoryIndex, string playerTurn)
+        {
+            string update = ("UPDATE " + tableName + " SET playersTurn = \'" + playerTurn + "\' WHERE territoryIndex = " + territoryIndex);
+
+            DataBaseOperations.UpdateTable(update);
+        }
+
+        public bool CheckForTurn(string username)
+        {
+            string check = ("SELECT playersTurn FROM " + tableName + " WHERE username = \'" + username + "\'");
+
+            return DataBaseOperations.CheckForTurn(check);
         }
     }
 }

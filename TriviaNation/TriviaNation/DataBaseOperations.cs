@@ -155,6 +155,24 @@ namespace TriviaNation
             return numberOfRowsInTable;
         }
 
+        public static int RetrieveNumberOfDistinctRowsInTable(String tableName)
+        {
+            int numberOfRowsInTable = 0;
+            String TSQLSourceCode = "SELECT COUNT(DISTINCT username) FROM " + tableName + ";";
+
+            using (SqlCommand command = new SqlCommand(TSQLSourceCode, s_connection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        numberOfRowsInTable = reader.GetInt32(0);
+                    }
+                }
+            }
+            return numberOfRowsInTable;
+        }
+
         /// <summary>
         /// Retrieves the number of cols a specific Table has
         /// </summary>
@@ -177,6 +195,7 @@ namespace TriviaNation
             }
             return numberOfColsInTable;
         }
+
 
         /// <summary>
         /// INSERTs a row into a Table 
@@ -228,16 +247,7 @@ namespace TriviaNation
 
             using (SqlCommand command = new SqlCommand(TSQLSourceCode, s_connection))
             {
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        for (int i = 0; i < reader.FieldCount; i++)
-                        {
-                            retrievedRows += (reader.GetString(i) + "\n");
-                        }
-                    }
-                }
+                retrievedRows = command.ExecuteScalar().ToString();
             }
             return retrievedRows;
         }
@@ -253,6 +263,29 @@ namespace TriviaNation
             command = new SqlCommand(TSQLSourceCode, s_connection);
             command.ExecuteNonQuery();
             Console.WriteLine("Deletion complete!");
+        }
+
+        public static void UpdateTable(string updateString)
+        {
+            SqlCommand command = null;
+            String TSQLSourceCode = updateString;
+            command = new SqlCommand(TSQLSourceCode, s_connection);
+            command.ExecuteNonQuery();
+        }
+
+        public static bool CheckForTurn(string checkString)
+        {
+            SqlCommand command = null;
+            String TSQLSourceCode = checkString;
+            command = new SqlCommand(TSQLSourceCode, s_connection);
+            string check = command.ExecuteScalar().ToString();
+
+            if(check.Contains("1"))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
