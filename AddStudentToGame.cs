@@ -1,32 +1,75 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TriviaNation;
+using UnityEngine.UI;
+using System.Linq;
 
 public class AddStudentToGame : MonoBehaviour {
 
-	public GameObject names;
 
-	private string Name;
+	List<string> nameList;
+	private bool [] listOfToggles = new bool[100];
+	private IEnumerable<IUser> userList;
+
 	/*
-	*read from Database and display all the student name on the screen
+	 * Connect to Database and read user name also store them in a array
+	 */
+	/*
+	*Diaplay all the name on the GUI
 	*/
 	void OnGUI() {
 
-		Name = "SAMMMMM";
+		new DataBaseOperations ();
+		DataBaseOperations.ConnectToDB ();
 
-		GUI.Label(new Rect(200, 200, 300, 200), Name);
+		IDataBaseTable UT = new UserTable ();
 
-		Name = names.tag;
+		IUser user = new User ();
+
+		IUserAdministration userName = new UserAdministration (user,UT);
+
+		userList = userName.ListUsers ();
+
+		int i = 0;
+		int x = 150;
+		int y = 230;
+		int length = 100;
+		int width = 40;
+		int z = 0;
+
+		foreach( var element in userList )
+		{	
+
+			listOfToggles [z] = GUI.Toggle(new Rect (x, y, length, width), listOfToggles[z], element.UserName.ToString());
+			y = y + 50;
+			z++;
+
+		}
 
 	}
-
-
-	public void addButton(){
 		
+	/*
+	* when teacher click addButton, will send all students that the 
+	* teacher selected to DATABASE.
+	*/
+	public void addButton(){
+		int i = 0;
+		List<IUser> users = userList;
+		foreach (var element in listOfToggles) {
+
+			if (element) {
+
+				users[i];
+			
+			}
+
+		}
+
+		Debug.Log ("Added");
+
+
 	}
 
 
-	// Update is called once per frame
-	//void Update () {}
 }
