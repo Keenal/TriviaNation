@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using TriviaNation;
 using TriviaNation.Models;
 
@@ -8,6 +9,18 @@ namespace TriviaNationTests
     [TestClass]
     public class QuestionPackTest
     {
+        
+        private IDataBaseTable database;
+        
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            
+            database = new TerritoryTable();
+            
+        }
+
         [TestMethod]
         public void SettingAQuestionPackShouldReturnQuestionPackName()
         {
@@ -53,22 +66,27 @@ namespace TriviaNationTests
         [TestMethod]
         public void AddingQuestion()
         {
+            /*
             // Arrange
-            Mock<IQuestion> mockQuestion = new Mock<IQuestion>();
-            mockQuestion.Setup(r => r.Question).Returns("This is a test?");
-            //   sut = new TriviaAdministration(mockQuestion.Object, QT);
+            IDataEntry test = null;
+            Mock<IQuestion> mockDatabase = new Mock<IQuestion>();
+            mockDatabase.Setup(r => r.Question());
+            ITerritoryAdministration sut = new TerritoryAdministration(territory, mockDatabase.Object);
 
             // Act
-            //   List<string> test = (List<String>)sut.GetValues();
+            sut.AddTerritory("5F", "Billy-Bob", "Purple");
 
             // Assert
-            //      Assert.AreEqual("This is a test?", test[0]);
+            Assert.AreSame(sut, test);
+            Assert.AreEqual(sut, test);
+            */
         }
 
         [Ignore]
         [TestMethod]
         public void MethodForDeletingAQuestionShouldFirstRetrieveARowFromDatabaseThroughPrivateMethodThenAccessOnlyTheQuestionColumnStringInOrderToEnterItAsTheArgumentForMethodDeleteRowFromTable()
         {
+            /*
             // Arrange
             string query = null;
             Mock<IQuestion> mockDatabase = new Mock<IQuestion>();
@@ -85,6 +103,7 @@ namespace TriviaNationTests
 
             //Assert
             Assert.AreEqual("This is the question? ", query);
+            */
         }
     }
 }
