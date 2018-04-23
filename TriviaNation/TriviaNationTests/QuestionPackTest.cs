@@ -3,23 +3,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using TriviaNation;
 using TriviaNation.Models;
+using TriviaNation.Models.Abstract;
 
 namespace TriviaNationTests
 {
     [TestClass]
     public class QuestionPackTest
-    {
-        
-        private IDataBaseTable database;
-        
-
-        [TestInitialize]
-        public void Initialize()
-        {
-            
-            database = new TerritoryTable();
-            
-        }
+    { 
 
         [TestMethod]
         public void SettingAQuestionPackShouldReturnQuestionPackName()
@@ -47,46 +37,38 @@ namespace TriviaNationTests
             Assert.AreEqual(121, pointValue.PointValue);
         }
 
-        [Ignore]
-        [TestMethod]
-        public void SettingADatabaseShouldReturnDatabase()
-        {
-            // Arrange
-            QuestionPack database = new QuestionPack
-            {
-                // Act
-                Database = 134
-            };
+        /*
+        
+        */
 
-            // Assert
-            Assert.AreEqual(134, database.Database);
-        }
-
-        [Ignore]
+     //   [Ignore]
         [TestMethod]
         public void AddingQuestion()
         {
-            /*
+            
             // Arrange
             IDataEntry test = null;
             Mock<IQuestion> mockDatabase = new Mock<IQuestion>();
-            mockDatabase.Setup(r => r.Question());
-            ITerritoryAdministration sut = new TerritoryAdministration(territory, mockDatabase.Object);
+            mockDatabase.Setup(r => r.Question).Returns("Question 1");
+            mockDatabase.Setup(r => r.PointValue).Returns(4);
+
+            IQuestionPack sut = new QuestionPack(mockDatabase.Object.QuestionPack, mockDatabase.Object.PointValue);
 
             // Act
-            sut.AddTerritory("5F", "Billy-Bob", "Purple");
+            sut.AddQuestion("Question 1", "Answer 1", "Question Type");
 
-            // Assert
+            // Assert 
             Assert.AreSame(sut, test);
             Assert.AreEqual(sut, test);
-            */
+            
         }
 
+        /*
         [Ignore]
         [TestMethod]
         public void MethodForDeletingAQuestionShouldFirstRetrieveARowFromDatabaseThroughPrivateMethodThenAccessOnlyTheQuestionColumnStringInOrderToEnterItAsTheArgumentForMethodDeleteRowFromTable()
         {
-            /*
+            
             // Arrange
             string query = null;
             Mock<IQuestion> mockDatabase = new Mock<IQuestion>();
@@ -103,7 +85,10 @@ namespace TriviaNationTests
 
             //Assert
             Assert.AreEqual("This is the question? ", query);
-            */
-        }
+            
+
+    */
+    
+    
     }
 }
