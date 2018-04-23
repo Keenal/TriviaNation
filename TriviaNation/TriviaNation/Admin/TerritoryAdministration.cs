@@ -85,6 +85,7 @@ namespace TriviaNation
         {
             if (_database.RetrieveNumberOfDistinctRowsInTable() < 2)
                 return true;
+
             return _database.CheckForTurn(username);
         }
 
@@ -109,7 +110,6 @@ namespace TriviaNation
 
             for(int i = count; i < territoryList.Count; i++)
             {
-
                 if (territoryList[i].userName != username)
                 {
                     _database.UpdatePlayerTurn(territoryList[i].territoryIndex, "1");
@@ -118,7 +118,7 @@ namespace TriviaNation
 
                 if(i == territoryList.Count - 1)
                 {
-                    i = 0;
+                    i = -1;
                 }
             }
         }

@@ -177,12 +177,12 @@ namespace TriviaNation
             //Console.WriteLine(trivia.GetRandomQuestion().Question);
             //Console.WriteLine(trivia.GetRandomQuestion().Question);
             //Console.WriteLine(trivia.GetRandomQuestion().Question);
-            //ITerritoryTable table= new TerritoryTable();
-            //ITriviaTerritory terr = new TriviaTerritory();
-            //ITerritoryAdministration admin = new TerritoryAdministration(terr, table);
+            ITerritoryTable table= new TerritoryTable();
+            ITriviaTerritory terr = new TriviaTerritory();
+            ITerritoryAdministration admin = new TerritoryAdministration(terr, table);
 
-            //admin.DisableTurn(admin.ListTerritories(), "Mossy");
-            //string a = "";
+            admin.DisableTurn(admin.ListTerritories(), "Mossy");
+            string a = "";
             //Console.ReadKey();
         }
     }
