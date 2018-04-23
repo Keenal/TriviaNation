@@ -27,6 +27,7 @@ namespace TriviaNationTests
         {
             // Arrange
             var sut = new QuestionTable("TableName");
+            sut.CreateTable(sut.TableName, sut.TableCreationString);
 
             // Act
             bool tableExists = sut.TableExists(sut.TableName);
@@ -66,7 +67,7 @@ namespace TriviaNationTests
             String tableDropCode = ("DROP TABLE IF EXISTS QTTestTable2;");
             SqlCommand deleteTableCommand = new SqlCommand(tableDropCode, s_connection);
             deleteTableCommand.ExecuteNonQuery();
-            String tableCreationString = "CREATE TABLE QTTestTable2(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null, questionType varchar(4000) not null, questionPack varchar(4000) not null);";
+            String tableCreationString = "CREATE TABLE QTTestTable2(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null, questionType varchar(4000) not null, questionPoints varchar(4000) not null, questionPack varchar(4000) not null);";
             SqlCommand command = new SqlCommand(tableCreationString, s_connection);
             command.ExecuteNonQuery();
             String retrievedRow = "";
@@ -75,6 +76,7 @@ namespace TriviaNationTests
             List<string> questionAndAnswer = new List<string>();
             questionAndAnswer.Add("QuestionTest");
             questionAndAnswer.Add("AnswerTest");
+            questionAndAnswer.Add("PointValueTest");
             questionAndAnswer.Add("QuestionTypeTest");
             questionAndAnswer.Add("QuestionPackTest");
 
@@ -98,7 +100,7 @@ namespace TriviaNationTests
             }
 
             // Assert
-            Assert.AreEqual(("QuestionTest" + "\n" + "AnswerTest" + "\n" + "QuestionTypeTest" + "\n" + "QuestionPackTest" + "\n"), retrievedRow);
+            Assert.AreEqual(("QuestionTest" + "\n" + "AnswerTest" + "\n" + "PointValueTest" + "\n" + "QuestionTypeTest" + "\n" + "QuestionPackTest" + "\n"), retrievedRow);
         }
 
         [TestMethod]
@@ -106,6 +108,7 @@ namespace TriviaNationTests
         {
             //Arrange
             var sut = new QuestionTable("TableName");
+            sut.CreateTable(sut.TableName, sut.TableCreationString);
 
             //Act
             int numberReturned = sut.RetrieveNumberOfRowsInTable();
@@ -153,8 +156,21 @@ namespace TriviaNationTests
         {
             // Arrange
             int count = 1;
-            var sut = new QuestionTable("tableName");
-            String questionString = "This is question1";
+            var sut = new QuestionTable("TableNameTest");
+            sut.CreateTable(sut.TableName, sut.TableCreationString);
+
+            String tableName = "TableNameTest";
+            String question = "QuestionTest";
+            String answer = "AnswerTest";
+            String questionType = "QuestionTypeTest";
+            String questionPoints = "QuestionPOintsTest";
+            String questionPack = "QuestionPackTest";
+
+            String insertionString = "INSERT INTO " + tableName + "(question, answer, questionType, questionPoints, questionPack) VALUES ('"
+                + question + "', '" + answer + "', '" + questionType + "', '" + questionPoints + "', '" + questionPack + "');";
+            DataBaseOperations.InsertIntoTable(insertionString);
+
+            String questionString = "QuestionTest";
             String sqlString = "DELETE FROM QuestionTable WHERE question='" + questionString + "';";
 
             // Act
