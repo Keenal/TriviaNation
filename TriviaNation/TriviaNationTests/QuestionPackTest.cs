@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using TriviaNation;
@@ -37,9 +38,6 @@ namespace TriviaNationTests
             Assert.AreEqual(121, pointValue.PointValue);
         }
 
-        /*
-        
-        */
 
      //   [Ignore]
         [TestMethod]
@@ -61,6 +59,37 @@ namespace TriviaNationTests
             Assert.AreSame(sut, test);
             Assert.AreEqual(sut, test);
             
+        }
+
+        [TestMethod]
+        public void DeletingAQuestionFromAQuestionPackShouldDeleteThatQuestionObjectFromTheList()
+        {
+            // Arrange
+            string query = null;
+            IQuestion question1 = new Questions();
+            IQuestion question2 = new Questions();
+            question1.Question = "Sally sells seashells?";
+            question1.Question = "Jeremy jogged and jumped?";
+            List<IQuestion> questions = new List<IQuestion>();
+            questions.Add(question1);
+            questions.Add(question2);
+            QuestionPack q = new QuestionPack();
+            q.QuestionPackQuestions = questions;
+            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
+            mockDatabase.Setup(r => r.DeleteRowFromTable(It.IsAny<string>())).Callback<string>((s1) =>
+            {
+                query = s1;
+            });
+            q.Database = mockDatabase.Object;
+            String test = q.QuestionPackQuestions[0].Question;
+
+
+            // Act
+            q.DeleteQuestion(0);
+
+            // Assert
+            Assert.AreEqual("Jeremy jogged and jumped?", query);
+            Assert.AreEqual("Jeremy jogged and jumped?", test);
         }
 
         /*
