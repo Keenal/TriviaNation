@@ -280,7 +280,7 @@ namespace TriviaNation
             command = new SqlCommand(TSQLSourceCode, s_connection);
             string check = command.ExecuteScalar().ToString();
 
-            if(check.Contains("1"))
+            if(Convert.ToInt32(check) > 0)
             {
                 return true;
             }

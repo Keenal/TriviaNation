@@ -98,14 +98,16 @@ namespace TriviaNation
             }
 
             int count = 0;
+            bool doNotAdd = false;
             foreach(TriviaTerritory territory in territoryList)
             {
                 if(territory.userName.Equals(username) && territory.playersTurn.Equals("1"))
                 {
                     _database.UpdatePlayerTurn(territory.territoryIndex, "0");
-                    break;
+                    doNotAdd = true;
                 }
-                count++;
+                if(!doNotAdd)
+                    count++;
             }
 
             for(int i = count; i < territoryList.Count; i++)

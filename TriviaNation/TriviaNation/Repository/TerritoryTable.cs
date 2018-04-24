@@ -125,7 +125,7 @@ namespace TriviaNation
 
         public bool CheckForTurn(string username)
         {
-            string check = ("SELECT playersTurn FROM " + tableName + " WHERE username = \'" + username + "\'");
+            string check = ("SELECT COUNT(playersTurn) FROM " + tableName + " WHERE username = \'" + username + "\' AND playersTurn = \'1\'");
 
             return DataBaseOperations.CheckForTurn(check);
         }

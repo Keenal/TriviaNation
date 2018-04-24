@@ -182,6 +182,7 @@ namespace TriviaNation
             ITerritoryAdministration admin = new TerritoryAdministration(terr, table);
 
             admin.DisableTurn(admin.ListTerritories(), "Mossy");
+            //admin.CheckForTurn("Mossy");
             string a = "";
             //Console.ReadKey();
         }
