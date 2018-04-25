@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using TriviaNation.Repository.Abstract;
 
 namespace TriviaNation
 {
@@ -12,7 +13,7 @@ namespace TriviaNation
         {
             // Arrange
             IUser user = new User();
-            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
+            Mock<IUserTable> mockDatabase = new Mock<IUserTable>();
             mockDatabase.Setup(r => r.RetrieveNumberOfRowsInTable()).Returns(1);
             mockDatabase.Setup(r => r.TableName).Returns("Table Name");
             mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("Randy\nfrt@uwf.edu\npassword\nscore");
@@ -29,7 +30,7 @@ namespace TriviaNation
         public void AquiringAUserNameShouldReturnUserName()
         {
             // Arrange
-            IDataBaseTable database = new UserTable();
+            IUserTable database = new UserTable();
             Mock<IUser> mockAnswer = new Mock<IUser>();
             mockAnswer.Setup(r => r.UserName).Returns("Max Powers");
             IUserAuthentication sut = new UserAuthentication(database, mockAnswer.Object);
@@ -45,7 +46,7 @@ namespace TriviaNation
         public void IfAUserNameIsATeacherThenMethodShouldReturnTrueForLoggingIntoTeacherPortal()
         {
             // Arrange
-            IDataBaseTable database = new UserTable();
+            IUserTable database = new UserTable();
             IUser user = new User();
             user.Email = "teacher";
             IUserAuthentication sut = new UserAuthentication(database, user);
@@ -57,10 +58,5 @@ namespace TriviaNation
             Assert.IsTrue(test);
         }
 
-        [TestMethod]
-        public void test()
-        {
-
-        }
     }
 }

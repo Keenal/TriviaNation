@@ -26,14 +26,8 @@ C:\Users\westh\Source\Repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\Tri
 C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.dll.config
 C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.dll
 C:\Users\Wes's PC\Source\Repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.dll
-C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.exe.config
-C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.exe
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.pdb
-C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\bin\Debug\System.Security.Cryptography.Algorithms.dll
-C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\bin\Debug\System.Security.Cryptography.X509Certificates.dll
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csproj.CoreCompileInputs.cache
-C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csproj.CopyComplete
-C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.exe
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.pdb
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.csprojResolveAssemblyReference.cache
 C:\Users\tim_g\source\repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\System.Security.Cryptography.Algorithms.dll
@@ -46,3 +40,6 @@ C:\Source\Repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.pd
 C:\Source\Repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.dll.config
 C:\Source\Repos\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.dll
 C:\Source\Repos\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.dll
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.dll.config
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\bin\Debug\TriviaNation.dll
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNation\obj\Debug\TriviaNation.dll

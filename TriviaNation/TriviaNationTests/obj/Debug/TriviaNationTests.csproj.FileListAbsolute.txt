@@ -208,10 +208,8 @@ C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTes
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Moq.dll
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\System.Threading.Tasks.Extensions.dll
-C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.exe
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.pdb
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.dll.config
-C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.exe.config
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Castle.Core.xml
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
@@ -442,3 +440,4 @@ C:\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Moq.pdb
 C:\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Moq.xml
 C:\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\obj\Debug\TriviaNationTests.csproj.CopyComplete
+C:\Users\randy\Desktop\version-control\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.dll

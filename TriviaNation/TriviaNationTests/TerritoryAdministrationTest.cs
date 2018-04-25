@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using TriviaNation.Repository.Abstract;
 
 namespace TriviaNation
 {
@@ -9,9 +10,10 @@ namespace TriviaNation
     public class TerritoryAdministrationTest
     {
         private ITriviaTerritory territory;
-        private IDataBaseTable database;
+        private ITerritoryTable database;
         private ITerritoryAdministration admin;
 
+        [Ignore]
         [TestInitialize]
         public void Initialize()
         {
@@ -25,7 +27,7 @@ namespace TriviaNation
         {
             // Arrange
             IDataEntry test = null;
-            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
+            Mock<ITerritoryTable> mockDatabase = new Mock<ITerritoryTable>();
             mockDatabase.Setup(r => r.TableName).Returns("Table Name");
             mockDatabase.Setup(r => r.InsertRowIntoTable("Table Name", It.IsAny<IDataEntry>())).Callback<string, IDataEntry>((s1, s2) =>
             {
@@ -46,7 +48,7 @@ namespace TriviaNation
         {
             // Arrange
             string query = null;
-            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
+            Mock<ITerritoryTable> mockDatabase = new Mock<ITerritoryTable>();
             mockDatabase.Setup(r => r.DeleteRowFromTable(It.IsAny<string>())).Callback<string>((s1) =>
             {
                 query = s1;
@@ -64,10 +66,10 @@ namespace TriviaNation
         public void ListingTheTerritoryAttributesInTheDatabaseShouldListThemAllAndShouldReturnTheListAsAgenericList()
         {
             // Arrange
-            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
+            Mock<ITerritoryTable> mockDatabase = new Mock<ITerritoryTable>();
             mockDatabase.Setup(r => r.RetrieveNumberOfRowsInTable()).Returns(1);
             mockDatabase.Setup(r => r.TableName).Returns("Table Name");
-            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("5\nBilly\nRed");
+            mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("5\nBilly\nRed\nSugar");
             ITerritoryAdministration sut = new TerritoryAdministration(territory, mockDatabase.Object);
             List<TriviaTerritory> test = new List<TriviaTerritory>();
 
@@ -76,6 +78,7 @@ namespace TriviaNation
             string index = test[0].territoryIndex;
             string name = test[0].userName;
             string color = test[0].color;
+            string playerTurn = test[0].playersTurn;
 
             // Assert
             Assert.AreEqual("5", index);

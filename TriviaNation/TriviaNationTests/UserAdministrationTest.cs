@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using TriviaNation.Repository.Abstract;
 
 namespace TriviaNation
 {
@@ -9,7 +10,7 @@ namespace TriviaNation
     public class UserAdministrationTest
     {
         private IUser user;
-        private IDataBaseTable database;
+        private IUserTable database;
         private IUserAdministration admin;
 
         [TestInitialize]
@@ -25,7 +26,7 @@ namespace TriviaNation
         {
             // Arrange
             IDataEntry test = null;
-            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
+            Mock<IUserTable> mockDatabase = new Mock<IUserTable>();
             mockDatabase.Setup(r => r.TableName).Returns("Table Name");
             mockDatabase.Setup(r => r.InsertRowIntoTable("Table Name", It.IsAny<IDataEntry>())).Callback<string, IDataEntry>((s1, s2) =>
             {
@@ -45,7 +46,7 @@ namespace TriviaNation
         public void MethodAddUserShouldReturnTrueIfPasswordAndConfirmPasswordMatch()
         {
             // Arrange
-            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
+            Mock<IUserTable> mockDatabase = new Mock<IUserTable>();
             mockDatabase.Setup(r => r.TableName).Returns("Table Name");
             mockDatabase.Setup(r => r.InsertRowIntoTable("Table Name", It.IsAny<IDataEntry>()));
             IUserAdministration sut = new UserAdministration(user, mockDatabase.Object);
@@ -62,7 +63,7 @@ namespace TriviaNation
         {
             // Arrange
             string query = null;
-            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
+            Mock<IUserTable> mockDatabase = new Mock<IUserTable>();
             mockDatabase.Setup(r => r.TableName).Returns("Table Name");
             mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("Huey \n jump@uwf.edu\nred\n35");
             mockDatabase.Setup(r => r.DeleteRowFromTable(It.IsAny<string>())).Callback<string>((s1) =>
@@ -82,7 +83,7 @@ namespace TriviaNation
         public void ListingTheUsersInTheDatabaseShouldListThemAllAndShouldListTheirProperValuesInOrderFromAnIUserList()
         {
             // Arrange
-            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
+            Mock<IUserTable> mockDatabase = new Mock<IUserTable>();
             mockDatabase.Setup(r => r.RetrieveNumberOfRowsInTable()).Returns(4);
             mockDatabase.Setup(r => r.TableName).Returns("Table Name");
             mockDatabase.Setup(r => r.RetrieveTableRow("Table Name", 1)).Returns("Billy \ntest\ntest\ntest");
