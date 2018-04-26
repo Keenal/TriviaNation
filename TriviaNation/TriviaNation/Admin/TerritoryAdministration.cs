@@ -52,7 +52,6 @@ namespace TriviaNation
  
             for (int i = 1; i <= _database.RetrieveNumberOfRowsInTable(); i++)
             {
-                // string marker = "cx" + i;
                 TriviaTerritory territory = new TriviaTerritory();
                 listOfTerritories = _database.RetrieveTableRow(_database.TableName, i);
 
