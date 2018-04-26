@@ -35,8 +35,8 @@ namespace TriviaNation.Models
         }
 
         public QuestionPack() {
-        }
 
+        }
 
         /// <summary>
         /// Adds a question to the database

@@ -39,26 +39,30 @@ namespace TriviaNationTests
         }
 
 
-     //   [Ignore]
+        [Ignore]
         [TestMethod]
         public void AddingQuestion()
         {
             
             // Arrange
             IDataEntry test = null;
-            Mock<IQuestion> mockDatabase = new Mock<IQuestion>();
-            mockDatabase.Setup(r => r.Question).Returns("Question 1");
-            mockDatabase.Setup(r => r.PointValue).Returns(4);
+            Mock<IDataBaseTable> mockDatabase = new Mock<IDataBaseTable>();
+            Mock<IQuestion> mockQuestion = new Mock<IQuestion>();
+            mockQuestion.Setup(r => r.Question).Returns("Question 1");
+            mockQuestion.Setup(r => r.PointValue).Returns(4);
+            mockDatabase.Setup(r => r.InsertRowIntoTable("Table Name", It.IsAny<IDataEntry>())).Callback<string, IDataEntry>((s1, s2) =>
+            {
+                test = s2;
+            });
 
-            IQuestionPack sut = new QuestionPack(mockDatabase.Object.QuestionPack, mockDatabase.Object.PointValue);
+            IQuestionPack sut = new QuestionPack(mockQuestion.Object.QuestionPack, mockQuestion.Object.PointValue);
 
             // Act
             sut.AddQuestion("Question 1", "Answer 1", "Question Type");
 
             // Assert 
             Assert.AreSame(sut, test);
-            Assert.AreEqual(sut, test);
-            
+            Assert.AreEqual(sut, test);   
         }
 
         [TestMethod]
