@@ -123,7 +123,7 @@ namespace TriviaNationTests
             String tableCreationString = "CREATE TABLE UTTestTable3(username varchar(4000) not null PRIMARY KEY, email varchar(4000) not null, password varchar(4000) not null, score varchar(4000) not null);";
             SqlCommand createCmd = new SqlCommand(tableCreationString, s_connection);
             createCmd.ExecuteNonQuery();
-            String insertString = "INSERT INTO UTTestTable3(username, email, password, score) VALUES ('This is username1', 'This is email1', 'password1', 'score1');";
+            String insertString = "INSERT INTO UTTestTable3(username, email, password, score) VALUES ('This is username1', 'This is email1', 'password1', '100');";
             SqlCommand insertCmd = new SqlCommand(insertString, s_connection);
             insertCmd.ExecuteNonQuery();
 
@@ -131,7 +131,7 @@ namespace TriviaNationTests
             String rowRetrieved = UT.RetrieveTableRow("UTTestTable3", 1);
 
             // Assert
-            Assert.AreEqual("This is username1" + "\n" + "This is email1" + "\n" + "password1" + "\n" + "score1" + "\n", rowRetrieved);
+            Assert.AreEqual("This is username1" + "\n" + "This is email1" + "\n" + "password1" + "\n" + "100" + "\n", rowRetrieved);
         }
 
         [TestMethod]

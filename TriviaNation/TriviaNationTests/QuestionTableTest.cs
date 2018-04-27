@@ -66,7 +66,7 @@ namespace TriviaNationTests
             String tableDropCode = ("DROP TABLE IF EXISTS QTTestTable2;");
             SqlCommand deleteTableCommand = new SqlCommand(tableDropCode, s_connection);
             deleteTableCommand.ExecuteNonQuery();
-            String tableCreationString = "CREATE TABLE QTTestTable2(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null, questionType varchar(4000) not null, questionPack varchar(4000) not null);";
+            String tableCreationString = "CREATE TABLE QTTestTable2(question varchar(4000) not null PRIMARY KEY, answer varchar(4000) not null, questionType varchar(4000) not null, questionPoints varchar (4000), questionPack varchar(4000) not null);";
             SqlCommand command = new SqlCommand(tableCreationString, s_connection);
             command.ExecuteNonQuery();
             String retrievedRow = "";
@@ -76,6 +76,7 @@ namespace TriviaNationTests
             questionAndAnswer.Add("QuestionTest");
             questionAndAnswer.Add("AnswerTest");
             questionAndAnswer.Add("QuestionTypeTest");
+            questionAndAnswer.Add("QuestionPointsTest");
             questionAndAnswer.Add("QuestionPackTest");
 
             Mock<IDataEntry> mockDataEntry = new Mock<IDataEntry>();
@@ -98,7 +99,7 @@ namespace TriviaNationTests
             }
 
             // Assert
-            Assert.AreEqual(("QuestionTest" + "\n" + "AnswerTest" + "\n" + "QuestionTypeTest" + "\n" + "QuestionPackTest" + "\n"), retrievedRow);
+            Assert.AreEqual(("QuestionTest" + "\n" + "AnswerTest" + "\n" + "QuestionTypeTest" + "\n" + "QuestionPointsTest" + "\n" + "QuestionPackTest" + "\n"), retrievedRow);
         }
 
         [TestMethod]

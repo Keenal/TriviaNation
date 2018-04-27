@@ -66,7 +66,7 @@ namespace TriviaNationTests
             String tableDropCode = ("DROP TABLE IF EXISTS TTTestTable2;");
             SqlCommand deleteTableCommand = new SqlCommand(tableDropCode, s_connection);
             deleteTableCommand.ExecuteNonQuery();
-            String tableCreationString = "CREATE TABLE TTTestTable2(territoryIndex varchar(50) not null PRIMARY KEY, username varchar(4000), color varchar(50));";
+            String tableCreationString = "CREATE TABLE TTTestTable2(territoryIndex varchar(50) not null PRIMARY KEY, username varchar(4000), color varchar(50), playersTurn varchar(5));";
             SqlCommand command = new SqlCommand(tableCreationString, s_connection);
             command.ExecuteNonQuery();
             String retrievedRow = "";
@@ -76,6 +76,7 @@ namespace TriviaNationTests
             userValues.Add("territoryIndexTest");
             userValues.Add("usernameTest");
             userValues.Add("colorTest");
+            userValues.Add("0");
             Mock<IDataEntry> mockDataEntry = new Mock<IDataEntry>();
             mockDataEntry.Setup(r => r.GetValues()).Returns(userValues);
 
@@ -96,7 +97,7 @@ namespace TriviaNationTests
             }
 
             // Assert
-            Assert.AreEqual(("territoryIndexTest" + "\n" + "usernameTest" + "\n" + "colorTest" + "\n"), retrievedRow);
+            Assert.AreEqual(("territoryIndexTest" + "\n" + "usernameTest" + "\n" + "colorTest" + "\n" + "0" + "\n"), retrievedRow);
         }
 
         [TestMethod]

@@ -432,7 +432,6 @@ C:\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\System.Thr
 C:\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.dll
 C:\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.pdb
 C:\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.dll.config
-C:\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\TriviaNation.exe.config
 C:\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Castle.Core.xml
 C:\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 C:\Source\Repos\TriviaNation\TriviaNation\TriviaNationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
