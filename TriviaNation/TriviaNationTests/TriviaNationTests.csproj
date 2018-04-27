@@ -72,6 +72,7 @@
     <Compile Include="TriviaAdministrationTest.cs" />
     <Compile Include="TriviaTerritoryTest.cs" />
     <Compile Include="TriviaTest.cs" />
+    <Compile Include="QuestionPackTest.cs" />
     <Compile Include="UserTest.cs" />
     <Compile Include="UserAdministrationTest.cs" />
     <Compile Include="UserAuthenticationTest.cs" />

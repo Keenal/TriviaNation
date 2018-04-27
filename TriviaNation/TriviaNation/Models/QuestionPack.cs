@@ -35,7 +35,7 @@ namespace TriviaNation.Models
 
         public IDataBaseTable Database { get; set; }
 
-        public List<IQuestion> QuestionPackQuestions { get; private set; }
+        public List<IQuestion> QuestionPackQuestions { get; set; }
 
         /// <summary>
         /// Constructs a TriviaAdministration object with database and question types as instance fields through use of interfaces 
@@ -54,6 +54,9 @@ namespace TriviaNation.Models
             PopulateListFromTable();
         }
 
+        public QuestionPack() {
+
+        }
 
         /// <summary>
         /// Adds a question to the database
