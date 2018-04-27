@@ -33,6 +33,7 @@ namespace TriviaNation
         /// IUser object for modeling user data
         /// </summary>
         private IUser user;
+
         /// <summary>
         /// IDataBaseTable object for storing and retrieving user data
         /// </summary>
@@ -68,8 +69,6 @@ namespace TriviaNation
         /// <param name="score">The user's score</param>
         public Boolean AddUser(string userName, string email, string password, string confirmPassword, string score)
         {
-            // score needs to be converted to int or made into an int and converted to string 
-            // for future sprint though.
             if (password.Equals(confirmPassword))
             {
                 user.UserName = userName;
@@ -93,7 +92,11 @@ namespace TriviaNation
             database.DeleteRowFromTable(user.UserName);
         }
 
-        // Refactored code
+        /// <summary>
+        /// Takes in User information from the database and creates an user Object with that information
+        /// </summary>
+        /// <param name="tableName">the name of the table that the Object information is saved</param>
+        /// <param name="userNumber">the users number to identify which user to create an Object for</param>
         private void SetRowToObject(int userNumber)
         {
             string tableRow = database.RetrieveTableRow(database.TableName, userNumber);
@@ -123,10 +126,13 @@ namespace TriviaNation
                 };
                 allUserModels.Add(userModel);
             }
-
             return allUserModels;
         }
 
+        /// <summary>
+        /// builds a list of user info to be displaed when called
+        /// </summary>
+        /// <returns name="userDisplayTable">the List<String> that of users to display</String></returns>
         public IList<string> BuildUserInfo()
         {
             List<string> userDisplayTable = new List<string>();
@@ -147,6 +153,13 @@ namespace TriviaNation
             return userDisplayTable;
         }
 
+        /// <summary>
+        /// Updates a users score
+        /// </summary>
+        /// <param name="username">the name of the user</param>
+        /// <param name="currentScore">the current score for the user</param>
+        /// <param name="pointValue">the value of the question to add to the current score</param>
+        /// <returns></returns>
         public string UpdateScore(string username, string currentScore, int pointValue)
         {
             int score = Convert.ToInt32(currentScore);

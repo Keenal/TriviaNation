@@ -4,6 +4,27 @@ using System.Linq;
 using System.Text;
 using TriviaNation.Models.Abstract;
 
+/**
+TriviaNation is a networked trivia game designed for use in 
+classrooms. Class members are each in control of a nation on 
+a map. The goal of the game is to increase the size of the nation 
+by winning trivia challenges and defeating other class members 
+in contested territories. The focus is on gamifying learning and 
+making it an enjoyable experience.
+
+
+@author Timothy McWatters
+@author Keenal Shah
+@author Randy Quimby
+@author Wesley Easton
+@author Wenwen Xu
+
+@version 1.0
+
+CEN3032    "TriviaNation" SEII- Group 1's class project
+File Name: QuestionPack.cs 
+*/
+
 namespace TriviaNation.Models
 {
     public class QuestionPack : IQuestionPack
@@ -133,7 +154,11 @@ namespace TriviaNation.Models
             }
         }
             
-        // Refactored code
+        /// <summary>
+        /// Gets question information from the database and creates a question object with it
+        /// </summary>
+        /// <param name="questionNumber"></param>
+        /// <returns></returns>
         private IQuestion SetRowToObject(int questionNumber)
         {
             string tableRow = Database.RetrieveTableRow(Database.TableName, questionNumber);

@@ -30,20 +30,27 @@ namespace TriviaNation
         /// IDataBaseTable object for storing and retrieving question data
         /// </summary>
         private IDataBaseTable database;
+
         /// <summary>
         /// IQuestion object for modeling question data
         /// </summary>
         private IQuestionPack questionPack;
+
         /// <summary>
         /// Random object for generating random integers 
         /// </summary>
         private Random random;
+
         /// <summary>
         /// question object for referancing this question
         /// </summary>
         private IQuestion question;
 
-        // For testing purposes
+        /// <summary>
+        /// parameterized constructor
+        /// </summary>
+        /// <param name="database"></param>
+        /// <param name="question"></param>
         public Trivia(IDataBaseTable database, IQuestion question)
         {
             this.database = null;
@@ -66,7 +73,7 @@ namespace TriviaNation
         }
 
         /// <summary>
-        /// Generates a random number within a range determinant on the number of questions in the database table
+        /// Generates a random number within a range determinant on the number of questions in this QuestionPacks table
         /// </summary>
         /// <returns name="randomNum">The random number</returns>
         public int RandomGenerator()
@@ -76,9 +83,9 @@ namespace TriviaNation
         }
 
         /// <summary>
-        /// Returns a random question from the database
+        /// Returns a random question from the List of questions
         /// </summary>
-        /// <returns name="randomNum">The question from the database</returns>
+        /// <returns name="question">The question from the List of questions</returns>
         public IQuestion GetRandomQuestion()
         {
             int n = RandomGenerator();
@@ -88,10 +95,10 @@ namespace TriviaNation
         }
 
         /// <summary>
-        /// Evaluates answer input
+        /// Evaluates answer input to correct or wrong
         /// </summary>
         /// <param name="answer">The answer</param>
-        /// <returns></returns>
+        /// <returns>boolean representation of if a problem is correct or wrong</returns>
         public Boolean EvaluateAnswer(string answer)
         {
             if (answer.Trim().Equals(question.Answer, StringComparison.InvariantCultureIgnoreCase))

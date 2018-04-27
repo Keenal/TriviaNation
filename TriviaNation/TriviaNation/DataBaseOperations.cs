@@ -154,7 +154,12 @@ namespace TriviaNation
             }
             return numberOfRowsInTable;
         }
-
+        
+        /// <summary>
+        /// Gets the number of rows from a table with criteria
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
         public static int RetrieveNumberOfDistinctRowsInTable(String tableName)
         {
             int numberOfRowsInTable = 0;

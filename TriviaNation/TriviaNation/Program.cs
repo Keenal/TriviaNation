@@ -26,8 +26,6 @@ making it an enjoyable experience.
 
 CEN3032    "TriviaNation" SEII- Group 1's class project
 File Name: Program.cs 
-
-    This is the main class and the classes, interfaces are tested from here. 
 */
 
 namespace TriviaNation

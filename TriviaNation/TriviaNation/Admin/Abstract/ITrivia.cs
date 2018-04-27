@@ -15,7 +15,7 @@ making it an enjoyable experience.
 @author Wenwen Xu
 @version 1.0
 CEN3032    "TriviaNation" SEII- Group 1's class project
-File Name: QuestionTable.cs 
+File Name: ITrivia.cs 
 */
 
 namespace TriviaNation

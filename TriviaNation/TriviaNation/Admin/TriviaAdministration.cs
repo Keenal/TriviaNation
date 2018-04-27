@@ -32,8 +32,9 @@ namespace TriviaNation
         /// IQuestion object for modeling question data
         /// </summary>
         private List<IQuestionPack> questionPackList;
+
         /// <summary>
-        /// IQuestion object for modeling question data
+        /// IDataBaseTable object holding questionPack information in the database
         /// </summary>
         private IDataBaseTable questionPackTable;
 
@@ -47,13 +48,17 @@ namespace TriviaNation
             PopulateListFromTable();
         }
 
+        /// <summary>
+        /// QuestionPackList Property
+        /// </summary>
         public List<IQuestionPack> QuestionPackList { get => questionPackList; set => questionPackList = value; }
 
         /// <summary>
-        /// Adds a question to the database
+        /// Adds a question pack to the database as its own table, and adds it to the list of question packs in the 
+        /// QuestionPackTable
         /// </summary>
-        /// <param name="query">The question</param>
-        /// <param name="answer">The answer</param>
+        /// <param name="questionPackName">The question packs name</param>
+        /// <param name="questionPointValue">The questionss point value</param>
         public IQuestionPack AddQuestionPack(string questionPackName, int questionPointValue)
         {
             //creates a new instance of a QuestionPack
@@ -75,7 +80,7 @@ namespace TriviaNation
         }
 
         /// <summary>
-        /// Deletes a question from the database
+        /// Deletes a questionPack from the database
         /// </summary>
         /// <param name="questionPackName">The name of the question pack to delete</param>
         public void DeleteQuestionPack(string questionPackName)
@@ -92,9 +97,9 @@ namespace TriviaNation
         }
 
         /// <summary>
-        /// Returns all question data in the database in the form of a list of objects
+        /// Returns question pack from the database by questionPackName
         /// </summary>
-        /// /// <returns>The list of question objects</returns>
+        /// /// <returns>The questionPack</returns>
         public IQuestionPack RetrieveQuestionPackByName(string questionPackName)
         {
            for (int i = 0; i < QuestionPackList.Count; i++)
@@ -118,9 +123,8 @@ namespace TriviaNation
         }
 
         /// <summary>
-        /// Returns all question data in the database in the form of a list of objects
+        /// populates a List<QuestionPack> from the database
         /// </summary>
-        /// /// <returns>The list of question objects</returns>
         public void PopulateListFromTable()
         {
             for (int i = 1; i <= questionPackTable.RetrieveNumberOfRowsInTable(); i++)
@@ -130,7 +134,11 @@ namespace TriviaNation
             }
         }
 
-        // Refactored code
+        /// <summary>
+        /// retrives qeustion pack information from the database and creates a QuestionPack object with that data
+        /// </summary>
+        /// <param name="questionPackNumber"></param>
+        /// <returns></returns>
         private IQuestionPack SetRowToObject(int questionPackNumber)
         {
             string tableRow = questionPackTable.RetrieveTableRow(questionPackTable.TableName, questionPackNumber);

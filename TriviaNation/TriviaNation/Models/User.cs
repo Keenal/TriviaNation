@@ -32,14 +32,17 @@ namespace TriviaNation
         /// The user's username
         /// </summary>
         private string userName;
+
         /// <summary>
         /// The user's password
         /// </summary>
         private string password;
+
         /// <summary>
         /// The user's email
         /// </summary>
         private string email;
+
         /// <summary>
         /// The user's score
         /// </summary>
