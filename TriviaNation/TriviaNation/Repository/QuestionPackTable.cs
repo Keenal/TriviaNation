@@ -28,11 +28,12 @@ namespace TriviaNation
     {
         //name of this specific DataBase Table
         private const String tableName = "QuestionPackTable";
+
         //String used to create this specific Table
         private const String tableCreationString = "(questionPackName varchar(4000) not null PRIMARY KEY, pointValue varchar(4000) not null);";
 
         /// <summary>
-        /// Default Constructor for the QuestionTable class
+        /// Default Constructor for the QuestionPackTable class
         /// </summary>
         public QuestionPackTable()
         {
@@ -73,7 +74,7 @@ namespace TriviaNation
         }
 
         /// <summary>
-        /// Inserts a row (containing question and answer) into the Table
+        /// Inserts a row into the Table
         /// </summary>
         /// <param name="dataEntry">Instance of IDataEntry Interface containing values for the QuestionPack</param>
         public void InsertRowIntoTable(String tableName, IDataEntry dataEntry)
@@ -100,6 +101,7 @@ namespace TriviaNation
         /// <summary>
         /// Retrieves a row from the Table
         /// </summary>
+        /// <param name="tableName">name of the table</param>
         /// <param name="rowNumber">The number of the row to retrieve from the Table</param>
         /// <returns name="retrievedRow">The row that was retrieved</param>
         public String RetrieveTableRow(String tableName, int rowNumber)

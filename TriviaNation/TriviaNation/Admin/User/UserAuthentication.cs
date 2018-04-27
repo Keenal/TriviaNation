@@ -29,16 +29,24 @@ namespace TriviaNation
     /// </summary>
     public class UserAuthentication : IUserAuthentication
     {
+        /// <summary>
+        /// The points awarded when a player gets an answer correct
+        /// </summary>
         private static readonly int CorrectAnswerPoints = 5;
+
         /// <summary>
         /// IDataBaseTable object for storing and retrieving user data
         /// </summary>
         private IUserTable database;
+
         /// <summary>
         /// IUser object for modeling user data
         /// </summary>
         private IUser user;
 
+        /// <summary>
+        /// default constructor
+        /// </summary>
         public UserAuthentication()
         {
             this.database = null;
@@ -83,6 +91,10 @@ namespace TriviaNation
             return false;
         }
 
+        /// <summary>
+        /// accessor method
+        /// </summary>
+        /// <returns>whether a user has admin rights</returns>
         public Boolean IsAdministrator()
         {
             if (user.Email.Equals("teacher"))
@@ -92,6 +104,9 @@ namespace TriviaNation
             return false;
         }
 
+        /// <summary>
+        /// computes the score of a user
+        /// </summary>
         public void ComputeScore()
         {
             int convertedScore = Convert.ToInt32(user.Score);
@@ -100,6 +115,9 @@ namespace TriviaNation
             SaveScoreToDatabase();
         }
 
+        /// <summary>
+        /// writes/updates/saves the users score to the database
+        /// </summary>
         public void SaveScoreToDatabase()
         {
             IUserAdministration admin = new UserAdministration();
@@ -116,7 +134,9 @@ namespace TriviaNation
             }
         }
 
-        // To return user object affiliated with authentication
+        /// <summary>
+        /// To return user object affiliated with authentication
+        /// </summary>
         public IUser GetUserData()
         {
             return user;

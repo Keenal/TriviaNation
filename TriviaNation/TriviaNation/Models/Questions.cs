@@ -58,6 +58,9 @@ namespace TriviaNation
             this.questionPack = questionPack;
         }
 
+        /// <summary>
+        /// Default constructor for Question
+        /// </summary>
         public Questions()
         {
 
@@ -109,7 +112,10 @@ namespace TriviaNation
                 pointValue = value;
             }
         }
-
+        
+        /// <summary>
+        /// accessor and mutator for QuestionType
+        /// </summary>
         public string QuestionType
         {
             get
@@ -123,6 +129,9 @@ namespace TriviaNation
             }
         }
 
+        /// <summary>
+        /// Accessor and Mutator for QuestionPack
+        /// </summary>
         public string QuestionPack
         {
             get
